@@ -8,10 +8,10 @@ This is a music forum. You can share what you want to share about musics or pop 
 4. 主页能按不同的方式排列帖子的顺序（按热度，按点赞量，按时间），有帖子的简要信息。
 
 ## Developers
-- [zhangchi](link)
+- [Chi Zhang](https://github.com/Darius18)
 - [XiaoTao Li](https://github.com/lixiaotaolxt)
 - [Zheyuan Li](https://github.com/InfinityOasis)
-- [Jiangchao chen](http://github.com/Chenjiang-circle)
+- [Jiangchao Chen](http://github.com/Chenjiang-circle)
 
 ## Rendering
 ![TIM图片20190713081346.jpg](https://i.loli.net/2019/07/13/5d2922c5aca5b94370.jpg)
