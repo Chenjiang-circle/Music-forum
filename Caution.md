@@ -6,4 +6,4 @@
 
 - 每天第一件事就是，更新一下自己的master和自己建的分支（`git pull upstream master`）。多`commit`，防止自己写的代码无法回退。
 
-- `git add`的时候，不要直接`git add .`（全部添加），要一个文件一个文件`add`。
+- `git add`的时候，不要直接`git add .`（全部添加），要一个文件一个文件`add`，目的是防止一些idea软件自动生成的文件混入其中。
