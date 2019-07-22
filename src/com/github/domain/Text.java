@@ -15,4 +15,5 @@ package com.github.domain;
  * @since 1.0.0
  */
 public class Text {
+
 }
