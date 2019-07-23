@@ -1,8 +1,8 @@
-package com.github.dao;
+package com.github.service;
 
 import com.github.domain.User;
 
-public interface UserDao {
+public interface UserService {
     void register(User users);
     User signin(User users);
     Boolean isHave(User users);

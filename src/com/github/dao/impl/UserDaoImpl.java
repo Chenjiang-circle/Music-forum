@@ -24,10 +24,15 @@ public class UserDaoImpl implements UserDao {
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
     @Override
     public void register(User users) {
-        String sql = "insert into user values(?, null, ?, 1, 0, 0, 0)";
-        template.update(sql, users.getUserid(), users.getPassword());
+        String sql = "insert into user values(?, ?, ?, 1, ?, ?, ?, ?)";
+        template.update(sql, users.getUserid(), users.getUsername(), users.getPassword(), users.getNumsignin(), users.getFans(), users.getDescription(), users.getSex());
     }
 
+    /**
+     * 登录操作
+     * @param users
+     * @return
+     */
     @Override
     public User signin(User users) {
         try {
@@ -38,5 +43,23 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 检验用户是否登录
+     * @param users
+     * @return
+     */
+    @Override
+    public Boolean isHave(User users) {
+        try {
+            String sql = "select * from user where userid = ? ";
+            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), users.getUserid());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 }
