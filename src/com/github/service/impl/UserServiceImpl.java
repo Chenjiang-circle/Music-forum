@@ -1,5 +1,5 @@
 /**
- * FileName: UserRsgisterServiceImpl
+ * FileName: UserServiceImpl
  * Author:   陈江超
  * Date:     2019/7/21 9:19
  * Description: 用户注册
@@ -9,7 +9,7 @@ package com.github.service.impl;
 import com.github.dao.UserDao;
 import com.github.dao.impl.UserDaoImpl;
 import com.github.domain.User;
-import com.github.service.UserRegisterService;
+import com.github.service.UserService;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -19,7 +19,7 @@ import com.github.service.UserRegisterService;
  * @create 2019/7/21
  * @since 1.0.0
  */
-public class UserRsgisterServiceImpl implements UserRegisterService {
+public class UserServiceImpl implements UserService {
     UserDao userDao = new UserDaoImpl();
     @Override
     public void register(User users) {
@@ -30,5 +30,10 @@ public class UserRsgisterServiceImpl implements UserRegisterService {
     public User signin(User users) {
         User user1 = userDao.signin(users);
         return user1;
+    }
+
+    @Override
+    public Boolean isHave(User users) {
+        return userDao.isHave(users);
     }
 }

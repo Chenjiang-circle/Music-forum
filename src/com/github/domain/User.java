@@ -22,6 +22,7 @@ public class User {
     private int numsignin;
     private int fans;
     private String description;
+    private String sex;
 
     public String getUserid() {
         return userid;
@@ -75,13 +76,21 @@ public class User {
         return description;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
     @Override
     public String toString() {
-        return "user{" +
+        return "User{" +
                 "userid='" + userid + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -89,6 +98,7 @@ public class User {
                 ", numsignin=" + numsignin +
                 ", fans=" + fans +
                 ", description='" + description + '\'' +
+                ", sex='" + sex + '\'' +
                 '}';
     }
 }

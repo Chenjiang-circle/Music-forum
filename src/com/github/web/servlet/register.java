@@ -7,8 +7,8 @@
 package com.github.web.servlet;
 
 import com.github.domain.User;
-import com.github.service.UserRegisterService;
-import com.github.service.impl.UserRsgisterServiceImpl;
+import com.github.service.UserService;
+import com.github.service.impl.UserServiceImpl;
 import com.github.util.MailUtil;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -34,7 +34,6 @@ public class register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 设置编码
-        System.out.println("success.................");
         req.setCharacterEncoding("utf-8");
         Map<String, String[]> map = req.getParameterMap();
         User users = new User();
@@ -48,18 +47,25 @@ public class register extends HttpServlet {
         }
         System.out.println(users.toString());
 
-        UserRegisterService userRegisterService = new UserRsgisterServiceImpl();
-        userRegisterService.register(users);
-        String userid = users.getUserid();
-        //String receiveMailAccount = "1455075085@qq.com";
-        // 随便设置一个激活码
-        String mailActiveCode = "123456";
-        try {
-            MailUtil.sendActiveMail(userid, mailActiveCode);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // 判断用户是否存在
+        UserService userService = new UserServiceImpl();
+
+        Boolean have = userService.isHave(users);
+        if (have) {
+            System.out.println("存在");
+        } else {
+            userService.register(users);
+            String userid = users.getUserid();
+            String receiveMailAccount = "1455075085@qq.com";
+            // 随便设置一个激活码
+            String mailActiveCode = "123456";
+            try {
+                MailUtil.sendActiveMail(userid, mailActiveCode);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("success");
         }
-        resp.getWriter().write("hello");
     }
 
     @Override
