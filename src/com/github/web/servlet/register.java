@@ -34,6 +34,7 @@ public class register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 设置编码
+        System.out.println("success.................");
         req.setCharacterEncoding("utf-8");
         Map<String, String[]> map = req.getParameterMap();
         User users = new User();
@@ -58,6 +59,7 @@ public class register extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        resp.getWriter().write("hello");
     }
 
     @Override
