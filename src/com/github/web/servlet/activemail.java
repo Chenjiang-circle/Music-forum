@@ -29,7 +29,6 @@ public class activemail extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         // 获取参数
         String mailcode = req.getParameter("mailcode");
-        System.out.println("success");
         resp.sendRedirect("/Music_forum/success.html");
     }
 

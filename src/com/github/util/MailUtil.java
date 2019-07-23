@@ -59,7 +59,7 @@ public class MailUtil {
         // 2. 根据配置创建会话对象, 用于和邮件服务器交互
         Session session = Session.getDefaultInstance(props);
         // 设置为debug模式, 可以查看详细的发送 log
-        session.setDebug(true);
+        //session.setDebug(true);
 
         // 3. 创建一封邮件
         MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount, mailActiveCode);
