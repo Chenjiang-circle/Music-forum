@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 页面响应式 -->
-    <title>515音乐论坛</title>
+    <title>欢迎进入515音乐论坛</title>
     <link type="text/css" rel="stylesheet" href="css/style-nav&foot.css"/>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/jQueryRotate.js"></script>
@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/demo-search.css" />
     <link rel="stylesheet" type="text/css" href="css/react-head&foot.css" />
     <link rel="stylesheet" type="text/css" href="css/style-search.css" />
-    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <link rel="stylesheet" type="text/css" href="css/enter.css" />
     <link href="css/ui-choose.css" rel="stylesheet" />
     <!-- demo必须在style-search的上面 -->
     <script>document.documentElement.className = 'js';</script>
@@ -50,7 +50,7 @@
 <!-- 这个是主页，相当于body，请把页面中所有内容写到这里来 -->
     <main class="main-wrap">
 
-
+            
 
 
 
@@ -76,9 +76,9 @@
                 </ul>
                 <ul id="login">
                     <li src="" id="in" class="login"><a href="">Sign In</a></li>
-                    <li src="" id="up" class="login"><a href="">Sign Up</a></li>
+                    <li src="" id="up" class="login"><a href="login.html">Sign Up</a></li>
                 </ul>
-
+                
 
 
                 <nav class="phone-nav">
@@ -96,27 +96,14 @@
                 </div>
         </div>
 
-        <div class="login-head"></div>
+        <div class="enter-head"></div>
         <div id="main-content">
-
-            <div class="login-form">
-                <form action="" method="POST" id="login-form">
-                    <p>昵称：</p><input type="text" name="username" id="username"><br>
-                    <p></p>
-                    <div class="demo-box">
-                            <select class="ui-choose" id="sex">
-                                <option value="b">男 生</option>
-                                <!-- b for boy -->
-                                <option value="g">女 生</option>
-                                <!-- g for girl -->
-                                <option value="e">其 他</option>
-                                <!-- e for else -->
-                              </select>
-                      </div><br>
-                    <p>邮箱：</p><input type="email" name="loginEmail" id="loginEmail"><br>
-                    <p>密码：</p><input type="password" name="loginPassword" id="loginPassword"><br>
-                    <p>确认密码：</p><input type="password" name="confirmPassword" id="confirmPassword"><br>
-                    <input type="submit" value="写完啦" id="login-submit">
+           
+            <div class="enter-form">
+                <form action="" method="POST" id="enter-form">
+                    <p>邮箱：</p><input type="email" name="enterEmail" id="enterEmail"><br>
+                    <p>密码：</p><input type="password" name="enterPassword" id="enterPassword"><br>
+                    <input type="submit" value="登录" id="enter-submit">
                 </form>
             </div>
         </div>
@@ -129,7 +116,7 @@
                     <br><br>关于我们 | 联系我们 | 服务条款 | 隐私政策<br/><br>Copyright © 515lab & 515music. All Rights Reserved.<div>circleChen Darius xiaotaoLi zheyuanLi</div>
             </div>
     </main>
-
+    
 	<div class="search">
 			<button id="btn-search-close" class="btn btn--search-close" aria-label="Close search form"><svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg></button>
 			<form class="search__form" action="">
@@ -142,13 +129,13 @@
                 </div>
 
 			</form>
-    </div>
+        </div>
 <!-- search页面 -->
 
 
 
     <script src="js/demo-search.js"></script>
     <script src="js/ui-choose.js"></script>
-    <script src="js/login.js"></script>
+    <script src="js/enter.js"></script>
 </body>
 </html>
