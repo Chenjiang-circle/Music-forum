@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
     public void follow(follow followers) {
         userDao.follow(followers);
     }
+
+    @Override
+    public Boolean isFollow(follow follows) {
+        return userDao.isFollow(follows);
+    }
 }

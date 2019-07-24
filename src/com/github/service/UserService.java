@@ -13,4 +13,11 @@ public interface UserService {
      * @param followers
      */
     void follow(follow followers);
+
+    /**
+     * 该方法用来检查是否已经follow过followed，返回true表示已经follow。反之没有follow
+     * @param follows
+     * @return
+     */
+    Boolean isFollow(follow follows);
 }

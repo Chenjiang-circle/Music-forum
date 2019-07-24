@@ -8,4 +8,5 @@ public interface UserDao {
     User signin(User users);
     Boolean isHave(User users);
     void follow(follow followers);
+    Boolean isFollow(follow follows);
 }

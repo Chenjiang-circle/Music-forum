@@ -69,4 +69,16 @@ public class UserDaoImpl implements UserDao {
         String sql = "insert into follow values (?, ?)";
         template.update(sql, followers.getUserid(), followers.getFollowed());
     }
+
+    @Override
+    public Boolean isFollow(follow follows) {
+        try {
+            String sql = "select * from follow where userid = ? and followed = ? ";
+            follow follow = template.queryForObject(sql, new BeanPropertyRowMapper<follow>(follow.class));
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
