@@ -8,6 +8,7 @@ package com.github.dao.impl;
 
 import com.github.dao.UserDao;
 import com.github.domain.User;
+import com.github.domain.follow;
 import com.github.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -61,5 +62,23 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
 
+    }
+
+    @Override
+    public void follow(follow followers) {
+        String sql = "insert into follow values (?, ?)";
+        template.update(sql, followers.getUserid(), followers.getFollowed());
+    }
+
+    @Override
+    public Boolean isFollow(follow follows) {
+        try {
+            String sql = "select * from follow where userid = ? and followed = ? ";
+            follow follow = template.queryForObject(sql, new BeanPropertyRowMapper<follow>(follow.class), follows.getUserid(), follows.getFollowed());
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

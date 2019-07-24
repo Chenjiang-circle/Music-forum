@@ -9,6 +9,7 @@ package com.github.service.impl;
 import com.github.dao.UserDao;
 import com.github.dao.impl.UserDaoImpl;
 import com.github.domain.User;
+import com.github.domain.follow;
 import com.github.service.UserService;
 
 /**
@@ -35,5 +36,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean isHave(User users) {
         return userDao.isHave(users);
+    }
+
+    @Override
+    public void follow(follow followers) {
+        userDao.follow(followers);
+    }
+
+    @Override
+    public Boolean isFollow(follow follows) {
+        return userDao.isFollow(follows);
     }
 }
