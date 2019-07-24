@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
     public Boolean isFollow(follow follows) {
         try {
             String sql = "select * from follow where userid = ? and followed = ? ";
-            follow follow = template.queryForObject(sql, new BeanPropertyRowMapper<follow>(follow.class));
+            follow follow = template.queryForObject(sql, new BeanPropertyRowMapper<follow>(follow.class), follows.getUserid(), follows.getFollowed());
             return true;
         } catch(Exception e) {
             e.printStackTrace();

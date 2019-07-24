@@ -32,6 +32,11 @@ public class UserServiceImplTest {
 
     @Test
     public void isFollow() {
-
+        follow follows = new follow();
+        follows.setUserid("1455075085@qq.com");
+        follows.setFollowed("2464792469@qq.com");
+        UserDao userDao = new UserDaoImpl();
+        Boolean follow = userDao.isFollow(follows);
+        System.out.println(follow);
     }
 }
