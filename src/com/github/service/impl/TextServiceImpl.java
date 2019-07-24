@@ -9,6 +9,7 @@ package com.github.service.impl;
 import com.github.dao.TextDao;
 import com.github.dao.impl.TextDaoImpl;
 import com.github.domain.Text;
+import com.github.domain.comment;
 import com.github.service.TextService;
 
 /**
@@ -25,5 +26,17 @@ public class TextServiceImpl implements TextService {
     @Override
     public void createText(Text text) {
         textDao.createText(text);
+    }
+
+    @Override
+    public Boolean addComment(comment comments) {
+        int commentid = textDao.addCommentToText(comments);
+        if (commentid != -1){
+            return textDao.addComment(comments, commentid);
+        }else {
+            System.out.println("存储评论到数据库错误，报错点（TextServiceImpl-->addComment）");
+            return false;
+        }
+
     }
 }
