@@ -33,7 +33,7 @@ public class TextDaoImpl implements TextDao {
     public Boolean addComment(comment comments, int commentid) {
         try {
             String sql = "insert into comment values(?, ?, ?, ?)";
-            template.update(sql, commentid, comments.getTextid(), comments.getText(), comments.getTime());
+            template.update(sql, comments.getTextid(), commentid, comments.getText(), comments.getTime());
             return true;
         }catch (Exception e) {
             e.printStackTrace();
