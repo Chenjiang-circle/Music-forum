@@ -35,9 +35,26 @@ public class TextDaoImpl implements TextDao {
             // 将评论id和被评论文章id存到comment表中
             String sql = "insert into comment values(?, ?, ?, ?)";
             template.update(sql, comments.getTextid(), commentid, comments.getText(), comments.getTime());
-            // 将被评论文章的comments属性加一。
-            String sql2 = "update text set comment = comment +1 where textid = ? ";
-            template.update(sql2, comments.getTextid());
+            // 将被评论文章的comments属性逐层往上加一。
+
+            // 初始化commentid。
+            int comment_id = commentid;
+            comment c = new comment();
+            while(true){
+                try {
+                    // 获取commentid对应的textid，如果存在这样的textid，就将textid看做commentid继续去寻找上一级的textid并将其comment属性值加一
+                    String sql3 = "select * from comment where commentid = ?";
+                    c = template.queryForObject(sql3, new BeanPropertyRowMapper<comment>(comment.class), comment_id);
+                    String sql2 = "update text set comment = comment + 1 where textid = ? ";
+                    template.update(sql2, c.getTextid());
+                    comment_id = c.getTextid();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("循环逐层加一结束");
+                    c = null;
+                    break;
+                }
+            }
             return true;
         }catch (Exception e) {
             e.printStackTrace();
