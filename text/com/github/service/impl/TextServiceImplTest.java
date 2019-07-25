@@ -17,10 +17,10 @@ public class TextServiceImplTest {
     public void addComment() {
         TextDao textDao = new TextDaoImpl();
         comment comments = new comment();
-        comments.setTextid(14);
+        comments.setTextid(19);
         comments.setUserid("1455075085@qq.com");
-        comments.setTime("2000-12-12");
-        comments.setText("测试插入评论1");
+        comments.setTime("2019-8-2");
+        comments.setText("测试插入评论1的子评论2");
         int commentid = textDao.addCommentToText(comments);
         if (commentid != -1){
             Boolean aBoolean = textDao.addComment(comments, commentid);

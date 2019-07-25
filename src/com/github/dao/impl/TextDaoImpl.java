@@ -32,8 +32,12 @@ public class TextDaoImpl implements TextDao {
     @Override
     public Boolean addComment(comment comments, int commentid) {
         try {
+            // 将评论id和被评论文章id存到comment表中
             String sql = "insert into comment values(?, ?, ?, ?)";
             template.update(sql, comments.getTextid(), commentid, comments.getText(), comments.getTime());
+            // 将被评论文章的comments属性加一。
+            String sql2 = "update text set comment = comment +1 where textid = ? ";
+            template.update(sql2, comments.getTextid());
             return true;
         }catch (Exception e) {
             e.printStackTrace();
