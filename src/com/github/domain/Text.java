@@ -27,6 +27,7 @@ public class Text {
     private String title;
     private String type;
 
+
     public String getUserid() {
         return userid;
     }
