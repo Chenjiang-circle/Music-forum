@@ -23,12 +23,23 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class TextDaoImpl implements TextDao {
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
+
+    /**
+     * 把文章写入数据库中
+     * @param text
+     */
     @Override
     public void createText(Text text) {
         String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, text.getUserid(), text.getTime(), text.getLikes(), text.getComment(), text.getCollection(), text.getText(), text.getTitle(), text.getType());
     }
 
+    /**
+     * 把评论加入comment表中，并实现文章评论数加一
+     * @param comments
+     * @param commentid
+     * @return
+     */
     @Override
     public Boolean addComment(comment comments, int commentid) {
         try {
@@ -63,6 +74,11 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
+    /**
+     * 把评论当做文章写入text表中，生成一个唯一的textid
+     * @param comments
+     * @return
+     */
     @Override
     public int addCommentToText(comment comments) {
         try {
