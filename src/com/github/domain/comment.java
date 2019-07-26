@@ -1,8 +1,8 @@
 /**
- * FileName: Text
+ * FileName: comment
  * Author:   陈江超
- * Date:     2019/7/22 11:27
- * Description: 文章
+ * Date:     2019/7/24 17:41
+ * Description: 评论
  */
 package com.github.domain;
 
@@ -10,15 +10,25 @@ import java.util.Date;
 
 /**
  * 〈一句话功能简述〉<br>
- * 〈文章〉
+ * 〈评论〉
  *
  * @author 陈江超
- * @create 2019/7/22
+ * @create 2019/7/24
  * @since 1.0.0
  */
-public class Text {
+public class comment {
+    /**
+     * textid 被评论文章id
+     * userid 评论用户的email
+     * time 评论文章发表时间
+     * likes 评论被点赞数
+     * comment 评论被评论数
+     * collection 评论被收藏数
+     * text 评论内容
+     * title 评论标题（一般没有，只是为了保证封装数据的完整性）
+     */
+    private int textid;
     private String userid;
-    private Integer textid = null;
     private String time;
     private int likes;
     private int comment;
@@ -27,6 +37,13 @@ public class Text {
     private String title;
     private String type;
 
+    public int getTextid() {
+        return textid;
+    }
+
+    public void setTextid(int textid) {
+        this.textid = textid;
+    }
 
     public String getUserid() {
         return userid;
@@ -34,14 +51,6 @@ public class Text {
 
     public void setUserid(String userid) {
         this.userid = userid;
-    }
-
-    public Integer getTextid() {
-        return textid;
-    }
-
-    public void setTextid(Integer textid) {
-        this.textid = textid;
     }
 
     public String getTime() {
@@ -102,9 +111,9 @@ public class Text {
 
     @Override
     public String toString() {
-        return "Text{" +
-                "userid='" + userid + '\'' +
-                ", textid=" + textid +
+        return "comment{" +
+                "textid=" + textid +
+                ", userid='" + userid + '\'' +
                 ", time='" + time + '\'' +
                 ", likes=" + likes +
                 ", comment=" + comment +
