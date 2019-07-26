@@ -56,21 +56,16 @@ $(document).ready(function(){
         if($('#login-form').valid()){
             $.ajax({
                 type:"POST",
-                url:"",
+                url:"http://172.20.151.112:8066/Music_forum/registerservlet",
                 data:{
                     username:$("#username").val(),
                     sex:$("#sex").val(),
-                    email:$("#loginEmail").val(),
+                    userid:$("#loginEmail").val(),
                     password:$("#loginPassword").val()
                 },
                 dataType:"json",
                 success:function(data){//请求成功，data为后台数据
-                    if(data.success){
-                        window.location.href="enter.html";
-                        //跳转到登录页面
-                    }else{
-                        alert("OOOOPS! 服务器出现了一个小问题："+data.msg);
-                    }
+                    window.location.href="http://172.20.151.112:8066/Music_forum/success.html";
                 },
                 error:function(jqXHR){
                     alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);

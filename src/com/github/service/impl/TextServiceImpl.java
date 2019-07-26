@@ -12,6 +12,8 @@ import com.github.domain.Text;
 import com.github.domain.comment;
 import com.github.service.TextService;
 
+import java.util.Map;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈文章操作实现〉
@@ -38,5 +40,11 @@ public class TextServiceImpl implements TextService {
             return false;
         }
 
+    }
+
+    @Override
+    public Map findText(Text text) {
+
+        return null;
     }
 }

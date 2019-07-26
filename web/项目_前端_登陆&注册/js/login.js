@@ -66,12 +66,8 @@ $(document).ready(function(){
                 },
                 dataType:"json",
                 success:function(data){//请求成功，data为后台数据
-                    if(data.success){
-                        window.location.href="enter.html";
-                        //跳转到登录页面
-                    }else{
-                        alert("OOOOPS! 服务器出现了一个小问题："+data.msg);
-                    }
+                    alter(data);
+                    window.location.href="G:\\github库\\Music-forum\\web\\项目_前端_登陆&注册\\enter.html";//跳转到登录页面
                 },
                 error:function(jqXHR){
                     alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
