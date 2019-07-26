@@ -18,12 +18,14 @@ import java.util.Date;
  */
 public class Text {
     private String userid;
-    private int textid;
-    private Date time;
+    private Integer textid = null;
+    private String time;
     private int likes;
     private int comment;
     private int collection;
     private String text;
+    private String title;
+    private String type;
 
     public String getUserid() {
         return userid;
@@ -33,19 +35,19 @@ public class Text {
         this.userid = userid;
     }
 
-    public int getTextid() {
+    public Integer getTextid() {
         return textid;
     }
 
-    public void setTextid(int textid) {
+    public void setTextid(Integer textid) {
         this.textid = textid;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -81,16 +83,34 @@ public class Text {
         this.text = text;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Text{" +
                 "userid='" + userid + '\'' +
                 ", textid=" + textid +
-                ", time=" + time +
+                ", time='" + time + '\'' +
                 ", likes=" + likes +
                 ", comment=" + comment +
                 ", collection=" + collection +
                 ", text='" + text + '\'' +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

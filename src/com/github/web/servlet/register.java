@@ -6,6 +6,8 @@
  */
 package com.github.web.servlet;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.domain.User;
 import com.github.service.UserService;
 import com.github.service.impl.UserServiceImpl;
@@ -34,10 +36,11 @@ public class register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 设置编码
+        System.out.println("jdoias");
         req.setCharacterEncoding("utf-8");
+
         Map<String, String[]> map = req.getParameterMap();
         User users = new User();
-
         try {
             BeanUtils.populate(users, map);
         } catch (IllegalAccessException e) {
@@ -65,6 +68,10 @@ public class register extends HttpServlet {
                 e.printStackTrace();
             }
             System.out.println("success");
+            String s = JSON.toJSONString(users);
+            System.out.println(s);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), users);
         }
     }
 
