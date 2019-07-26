@@ -1,6 +1,5 @@
 package com.github.web.servlet;
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.github.domain.User;
