@@ -57,7 +57,7 @@ $(document).ready(function(){
         if($('#login-form').valid()){
             $.ajax({
                 type:"POST",
-                url:"http://172.20.151.112:8066/Music_forum/registerservlet",
+                url:"http://172.20.151.117:8066/Music_forum/registerservlet",
                 data:{
                     username:$("#username").val(),
                     sex:$("#sex").val(),
