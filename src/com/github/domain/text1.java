@@ -1,22 +1,20 @@
 /**
- * FileName: Text
+ * FileName: text1
  * Author:   陈江超
- * Date:     2019/7/22 11:27
- * Description: 文章
+ * Date:     2019/7/26 10:02
+ * Description: 测试
  */
 package com.github.domain;
 
-import java.util.Date;
-
 /**
  * 〈一句话功能简述〉<br>
- * 〈文章〉
+ * 〈测试〉
  *
  * @author 陈江超
- * @create 2019/7/22
+ * @create 2019/7/26
  * @since 1.0.0
  */
-public class Text {
+public class text1 {
     private String userid;
     private Integer textid = null;
     private String time;
@@ -26,6 +24,15 @@ public class Text {
     private String text;
     private String title;
     private String type;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getUserid() {
         return userid;
@@ -99,18 +106,4 @@ public class Text {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Text{" +
-                "userid='" + userid + '\'' +
-                ", textid=" + textid +
-                ", time='" + time + '\'' +
-                ", likes=" + likes +
-                ", comment=" + comment +
-                ", collection=" + collection +
-                ", text='" + text + '\'' +
-                ", title='" + title + '\'' +
-                ", type='" + type + '\'' +
-                '}';
-    }
 }

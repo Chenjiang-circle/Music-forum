@@ -3,6 +3,8 @@ package com.github.dao;
 import com.github.domain.Text;
 import com.github.domain.comment;
 
+import java.util.Map;
+
 public interface TextDao {
     void createText(Text text);
 
@@ -20,4 +22,6 @@ public interface TextDao {
      * @return
      */
     int addCommentToText(comment comments);
+
+    Map findText(Text text);
 }

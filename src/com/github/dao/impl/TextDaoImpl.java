@@ -13,6 +13,8 @@ import com.github.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Map;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈TextDao实现〉
@@ -94,6 +96,11 @@ public class TextDaoImpl implements TextDao {
             System.out.println("将评论插入文章表时出现异常,返回-1");
             return -1;
         }
+    }
+
+    @Override
+    public Map findText(Text text) {
+        return null;
     }
 
 
