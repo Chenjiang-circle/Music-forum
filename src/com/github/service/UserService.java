@@ -3,9 +3,6 @@ package com.github.service;
 import com.github.domain.User;
 import com.github.domain.collection;
 import com.github.domain.follow;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
-import javax.xml.stream.events.Comment;
 
 public interface UserService {
 
