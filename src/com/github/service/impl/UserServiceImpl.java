@@ -47,4 +47,9 @@ public class UserServiceImpl implements UserService {
     public Boolean isFollow(follow follows) {
         return userDao.isFollow(follows);
     }
+
+    @Override
+    public User findUserByTextId(int textid) {
+        return userDao.findUserByTextId(textid);
+    }
 }

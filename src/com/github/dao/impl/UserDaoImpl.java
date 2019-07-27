@@ -7,6 +7,7 @@
 package com.github.dao.impl;
 
 import com.github.dao.UserDao;
+import com.github.domain.Text;
 import com.github.domain.User;
 import com.github.domain.follow;
 import com.github.util.JDBCUtils;
@@ -79,6 +80,20 @@ public class UserDaoImpl implements UserDao {
         } catch(Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public User findUserByTextId(int textid) {
+        try {
+            String sql = "select * from text where textid = ? ";
+            Text text = template.queryForObject(sql, new BeanPropertyRowMapper<Text>(Text.class), textid);
+            String sql1 = "select * from user where userid = ? ";
+            User user = template.queryForObject(sql1, new BeanPropertyRowMapper<User>(User.class), text.getUserid());
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

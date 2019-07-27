@@ -9,4 +9,5 @@ public interface UserDao {
     Boolean isHave(User users);
     void follow(follow followers);
     Boolean isFollow(follow follows);
+    User findUserByTextId(int textid);
 }
