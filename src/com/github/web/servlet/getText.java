@@ -72,11 +72,11 @@ public class getText extends HttpServlet {
         text.setTextid(99);
         text.setUsername("圈圈");
 
-//        String s = JSON.toJSONString(text);
-//        System.out.println(s);
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.writeValue(resp.getWriter(), text);
-        JSON.writeJSONString(resp.getWriter(), text);
+        String s = JSON.toJSONString(text);
+        System.out.println(s);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(resp.getWriter(), text);
+//        JSON.writeJSONString(resp.getWriter(), text);
     }
 
     @Override
