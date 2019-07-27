@@ -23,5 +23,10 @@ public interface TextDao {
      */
     int addCommentToText(comment comments);
 
-    Map findText(Text text);
+    /**
+     * 根据文章id获取文章具体信息
+     * @param text
+     * @return
+     */
+    Text findText(Text text);
 }

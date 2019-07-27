@@ -106,4 +106,19 @@ public class text1 {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "text1{" +
+                "userid='" + userid + '\'' +
+                ", textid=" + textid +
+                ", time='" + time + '\'' +
+                ", likes=" + likes +
+                ", comment=" + comment +
+                ", collection=" + collection +
+                ", text='" + text + '\'' +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }

@@ -6,13 +6,17 @@
  */
 package com.github.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.github.dao.TextDao;
+import com.github.dao.UserDao;
 import com.github.dao.impl.TextDaoImpl;
+import com.github.dao.impl.UserDaoImpl;
 import com.github.domain.Text;
+import com.github.domain.User;
 import com.github.domain.comment;
+import com.github.domain.text1;
 import com.github.service.TextService;
 
-import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -43,8 +47,24 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public Map findText(Text text) {
+    public text1 findText(Text text) {
 
-        return null;
+        Text textDaoText = textDao.findText(text);
+        if (textDaoText != null){
+            // 将textDaoText对象转换为json字符串
+            String s = JSON.toJSONString(textDaoText);
+            // 将Text对象的参数拷贝到text1对象中
+            text1 textObject = JSON.parseObject(s, text1.class);
+            // 根据要查找的文章id，找到对应为作者的昵称
+            UserDao userDao = new UserDaoImpl();
+            User user = userDao.findUserByTextId(text.getTextid());
+            // 在textObject中设置username参数的值
+            textObject.setUsername(user.getUsername());
+            return textObject;
+        }
+        else{
+            return null;
+        }
+
     }
 }

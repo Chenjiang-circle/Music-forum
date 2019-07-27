@@ -9,7 +9,6 @@ package com.github.web.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.domain.Text;
 import com.github.domain.text1;
 
 import javax.servlet.ServletException;
@@ -77,6 +76,7 @@ public class getText extends HttpServlet {
         System.out.println(s);
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(resp.getWriter(), text);
+//        JSON.writeJSONString(resp.getWriter(), text);
     }
 
     @Override

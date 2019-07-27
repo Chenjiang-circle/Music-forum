@@ -4,8 +4,25 @@ import com.github.domain.User;
 import com.github.domain.follow;
 
 public interface UserService {
+
+    /**
+     * 注册用户
+     * @param users
+     */
     void register(User users);
+
+    /**
+     * 登录，返回用户信息（被封装在Uers对象中）
+     * @param users
+     * @return
+     */
     User signin(User users);
+
+    /**
+     * 判断用户是否存在
+     * @param users
+     * @return
+     */
     Boolean isHave(User users);
 
     /**
@@ -20,4 +37,11 @@ public interface UserService {
      * @return
      */
     Boolean isFollow(follow follows);
+
+    /**
+     * 改方法通过文章id，来获取对应的作者的所有信息
+     * @param textid
+     * @return
+     */
+    User findUserByTextId(int textid);
 }

@@ -1,14 +1,18 @@
 package com.github.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.dao.TextDao;
 import com.github.dao.impl.TextDaoImpl;
 import com.github.domain.Text;
 import com.github.domain.comment;
+import com.github.domain.text1;
+import com.github.service.TextService;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 public class TextServiceImplTest {
+    TextDao textDao = new TextDaoImpl();
 
     @Test
     public void createText() {
@@ -48,14 +52,13 @@ public class TextServiceImplTest {
                 "　　无论怎样你都永远不会真正得到它。");
         text.setTitle("错过的人生");
         text.setTime("2019-7-25");
-        TextDao textDao = new TextDaoImpl();
+
         textDao.createText(text);
         System.out.println("添加文章成功");
     }
 
     @Test
     public void addComment() {
-        TextDao textDao = new TextDaoImpl();
         comment comments = new comment();
         comments.setTextid(25);
         comments.setUserid("1455075085@qq.com");
@@ -68,5 +71,14 @@ public class TextServiceImplTest {
         }else {
             System.out.println("存储评论到数据库错误，报错点（TextServiceImpl-->addComment）");
         }
+    }
+
+    @Test
+    public void findText() {
+        Text text = new Text();
+        text.setTextid(23);
+        TextService textService = new TextServiceImpl();
+        text1 text1 = textService.findText(text);
+        System.out.println(text1.toString());
     }
 }
