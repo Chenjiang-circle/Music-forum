@@ -1,7 +1,11 @@
 package com.github.service;
 
 import com.github.domain.User;
+import com.github.domain.collection;
 import com.github.domain.follow;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import javax.xml.stream.events.Comment;
 
 public interface UserService {
 
@@ -39,9 +43,23 @@ public interface UserService {
     Boolean isFollow(follow follows);
 
     /**
-     * 改方法通过文章id，来获取对应的作者的所有信息
+     * 该方法通过文章id，来获取对应的作者的所有信息
      * @param textid
      * @return
      */
     User findUserByTextId(int textid);
+
+    /**
+     * 该方法用来添加收藏文章
+     * @param collection
+     * @return 添加成功返回true
+     */
+    Boolean addCollectionText(collection collection);
+
+    /**
+     * 该方法用来判断文章是否已经被用户收藏
+     * @param collection
+     * @return
+     */
+    Boolean isCollection(collection collection);
 }

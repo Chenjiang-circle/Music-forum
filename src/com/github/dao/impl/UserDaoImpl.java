@@ -9,6 +9,7 @@ package com.github.dao.impl;
 import com.github.dao.UserDao;
 import com.github.domain.Text;
 import com.github.domain.User;
+import com.github.domain.collection;
 import com.github.domain.follow;
 import com.github.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -94,6 +95,30 @@ public class UserDaoImpl implements UserDao {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public Boolean addCollectionText(collection collection) {
+        try {
+            String sql = "insert into collection values(?, ?)";
+            int update = template.update(sql, collection.getUserid(), collection.getCollectiontextid());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean isCollection(collection collections) {
+        try {
+            String sql = "select * from collection where userid = ? and collectiontextid = ? ";
+            collection collection = template.queryForObject(sql, new BeanPropertyRowMapper<collection>(collection.class), collections.getUserid(), collections.getCollectiontextid());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
