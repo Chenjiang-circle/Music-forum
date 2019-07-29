@@ -30,7 +30,7 @@ public class loginFilter implements Filter {
             //不包含，需要验证用户是否登录
             //3.从获取session中获取user
             Object user = request.getSession().getAttribute("status");
-            System.out.println(user);
+            //System.out.println(user);
             if (user != null) {
                 //登录了。放行
                 //System.out.println(user);
