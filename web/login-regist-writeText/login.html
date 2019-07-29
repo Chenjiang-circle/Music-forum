@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 页面响应式 -->
-    <title>欢迎进入515音乐论坛</title>
+    <title>即刻加入515音乐论坛</title>
     <link type="text/css" rel="stylesheet" href="css/style-nav&foot.css"/>
     <script src="js/jquery-1.11.0.min.js"></script>
+
     <script type="text/javascript" src="js/js-nav&foot.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
@@ -20,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/demo-search.css" />
     <link rel="stylesheet" type="text/css" href="css/react-head&foot.css" />
     <link rel="stylesheet" type="text/css" href="css/style-search.css" />
-    <link rel="stylesheet" type="text/css" href="css/enter.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
     <link href="css/ui-choose.css" rel="stylesheet" />
     <!-- demo必须在style-search的上面 -->
     <script>document.documentElement.className = 'js';</script>
@@ -74,8 +75,10 @@
                     <div class="one-nav"><li ><a class="nav" href="">唱片小店</a></li></div>
                 </ul>
                 <ul id="login">
-                    <li src="" id="in" class="login"><a href="">Sign In</a></li>
-                    <li src="" id="up" class="login"><a href="login.html">Sign Up</a></li>
+                    <li src="" id="in" class="login"><a href="enter.html">Sign In</a></li>
+                    <!-- 登录 -->
+                    <li src="" id="up" class="login"><a href="">Sign Up</a></li>
+                    <!-- 注册 -->
                 </ul>
                 
 
@@ -95,14 +98,27 @@
                 </div>
         </div>
 
-        <div class="enter-head"></div>
+        <div class="login-head"></div>
         <div id="main-content">
            
-            <div class="enter-form">
-                <form id="enter-form">
-                    <p>邮箱：</p><input type="email" name="userid" id="enterEmail"><br>
-                    <p>密码：</p><input type="password" name="password" id="enterPassword"><br>
-                    <input type="submit" value="登录" id="enter-submit">
+            <div class="login-form">
+                <form id="login-form">
+                    <p>昵称：</p><input type="text" name="username" id="username"><br>
+                    <p></p>
+                    <div class="demo-box">
+                            <select class="ui-choose" id="sex">
+                                <option value="b">男 生</option> 
+                                <!-- b for boy -->
+                                <option value="g">女 生</option>
+                                <!-- g for girl -->
+                                <option value="e">其 他</option>
+                                <!-- e for else -->
+                              </select>
+                      </div><br>
+                    <p>邮箱：</p><input type="email" name="userid" id="loginEmail"><br>
+                    <p>密码：</p><input type="password" name="password" id="loginPassword"><br>
+                    <p>确认密码：</p><input type="password" name="confirmPassword" id="confirmPassword"><br>
+                    <input type="button" value="写完啦" id="login-submit">
                 </form>
             </div>
         </div>
@@ -136,6 +152,6 @@
 
     <script src="js/demo-search.js"></script>
     <script src="js/ui-choose.js"></script>
-    <script src="js/enter.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

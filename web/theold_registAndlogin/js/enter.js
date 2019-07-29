@@ -3,14 +3,14 @@ $(document).ready(function(){
         rules:{
             userid:{
                 required:true,
-                // remote:{
-                //     url:"http://localhost:8066/Music_forum/signinservlet",
-                //     type:"POST",
-                //     datatype:"json",
-                //     data:{
-                //         userid:$("#enterEmail").val(),
-                //     }
-                // },//url,查询该用户名（邮箱）是否在数据库中存在，布尔值
+                /*remote:{
+                    url:"http://localhost:8066/Music_forum/signinservlet",
+                    type:"POST",
+                    datatype:"json",
+                    data:{
+                        userid:$("#enterEmail").val(),
+                    }
+                },//url,查询该用户名（邮箱）是否在数据库中存在，布尔值*/
                 email:true
             },
             password:{

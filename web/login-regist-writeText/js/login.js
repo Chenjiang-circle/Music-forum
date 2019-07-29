@@ -7,7 +7,6 @@ $(document).ready(function(){
                 required:true,
                 minlength:2,
                 maxlength:10
-
             },
             password:{
                 required:true,
@@ -56,7 +55,7 @@ $(document).ready(function(){
     $("#login-submit").click(function(){
         if($('#login-form').valid()){
             $.ajax({
-                type:"POST",
+                type:"GET",
                 url:"http://172.20.151.117:8066/Music_forum/registerservlet",
                 data:{
                     username:$("#username").val(),
@@ -66,8 +65,12 @@ $(document).ready(function(){
                 },
                 dataType:"json",
                 success:function(data){//请求成功，data为后台数据
-                    alter(data);
-                    window.location.href="G:\\github库\\Music-forum\\web\\项目_前端_登陆&注册\\enter.html";//跳转到登录页面
+                    if(data.success){
+                        window.location.href="http://172.20.151.117:8066/Music_forum/login-regist-writeText/enter.html";
+                    }
+                    else{
+                        alert("邮箱已存在!");
+                    }
                 },
                 error:function(jqXHR){
                     alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
