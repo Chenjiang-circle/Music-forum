@@ -7,6 +7,7 @@ $(document).ready(function(){
                 required:true,
                 minlength:2,
                 maxlength:10
+
             },
             password:{
                 required:true,
@@ -56,7 +57,7 @@ $(document).ready(function(){
         if($('#login-form').valid()){
             $.ajax({
                 type:"POST",
-                url:"http://172.20.151.112:8066/Music_forum/registerservlet",
+                url:"http://172.20.151.117:8066/Music_forum/registerservlet",
                 data:{
                     username:$("#username").val(),
                     sex:$("#sex").val(),
@@ -65,7 +66,8 @@ $(document).ready(function(){
                 },
                 dataType:"json",
                 success:function(data){//请求成功，data为后台数据
-                    window.location.href="http://172.20.151.112:8066/Music_forum/success.html";
+                    alter(data);
+                    window.location.href="http://172.20.151.117:8066/Music_forum/login-regist-writeText/enter.html";//跳转到登录页面
                 },
                 error:function(jqXHR){
                     alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
