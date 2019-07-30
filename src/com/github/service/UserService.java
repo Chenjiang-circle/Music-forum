@@ -39,7 +39,7 @@ public interface UserService {
     Boolean isFollow(follow follows);
 
     /**
-     * 改方法通过文章id，来获取对应的作者的所有信息
+     * 该方法通过文章id，来获取对应的作者的所有信息
      * @param textid
      * @return
      */
