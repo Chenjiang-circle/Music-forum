@@ -2,7 +2,9 @@ package com.github.dao;
 
 import com.github.domain.Text;
 import com.github.domain.comment;
+import com.github.domain.text2;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public interface TextDao {
@@ -28,5 +30,12 @@ public interface TextDao {
      * @param text
      * @return
      */
-    Text findText(Text text);
+    Text findText(text2 text);
+
+    /**
+     * 此方法用来找到文章以及其所有评论
+     * @param textid
+     * @return
+     */
+    text2 findFirstComment(int textid);
 }

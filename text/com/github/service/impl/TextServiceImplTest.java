@@ -7,6 +7,7 @@ import com.github.dao.impl.TextDaoImpl;
 import com.github.domain.Text;
 import com.github.domain.comment;
 import com.github.domain.text1;
+import com.github.domain.text2;
 import com.github.service.TextService;
 import org.junit.Test;
 
@@ -75,10 +76,18 @@ public class TextServiceImplTest {
 
     @Test
     public void findText() {
-        Text text = new Text();
+        text2 text = new text2();
         text.setTextid(23);
         TextService textService = new TextServiceImpl();
         text1 text1 = textService.findText(text);
         System.out.println(text1.toString());
+    }
+
+    @Test
+    public void findAlltext() {
+        TextService textService = new TextServiceImpl();
+        text2 alltext = textService.findAlltext(23);
+        String s = JSON.toJSONString(alltext);
+        System.out.println(s);
     }
 }

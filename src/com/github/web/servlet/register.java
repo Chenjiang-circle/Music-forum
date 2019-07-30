@@ -21,14 +21,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br>
  * 〈注册用户servlet〉
  *
- * @author 陈江超 lzy
+ * @author 陈江超
  * @create 2019/7/21
  * @since 1.0.0
  */
@@ -37,7 +36,7 @@ public class register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 设置编码
-//        System.out.println("jdoias");
+        System.out.println("jdoias");
         req.setCharacterEncoding("utf-8");
 
         Map<String, String[]> map = req.getParameterMap();
@@ -49,18 +48,14 @@ public class register extends HttpServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-//        System.out.println(users.toString());
+        System.out.println(users.toString());
 
         // 判断用户是否存在
         UserService userService = new UserServiceImpl();
 
         Boolean have = userService.isHave(users);
-
         if (have) {
-            Map<String, Object> map1 = new HashMap<String, Object>();
-            map1.put("success", false);
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(resp.getWriter(), map1);
+            System.out.println("存在");
         } else {
             userService.register(users);
             String userid = users.getUserid();
@@ -72,12 +67,11 @@ public class register extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            Map<String, Object> map1 = new HashMap<String, Object>();
-            map1.put("success", true);
             System.out.println("success");
+            String s = JSON.toJSONString(users);
+            System.out.println(s);
             ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(resp.getWriter(), map1);
+            mapper.writeValue(resp.getWriter(), users);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.github.dao;
 
 import com.github.domain.User;
+import com.github.domain.collection;
 import com.github.domain.follow;
 
 public interface UserDao {
@@ -10,4 +11,6 @@ public interface UserDao {
     void follow(follow followers);
     Boolean isFollow(follow follows);
     User findUserByTextId(int textid);
+    Boolean addCollectionText(collection collection);
+    Boolean isCollection(collection collection);
 }

@@ -11,11 +11,10 @@ import com.github.dao.TextDao;
 import com.github.dao.UserDao;
 import com.github.dao.impl.TextDaoImpl;
 import com.github.dao.impl.UserDaoImpl;
-import com.github.domain.Text;
-import com.github.domain.User;
-import com.github.domain.comment;
-import com.github.domain.text1;
+import com.github.domain.*;
 import com.github.service.TextService;
+
+import java.util.ArrayList;
 
 
 /**
@@ -47,7 +46,7 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public text1 findText(Text text) {
+    public text1 findText(text2 text) {
 
         Text textDaoText = textDao.findText(text);
         if (textDaoText != null){
@@ -67,4 +66,31 @@ public class TextServiceImpl implements TextService {
         }
 
     }
+
+    @Override
+    public text2 findAlltext(int textid) {
+        return textDao.findFirstComment(textid);
+    }
+
+
+//    @Override
+//    public text2 findAlltext(ArrayList<Text> text) {
+//        ArrayList<text2> list2 = null;
+//        for (Text atext : text) {
+//            TextService textService = new TextServiceImpl();
+//            text1 text1 = textService.findText(atext);
+//            String s = JSON.toJSONString(text1);
+//            text2 textObject = JSON.parseObject(s, text2.class);
+//            TextDao textDao = new TextDaoImpl();
+//            ArrayList<Text> firstComment = textDao.findFirstComment(textObject.getTextid());
+//            if (firstComment != null) {
+//                text2 alltext = findAlltext(firstComment);
+//                list2.add(alltext);
+//            } else {
+//                list2.add(textObject);
+//            }
+//            textObject.setList(list2);
+//        }
+//        return text.get(0);
+//    }
 }
