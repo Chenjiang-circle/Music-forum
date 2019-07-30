@@ -45,27 +45,27 @@ public class TextServiceImpl implements TextService {
 
     }
 
-    @Override
-    public text1 findText(text2 text) {
-
-        Text textDaoText = textDao.findText(text);
-        if (textDaoText != null){
-            // 将textDaoText对象转换为json字符串
-            String s = JSON.toJSONString(textDaoText);
-            // 将Text对象的参数拷贝到text1对象中
-            text1 textObject = JSON.parseObject(s, text1.class);
-            // 根据要查找的文章id，找到对应为作者的昵称
-            UserDao userDao = new UserDaoImpl();
-            User user = userDao.findUserByTextId(text.getTextid());
-            // 在textObject中设置username参数的值
-            textObject.setUsername(user.getUsername());
-            return textObject;
-        }
-        else{
-            return null;
-        }
-
-    }
+//    @Override
+//    public text1 findText(text2 text) {
+//
+//        Text textDaoText = textDao.findText(text);
+//        if (textDaoText != null){
+//            // 将textDaoText对象转换为json字符串
+//            String s = JSON.toJSONString(textDaoText);
+//            // 将Text对象的参数拷贝到text1对象中
+//            text1 textObject = JSON.parseObject(s, text1.class);
+//            // 根据要查找的文章id，找到对应为作者的昵称
+//            UserDao userDao = new UserDaoImpl();
+//            User user = userDao.findUserByTextId(text.getTextid());
+//            // 在textObject中设置username参数的值
+//            textObject.setUsername(user.getUsername());
+//            return textObject;
+//        }
+//        else{
+//            return null;
+//        }
+//
+//    }
 
     @Override
     public text2 findAlltext(int textid) {

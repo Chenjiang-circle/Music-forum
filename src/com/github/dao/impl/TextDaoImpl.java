@@ -104,22 +104,22 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
-    /**
-     * 根据文章id查询文章具体信息
-     * @param text
-     * @return
-     */
-    @Override
-    public Text findText(text2 text) {
-        try {
-            String sql = "select * from text where textid = ? ";
-            Text text1 = template.queryForObject(sql, new BeanPropertyRowMapper<Text>(Text.class), text.getTextid());
-            return text1;
-        }catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    /**
+//     * 根据文章id查询文章具体信息
+//     * @param text
+//     * @return
+//     */
+//    @Override
+//    public Text findText(text2 text) {
+//        try {
+//            String sql = "select * from text where textid = ? ";
+//            Text text1 = template.queryForObject(sql, new BeanPropertyRowMapper<Text>(Text.class), text.getTextid());
+//            return text1;
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     @Override
     public text2 findFirstComment(int textid) {

@@ -13,7 +13,7 @@ import org.junit.Test;
 
 
 public class TextServiceImplTest {
-    TextDao textDao = new  TextDaoImpl();
+    private TextDao textDao = new  TextDaoImpl();
 
     @Test
     public void createText() {
@@ -49,14 +49,14 @@ public class TextServiceImplTest {
         }
     }
 
-    @Test
-    public void findText() {
-        text2 text = new text2();
-        text.setTextid(1);
-        TextService textService = new TextServiceImpl();
-        text1 text1 = textService.findText(text);
-        System.out.println(text1.toString());
-    }
+//    @Test
+//    public void findText() {
+//        text2 text = new text2();
+//        text.setTextid(1);
+//        TextService textService = new TextServiceImpl();
+//        text1 text1 = textService.findText(text);
+//        System.out.println(text1.toString());
+//    }
 
     @Test
     public void findAlltext() {

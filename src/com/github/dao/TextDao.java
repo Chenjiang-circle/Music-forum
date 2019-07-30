@@ -25,12 +25,12 @@ public interface TextDao {
      */
     int addCommentToText(comment comments);
 
-    /**
-     * 根据文章id获取文章具体信息
-     * @param text
-     * @return
-     */
-    Text findText(text2 text);
+//    /**
+//     * 根据文章id获取文章具体信息
+//     * @param text
+//     * @return
+//     */
+//    Text findText(text2 text);
 
     /**
      * 此方法用来找到文章以及其所有评论
