@@ -32,7 +32,7 @@ $(document).ready(function(){
     $("#enter-submit").click(function(){
         if($('#enter-form').valid()){
             $.ajax({
-                url:"http://172.20.151.117:8066/Music_forum/signinservlet",
+                url:"http://172.20.151.112:8066/Music_forum/signinservlet",
                 type:"GET",
                 data:{
                     userid:$("#enterEmail").val(),
@@ -41,7 +41,7 @@ $(document).ready(function(){
                 datatype:"json",
                 success:function(data){
                     if(data.success){
-                        window.location.href="http://172.20.151.117:8066/Music_forum/FrontEnd-demo/head&foot/index.html";
+                        window.location.href="http://172.20.151.112:8066/Music_forum/FrontEnd-demo/head&foot/index.html";
                         //跳转到首页
                     }else{
                         alert("用户名或密码错误！");

@@ -1,6 +1,9 @@
+/**
+ * 登录
+ * @autor lzy
+ */
 package com.github.web.servlet;
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.github.domain.User;
@@ -13,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -47,6 +51,10 @@ public class signin extends HttpServlet {
             map1.put("success", true);
             map1.put("userid", user.getUserid());
             map1.put("password", user.getPassword());
+            //1.获取session
+            HttpSession session = request.getSession();
+            //2.存储数据
+            session.setAttribute("status",user.getUserid());
         }else {
             map1.put("success", false);
             map1.put("userid", user.getUserid());
