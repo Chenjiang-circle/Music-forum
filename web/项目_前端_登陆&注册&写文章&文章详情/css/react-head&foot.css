@@ -1,0 +1,107 @@
+
+/* 这里的样式保存着用于响应式布局,共三种分辨率情况 */
+
+@media screen and (max-width: 1600px) {
+
+	body{
+		transform: scale(1) translate(0,0);
+	}
+	
+}
+
+
+/* 1/3 字体变小，搜索栏变窄 */
+@media screen and (max-width: 1680px) {
+
+	#login a{
+		font-size: 25px;
+	}
+	#login {
+		margin-top: 100px;
+	}
+	.codrops-header{
+		width: 25%;
+	}
+	#nav a{
+		font-size: 25px;
+	}
+	#nav li::after{
+		content: "";
+	}
+	
+}
+/* 2/3导航全部变为菜单，保留搜索 */
+@media screen and (max-width: 1200px) { 
+
+	#login a{
+		font-size: 25px;
+	}
+	#nav a{
+		font-size: 25px;
+	}
+	#nav li::after{
+		content: "";
+	}
+	.codrops-header{
+		width: 45%;
+		left: 540px;
+		display:block ;
+
+	}
+	.nav-toggle{
+		display: block;
+		margin-top: 30px;
+		margin-left: 65%;
+	}
+	#nav{
+		display: none;
+	}
+	#login{
+		display: none;
+	}
+	#nav{
+		overflow: hidden;
+	}
+
+}
+/* 3/3 head部分只保留 搜索,菜单和logo */
+@media screen and (max-width: 994px) {
+
+	#login a{
+		font-size: 15px;
+	}
+	#nav a{
+		font-size: 15px;
+	}
+	#nav li::after{
+		content: "";
+	}
+	.codrops-header{
+		width: 45%;
+		left: 540px;
+		display:block ;
+
+	}
+	#logo{
+		position: relative;
+		margin: 0 auto;
+	}
+
+	/* 搜索栏 */
+	.codrops-header{ 
+		width: 37%;
+		left: 35%;
+		top: 220px;
+	}
+	/* 汉堡菜单 */
+	.nav-toggle{
+		margin-left: 25%;
+	}
+	.nav-toggle-open{
+		top: 0;
+	}
+	#head{
+		height: 300px;
+	}
+
+}

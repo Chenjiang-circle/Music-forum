@@ -1,0 +1,244 @@
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* 渐变 */
+        .grad{
+            background: linear-gradient(right top, #4a0bc7,#30c27b);
+            background: -webkit-linear-gradient(right top, #4a0bc7,#30c27b);
+            background: -o-linear-gradient(right top, #4a0bc7,#30c27b);
+            background: -moz-linear-gradient(right top, #4a0bc7,#30c27b);
+
+
+        }
+        .grad2{
+            background: linear-gradient(right top, #2a1048,#30c27b);
+            background: -webkit-linear-gradient(right top, #2a1048,#30c27b);
+            background: -o-linear-gradient(right top, #2a1048,#30c27b);
+            background: -moz-linear-gradient(right top, #2a1048,#30c27b);
+
+
+        }
+            /* li{
+                list-style: none;
+                float: left;
+            } */
+            a{
+                text-decoration: none;
+                color: #2a1048;
+            }
+
+        #welcome{
+            height: 1080px;
+            width: 100%;
+            background: #4a0bc7;
+        }
+		#head{
+			width: 100%;
+			height: 180px;
+            box-shadow:0px 10px 50px rgb(202, 202, 202);
+		}
+
+        #logo{
+            margin-left: 119px;
+            height: 180px;
+            width: 385px;
+            background: #2a1048;
+            color: white;
+            position: absolute;
+            background-image: url(../img/LOGO/back.jpg);
+            background-size: 100%;
+
+        }
+            
+            #slogen{
+                position: absolute;
+                z-index: 1;
+                right: -100px;
+                top: 67px;
+                transition: all 0.5s;
+            }
+            #slogen:hover{
+                width: 100%;
+                transition: all 0.5s;
+            }
+            #needle{
+                position: absolute;
+                left: 130px;
+            }
+            #name{
+                position: absolute;
+                right: -66px;
+                top: 36px;
+            }
+            #cd{
+                width: 170px;
+                height: 170px;
+                position: absolute;
+                background-image: url(../img/LOGO/cd.png);
+                background-size: 100%;
+                top: 5px;
+                left: 10px;
+            }
+
+
+        #nav{
+            width: 909px;
+            height: 90px;
+            /* border: blue solid 2px; */
+            position: absolute;
+            left: 520px;
+            padding-top: 35px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #nav li{
+            position: relative;
+            font-size: 30px;
+            display: inline-block;
+            padding: 0px;
+            justify-content: space-around;
+            margin: 0px;
+            font-weight: bold;
+            /* border: yellow solid 2px;  */
+        }
+        .one-nav{
+            width: 300px;
+            padding: 0 40px;
+            height:80px;
+            /* border: blueviolet solid 2px; */
+            text-align: center;
+        }
+        .nav{
+            width: auto;
+            height: 90px;
+            justify-content: space-around;
+
+        }
+            #nav li a{
+                transition: all 0.5s;
+            }
+            #nav li:after{  /*导航栏分割线*/
+                content:"|";
+                font-size: 20px;
+                color: rgb(109, 109, 108);
+                position: absolute;
+                top: 10px;
+                left:160px;
+                /* border: 2px solid yellow; */
+            }
+
+            #nav li a{
+                display: block;
+                width: 100%;
+                height: 40px;
+            }
+            #nav li a:hover{
+                color:#30c27b;
+            }
+            #current-a{
+                color:#30c27b;
+            }
+
+/* 筋斗云 */
+.wee{  
+    position: absolute;
+    width: 100%;
+    height: 25px;
+    border-radius:100px;
+    margin-top: 8px;
+    transition: all 0.5s;
+}
+
+        #login{
+            height: 90px;
+            /* border: red solid 2px; */
+            position: absolute;
+            right: 110px;
+            margin-top: 14px;
+            display: none;
+        }
+            .login{
+                text-align: center;
+                height: auto;
+                background: white;
+                color: #2a1048;
+                padding: 10px 20px;
+                font-size: 30px;
+                display: inline-block;
+                margin-left: 0px;
+                margin-top: 5px;
+                font-weight: bold;
+            }
+
+            .login:hover{
+                background: #2a1048;
+                transition: all 0.5s;
+                border-bottom: #30c27b solid 9px;
+            }
+            .login a:hover{
+                color: white;
+                transition: all 0.5s;
+            }
+
+
+
+            /* 脚部 */
+
+#foot{
+    background-image: url(../img/footer.png);
+    height: 500px;
+    width: 100%;
+    position: absolute;
+    bottom: auto;
+}
+.foot-txt{
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    margin: 0 auto;
+    font-size: 20px;
+    color: white;
+    position:absolute;
+    bottom: 330px;
+}
+
+
+.loginOn{
+    height: 90px;
+    position: absolute;
+    right: 110px;
+    margin-top: 14px;
+    display: block;
+    height: 200px;
+    width: 120px;
+    color: #30c27b;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 100px 100px 20px 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.loginOn:hover{
+    background: #30c27b;
+    color: white;
+    box-shadow:0px 10px 50px rgb(202, 202, 202);
+
+}
+
+#loginOn-avatar{
+    border-radius: 100%;
+    border: #30c27b solid 2px;
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+
+}
+#loginOn-name{
+    width: 90px;
+    text-align: center;
+    margin: 0 auto;
+}
