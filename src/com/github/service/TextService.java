@@ -43,4 +43,11 @@ public interface TextService {
      * @return
      */
     Boolean deleteText(int textid);
+
+    /**
+     * 当删除评论时，需要重新更新文章评论数，使用此方法可以更新文章评论数，更新成功返回true.
+     * @param textid
+     * @return
+     */
+    Boolean updateCommentNum(int textid);
 }

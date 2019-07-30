@@ -77,6 +77,11 @@ public class TextServiceImpl implements TextService {
         return textDao.deleteText(textid);
     }
 
+    @Override
+    public Boolean updateCommentNum(int textid) {
+        return textDao.updateTextCommentNum(textid);
+    }
+
 
 //    @Override
 //    public text2 findAlltext(ArrayList<Text> text) {

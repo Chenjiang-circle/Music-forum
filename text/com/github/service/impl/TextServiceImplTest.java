@@ -36,10 +36,10 @@ public class TextServiceImplTest {
     @Test
     public void addComment() {
         comment comments = new comment();
-        comments.setTextid(8);
+        comments.setTextid(13);
         comments.setUserid("1455075085@qq.com");
-        comments.setTime("2011-10-5");
-        comments.setText("3楼评论“哈哈哈”的2楼");
+        comments.setTime("2008-3-5");
+        comments.setText("3楼评论“哈哈哈”2楼");
         int commentid = textDao.addCommentToText(comments);
         if (commentid != -1){
             Boolean aBoolean = textDao.addComment(comments, commentid);
@@ -68,6 +68,12 @@ public class TextServiceImplTest {
 
     @Test
     public void deleteText() {
-        textDao.deleteText(5);
+        textDao.deleteText(11);
+    }
+
+    @Test
+    public void updateCommentNum() {
+        Boolean aBoolean = textDao.updateTextCommentNum(10);
+        System.out.println(aBoolean);
     }
 }

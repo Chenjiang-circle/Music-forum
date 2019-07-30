@@ -45,4 +45,11 @@ public interface TextDao {
      * @return
      */
     Boolean deleteText(int textid);
+
+    /**
+     *  更新文章评论数
+     * @param textid
+     * @return
+     */
+    Boolean updateTextCommentNum(int textid);
 }
