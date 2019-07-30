@@ -4,6 +4,7 @@ import com.github.domain.Text;
 import com.github.domain.comment;
 import com.github.domain.text1;
 import com.github.domain.text2;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -35,4 +36,11 @@ public interface TextService {
      * @return
      */
     text2 findAlltext(int textid);
+
+    /**
+     * 传入文章id，将文章和评论一同删除
+     * @param textid
+     * @return
+     */
+    Boolean deleteText(int textid);
 }

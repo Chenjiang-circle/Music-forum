@@ -38,4 +38,11 @@ public interface TextDao {
      * @return
      */
     text2 findFirstComment(int textid);
+
+    /**
+     * 查询数据库，将对应的文章和评论删除
+     * @param textid
+     * @return
+     */
+    Boolean deleteText(int textid);
 }

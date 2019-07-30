@@ -26,8 +26,8 @@ public class TextServiceImplTest {
                 "\n" +
                 "　　说好了要珍惜，明知道要把握，为什么还要一而再，再而三地错过呢？人生越长，错过的越多，人生真是一部遗憾的连续剧。然而，我们却在错过中得到了砥砺，学会了成长，谁能拒绝错过呢！谁说错过的就百无一用呢？没有错过，或许我们不懂得珍惜；没有错过，或许我们就让生命轻而易举地从自己手里溜过……我们不想错过，那是因为我们曾经错过。\n" +
                 "　　无论怎样你都永远不会真正得到它。");
-        text.setTitle("人生");
-        text.setTime("2019-8-1");
+        text.setTitle("哈哈哈");
+        text.setTime("2018-8-8");
 
         textDao.createText(text);
         System.out.println("添加文章成功");
@@ -36,10 +36,10 @@ public class TextServiceImplTest {
     @Test
     public void addComment() {
         comment comments = new comment();
-        comments.setTextid(2);
+        comments.setTextid(8);
         comments.setUserid("1455075085@qq.com");
-        comments.setTime("2001-9-5");
-        comments.setText("2楼评论1楼");
+        comments.setTime("2011-10-5");
+        comments.setText("3楼评论“哈哈哈”的2楼");
         int commentid = textDao.addCommentToText(comments);
         if (commentid != -1){
             Boolean aBoolean = textDao.addComment(comments, commentid);
@@ -64,5 +64,10 @@ public class TextServiceImplTest {
         text2 alltext = textService.findAlltext(1);
         String s = JSON.toJSONString(alltext);
         System.out.println(s);
+    }
+
+    @Test
+    public void deleteText() {
+        textDao.deleteText(5);
     }
 }

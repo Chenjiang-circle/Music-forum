@@ -165,6 +165,32 @@ public class TextDaoImpl implements TextDao {
 
     }
 
+    @Override
+    public Boolean deleteText(int textid) {
+        try {
+            List<comment1> comment1s = null;
+            try {
+                String sql0 = "select * from comment where textid = " + textid;
+                comment1s = template.query(sql0, new BeanPropertyRowMapper<comment1>(comment1.class));
+                for (comment1 c: comment1s) {
+                    deleteText(c.getCommentid());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("textid = " + textid + ", 没有子评论");
+            }
+
+            String sql = "delete from text where textid = ? ";
+            template.update(sql, textid);
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("删除文章失败" + textid);
+            return false;
+        }
+
+    }
+
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {
 //        try {
