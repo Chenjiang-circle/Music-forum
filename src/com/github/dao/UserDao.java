@@ -13,4 +13,5 @@ public interface UserDao {
     User findUserByTextId(int textid);
     Boolean addCollectionText(collection collection);
     Boolean isCollection(collection collection);
+    Boolean addCheckin(String userid);
 }

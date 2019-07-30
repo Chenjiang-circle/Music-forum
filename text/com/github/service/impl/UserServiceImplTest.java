@@ -70,4 +70,10 @@ public class UserServiceImplTest {
         Boolean collection = userService.isCollection(colllection);
         System.out.println(collection);
     }
+
+    @Test
+    public void addCheckin() {
+        Boolean aBoolean = userDao.addCheckin("1455075085@qq.com");
+        System.out.println(aBoolean);
+    }
 }

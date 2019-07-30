@@ -121,4 +121,15 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
     }
+
+    @Override
+    public Boolean addCheckin(String userid) {
+        String sql = "update user set numsignin = numsignin + 1 where userid = ?";
+        int update = template.update(sql, userid);
+        if (update == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

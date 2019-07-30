@@ -64,4 +64,9 @@ public class UserServiceImpl implements UserService {
     public Boolean isCollection(collection collection) {
         return userDao.isCollection(collection);
     }
+
+    @Override
+    public Boolean addCheckin(String textid) {
+        return userDao.addCheckin(textid);
+    }
 }
