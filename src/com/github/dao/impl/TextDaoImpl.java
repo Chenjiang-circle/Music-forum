@@ -13,6 +13,7 @@ import com.github.domain.comment1;
 import com.github.domain.text2;
 import com.github.util.JDBCUtils;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -103,22 +104,22 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
-    /**
-     * 根据文章id查询文章具体信息
-     * @param text
-     * @return
-     */
-    @Override
-    public Text findText(text2 text) {
-        try {
-            String sql = "select * from text where textid = ? ";
-            Text text1 = template.queryForObject(sql, new BeanPropertyRowMapper<Text>(Text.class), text.getTextid());
-            return text1;
-        }catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    /**
+//     * 根据文章id查询文章具体信息
+//     * @param text
+//     * @return
+//     */
+//    @Override
+//    public Text findText(text2 text) {
+//        try {
+//            String sql = "select * from text where textid = ? ";
+//            Text text1 = template.queryForObject(sql, new BeanPropertyRowMapper<Text>(Text.class), text.getTextid());
+//            return text1;
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     @Override
     public text2 findFirstComment(int textid) {
@@ -163,6 +164,57 @@ public class TextDaoImpl implements TextDao {
             return null;
         }
 
+    }
+
+    @Override
+    public Boolean deleteText(int textid) {
+        try {
+            List<comment1> comment1s = null;
+            try {
+                String sql0 = "select * from comment where textid = " + textid;
+                comment1s = template.query(sql0, new BeanPropertyRowMapper<comment1>(comment1.class));
+                for (comment1 c: comment1s) {
+                    deleteText(c.getCommentid());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("textid = " + textid + ", 没有子评论");
+            }
+
+            String sql = "delete from text where textid = ? ";
+            template.update(sql, textid);
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("删除文章失败" + textid);
+            return false;
+        }
+
+    }
+
+    @Override
+    public Boolean updateTextCommentNum(int textid) {
+        try {
+            List<comment1> comment1s = null;
+            try {
+                String sql = "select * from comment where textid = " + textid;
+                comment1s = template.query(sql, new BeanPropertyRowMapper<comment1>(comment1.class));
+                for (comment1 c: comment1s) {
+                    updateTextCommentNum(c.getCommentid());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("该文章没有子评论 " + textid);
+            }
+            int num = comment1s.size();
+            String sql1 = "update text set comment=? where textid = ?";
+            template.update(sql1, num, textid);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("该文章不存在 " + textid);
+            return false;
+        }
     }
 
 //    @Override

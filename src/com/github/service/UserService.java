@@ -59,4 +59,11 @@ public interface UserService {
      * @return
      */
     Boolean isCollection(collection collection);
+
+    /**
+     * 该方法用来签到
+     * @param textid
+     * @return
+     */
+    Boolean addCheckin(String textid);
 }
