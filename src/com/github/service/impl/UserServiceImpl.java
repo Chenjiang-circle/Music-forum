@@ -1,3 +1,4 @@
+
 /**
  * FileName: UserServiceImpl
  * Author:   陈江超
@@ -9,6 +10,7 @@ package com.github.service.impl;
 import com.github.dao.UserDao;
 import com.github.dao.impl.UserDaoImpl;
 import com.github.domain.User;
+import com.github.domain.collection;
 import com.github.domain.follow;
 import com.github.service.UserService;
 
@@ -51,5 +53,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByTextId(int textid) {
         return userDao.findUserByTextId(textid);
+    }
+
+    @Override
+    public Boolean addCollectionText(collection collection) {
+        return userDao.addCollectionText(collection);
+    }
+
+    @Override
+    public Boolean isCollection(collection collection) {
+        return userDao.isCollection(collection);
     }
 }

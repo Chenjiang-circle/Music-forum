@@ -9,10 +9,15 @@ package com.github.dao.impl;
 import com.github.dao.TextDao;
 import com.github.domain.Text;
 import com.github.domain.comment;
+import com.github.domain.comment1;
+import com.github.domain.text2;
 import com.github.util.JDBCUtils;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -104,7 +109,7 @@ public class TextDaoImpl implements TextDao {
      * @return
      */
     @Override
-    public Text findText(Text text) {
+    public Text findText(text2 text) {
         try {
             String sql = "select * from text where textid = ? ";
             Text text1 = template.queryForObject(sql, new BeanPropertyRowMapper<Text>(Text.class), text.getTextid());
@@ -114,6 +119,63 @@ public class TextDaoImpl implements TextDao {
             return null;
         }
     }
+
+    @Override
+    public text2 findFirstComment(int textid) {
+        try {
+            // 根据文章id找到对应的文章信息
+            String sql = "select * from text where textid = ?";
+            text2 text = template.queryForObject(sql, new BeanPropertyRowMapper<text2>(text2.class), textid);
+            // 根据文章id找到对应的作者的昵称
+            String sql1 = "select * from user where userid = ?";
+            Text text1 = template.queryForObject(sql1, new BeanPropertyRowMapper<Text>(Text.class), text.getUserid());
+            text.setUsername(text1.getUsername());
+            List<comment1> findtextid = null;
+            try {
+                String sql2 = "select * from comment where textid = " + textid;
+                findtextid = template.query(sql2, new BeanPropertyRowMapper<comment1>(comment1.class));
+                for (comment1 textttt:findtextid) {
+                    System.out.println(textttt.getCommentid());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("textid=" + textid +"的文章没有子评论!");
+                findtextid = null;
+            }
+            if (findtextid != null){
+                try {
+                    ArrayList<text2> text2s = new ArrayList<text2>();
+                    for (comment1 atextid: findtextid) {
+                        text2 firstComment = findFirstComment(atextid.getCommentid());
+                        text2s.add(firstComment);
+                    }
+                    text.setList(text2s);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("空指针异常！");
+                }
+
+            }
+            return text;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("找不到textid=" + textid + "，的文章！");
+            return null;
+        }
+
+    }
+
+//    @Override
+//    public ArrayList<Text> findFirstComment(int textid) {
+//        try {
+//            String sql = "select * from text where textid in (select commentid from comment where textid = "+ textid +"))";
+//            List<Text> list = template.query(sql, new BeanPropertyRowMapper<Text>(Text.class));
+//            return (ArrayList<Text>) list;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
 
 }
