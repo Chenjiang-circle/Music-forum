@@ -31,7 +31,7 @@ public interface TextService {
 
     /**
      * 此方法用来找到所有的文章加评论
-     * @param text
+     * @param textid
      * @return
      */
     text2 findAlltext(int textid);
