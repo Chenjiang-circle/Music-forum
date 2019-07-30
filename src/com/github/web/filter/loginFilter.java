@@ -30,7 +30,7 @@ public class loginFilter implements Filter {
             //不包含，需要验证用户是否登录
             //3.从获取session中获取user
             Object user = request.getSession().getAttribute("status");
-            //System.out.println(user);
+            System.out.println(user);
             if (user != null) {
                 //登录了。放行
                 //System.out.println(user);
@@ -46,7 +46,7 @@ public class loginFilter implements Filter {
                 //设置字体
                 response.setContentType("text/html;charset=utf-8");
                 PrintWriter out=response.getWriter();
-                out.print("<script language='javascript'>alert('登录已失效请重新登陆');window.location.href='http://172.20.151.117:8066/Music_forum/login-regist-writeText/enter.html';</script>");
+                out.print("<script language='javascript'>alert('登录已失效请重新登陆');window.location.href='http://172.20.151.112:8066/Music_forum/login-regist-writeText/enter.html';</script>");
 
             }
         }
