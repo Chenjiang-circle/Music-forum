@@ -44,7 +44,7 @@ $(document).ready(function(){
                         window.location.href="http://172.20.151.117:8066/Music_forum/FrontEnd-demo/head&foot/index.html";
                         //跳转到首页
                     }else{
-                        alert("用户名和密码错误！");
+                        alert("用户名或密码错误！");
                     }
                 },
                 error:function(jqXHR){
