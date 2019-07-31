@@ -13,6 +13,46 @@ $(document).ready(function(){
     })
 
 
+    $("#uppicture").click(function(){
+        $("#uploadFile").click();
+    }
+    );
+
+    var img64;//全局变量！保存的是发往后端的base64编码图片
+    var picFiles;//全局变量
+    $("#uploadFile").change(function(){
+        picFiles = $(this)[0].files[0];//获取文件信息
+        if(picFiles){
+            var reader = new FileReader();//调用FileReader
+            reader.readAsDataURL(picFiles);//将文件读取为base64
+            reader.onload = function(evt){ //读取操作完成时触发
+                var image = new Image();
+                image.src=evt.target.result;
+                image.onload=function(){
+                    var width=image.width;
+                    var height = image.height;
+                    if(width>=720 && height>=470){
+                        $("#upPic h3").html('"Cool ! 上传成功"');
+                        $("#uppicture").attr('src',evt.target.result)//将img标签绑定为DataURL
+
+                    }else{
+                        $("#upPic h3").html('"OOPS ! 上传的封面尺寸不能小于720*470px哦!"');
+                    }
+                }
+                img64=this.result;
+                // console.log(this.result);
+                // $("#hhh").html('<img src="'+this.result+'"/>');
+
+            }
+        }else{
+            alert("OOPS!未选择图片哦")
+        }
+
+    });
+
+
+
+
 
     $("#submitArticle").click(function(){
         
@@ -44,6 +84,8 @@ $(document).ready(function(){
             alert("别忘了写文章标题哦!")
         }else if(content.length==0){
             alert("请编辑您的文章内容后再发表.")
+        }else if(!picFiles){
+            alert("请上传文章封面以展示在首页.")
         }else{
             $.ajax({
                 type:"POST",
@@ -58,6 +100,7 @@ $(document).ready(function(){
                     text:content,
                     title:title,
                     type:check,
+                    textimage:img64//64base文章封面
                 },
                 dataType:"json",
                 success:function(data){//请求成功，data为后台数据
@@ -74,9 +117,11 @@ $(document).ready(function(){
                 }
             })
             
+            // console.log(content);
             
         }
 
-        return false;
+         return false;
+
     })
 })

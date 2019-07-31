@@ -7,35 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 页面响应式 -->
-    <title>编写文章</title>
+    <title>515音乐论坛-文章页</title>
     <link type="text/css" rel="stylesheet" href="css/style-nav&foot.css"/>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/js-nav&foot.js"></script>
-
     <script type="text/javascript" src="js/js.cookie.js"></script>
-
-
     <!-- search页面 -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Righteous" rel="stylesheet">
     
     <link rel="stylesheet" type="text/css" href="css/phone-menu-styles.css" />
-
+    <link rel="stylesheet" type="text/css" href="css/demo-search.css" />
     <link rel="stylesheet" type="text/css" href="css/react-head&foot.css" />
     <link rel="stylesheet" type="text/css" href="css/style-search.css" />
+    <link rel="stylesheet" type="text/css" href="css/home/home.css" />
     <!-- demo必须在style-search的上面 -->
     <script>document.documentElement.className = 'js';</script>
     <!-- search页面 -->
-
-    <link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/write/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="css/write/default.css">
-	<link rel="stylesheet" type="text/css" href="css/write/wysiwyg-editor.css" />
-    <link href="css/write/demo.css" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" type="text/css" href="css/demo-search.css" />
-    <script type="text/javascript" src="js/write/write.js"></script>
-    <link href="css/write/write.css" rel="stylesheet" type="text/css" />
-
 
 </head>
 <body class="phone-body">
@@ -84,16 +71,14 @@
                     <div class="one-nav"><li ><a class="nav" href="">乐评</a></li></div>
                     <div class="one-nav"><li ><a class="nav" href="">唱片小店</a></li></div>
                 </ul>
-                <ul id="login">
+                <div id="login">
                     <li src="" id="in" class="login"><a href="enter.html">Sign In</a></li>
                     <li src="" id="up" class="login"><a href="login.html">Sign Up</a></li>
-                </ul>
-
+                </div>
                 <div class="loginOn">
                     <div id="loginOn-avatar"><img src="img/article/avatar-default.jpg" width="100px"></div>
                     <div id="loginOn-name">小明_111</div>
                 </div>
-
                 
 
 
@@ -112,49 +97,15 @@
                 </div>
         </div>
 
+        <div id="fly-nav">
+            <div class="fly-nav"></div>
+            <div class="fly-nav"></div>
+            <div class="fly-nav"></div>
+            <div class="fly-nav"></div>
+            <div class="fly-nav"></div>
+        </div>
         <div id="main-content">
-            <form id="write">
-                <input type="text" name="title" id="write-title" value="请输入文章标题">
-                <textarea id="editor1" name="editor" placeholder="音乐拯救世界......"></textarea>
-
-            <div id="upload">
-
-                <div id="Selections" class="grad"> 
-                <br><h2>文章类型 :</h2><br>
-                <input type="checkbox" name="ArticleSelect" value="COMMENT" id="COMMENT">
-                <label for="COMMENT" class="sele-label"></label>乐评 
-                <input type="checkbox" name="ArticleSelect" value="STORY" id="STORY">
-                <label for="STORY" class="sele-label"></label>音乐故事  
-                <br><br><h2>曲风 :</h2><br>
-                <input type="checkbox" name="ArticleSelect" value="CN" id="CN">
-                <label for="CN" class="sele-label"></label>华语
-                <input type="checkbox" name="ArticleSelect" value="US" id="US">
-                <label for="US" class="sele-label"></label>欧美
-                <input type="checkbox" name="ArticleSelect" value="ROCK" id="ROCK">
-                <label for="ROCK" class="sele-label"></label>摇滚
-                <input type="checkbox" name="ArticleSelect" value="POP" id="POP">
-                <label for="POP" class="sele-label"></label>流行
-                <input type="checkbox" name="ArticleSelect" value="RAP" id="RAP">
-                <label for="RAP" class="sele-label"></label>说唱
-
-                </div>
-
-
-                <div id="upPic">
-                    <h2>上传文章封面</h2>
-                    <h3></h3>
-                    <div class="img-box">
-                        
-                        <input type="file" name="textimage" id="uploadFile" accept="image/*">
-                        <img src="img/white/default-up.png" alt="" id="uppicture">
-                    </div>
-                </div>
-               
-            </div>
-
-
-                <button id="submitArticle">发表文章</button>
-            </form>  
+            
         </div>
 
 
@@ -163,8 +114,6 @@
                 <div class="foot-txt">
                         <div id="foot-logo"><img src="img/LOGO/logo-foot.jpg" width="200px"></div>
                     <br><br>关于我们 | 联系我们 | 服务条款 | 隐私政策<br/><br>Copyright © 515lab & 515music. All Rights Reserved.<div>circleChen Darius xiaotaoLi zheyuanLi</div>
-
-                </div>
             </div>
     </main>
     
@@ -179,18 +128,13 @@
                     <div class="recommends">摇滚</div>
                 </div>
 
-
-
 			</form>
-        </div>
+    </div>
 <!-- search页面 -->
 
 
 
     <script src="js/demo-search.js"></script>
-    <script type="text/javascript" src="js/write/wysiwyg.js"></script>
-    <script type="text/javascript" src="js/write/wysiwyg-editor.js"></script>
-    <script type="text/javascript" src="js/write/demo.js"></script>
-
+    <script src="js/home/home.js"></script>
 </body>
 </html>

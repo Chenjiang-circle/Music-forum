@@ -157,6 +157,8 @@
             position: absolute;
             right: 110px;
             margin-top: 14px;
+            display: none;
+
         }
             .login{
                 text-align: center;
@@ -203,3 +205,40 @@
     bottom: 330px;
 }
 
+.loginOn{
+    height: 90px;
+    position: absolute;
+    right: 110px;
+    margin-top: 14px;
+    display: block;
+    height: 200px;
+    width: 120px;
+    color: #30c27b;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 100px 100px 20px 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.loginOn:hover{
+    background: #30c27b;
+    color: white;
+    box-shadow:0px 10px 50px rgb(202, 202, 202);
+
+}
+
+#loginOn-avatar{
+    border-radius: 100%;
+    border: #30c27b solid 2px;
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+
+}
+#loginOn-name{
+    width: 90px;
+    text-align: center;
+    margin: 0 auto;
+}

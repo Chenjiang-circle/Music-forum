@@ -13,9 +13,12 @@
 
     <script type="text/javascript" src="js/js-nav&foot.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/js.cookie.js"></script>
+
 
     <!-- search页面 -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Righteous" rel="stylesheet">
+    
 
     <link rel="stylesheet" type="text/css" href="css/phone-menu-styles.css" />
     <link rel="stylesheet" type="text/css" href="css/demo-search.css" />
@@ -42,13 +45,16 @@
 				</symbol>
 			</defs>
         </svg>
-
+    
     <!-- <div id="welcome">
+        
 
     </div>     -->
 
 <!-- 这个是主页，相当于body，请把页面中所有内容写到这里来 -->
     <main class="main-wrap">
+
+
         <!--头-->
         <div id="head">
                 <header class="codrops-header" id="codrops-header">
@@ -75,6 +81,12 @@
                     <!-- 注册 -->
                 </ul>
 
+                <div class="loginOn">
+                    <div id="loginOn-avatar"><img src="img/article/avatar-default.jpg" width="100px"></div>
+                    <div id="loginOn-name">小明_111</div>
+                </div>
+                
+
 
 
                 <nav class="phone-nav">
@@ -95,13 +107,16 @@
         <div class="login-head"></div>
         <div id="main-content">
 
+           
+
             <div class="login-form">
                 <form id="login-form">
                     <p>昵称：</p><input type="text" name="username" id="username"><br>
                     <p></p>
                     <div class="demo-box">
                             <select class="ui-choose" id="sex">
-                                <option value="b">男 生</option>
+                                <option value="b">男 生</option> 
+
                                 <!-- b for boy -->
                                 <option value="g">女 生</option>
                                 <!-- g for girl -->
@@ -123,6 +138,7 @@
                 <div class="foot-txt">
                         <div id="foot-logo"><img src="img/LOGO/logo-foot.jpg" width="200px"></div>
                     <br><br>关于我们 | 联系我们 | 服务条款 | 隐私政策<br/><br>Copyright © 515lab & 515music. All Rights Reserved.<div>circleChen Darius xiaotaoLi zheyuanLi</div>
+
                 </div>
             </div>
     </main>
@@ -132,7 +148,9 @@
 			<form class="search__form" action="">
 				<input class="search__input" name="search" type="search" placeholder="Search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
                 <span class="search__info">Hey！需要一些推荐吗？</span>
+
                 <div id="recommend">
+
                     <div class="recommends">邓紫棋</div>
                     <div class="recommends">国语流行</div>
                     <div class="recommends">摇滚</div>
