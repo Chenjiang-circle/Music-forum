@@ -28,6 +28,15 @@
 #write-title:hover{
     border-bottom: 5px solid #30c27b;
 }
+
+
+
+#upload{
+    width:100%;
+    position: relative;
+}
+
+
 #Selections{
     width: 50%;
     height: 30%;
@@ -38,6 +47,8 @@
     padding-top: 20px;
     box-shadow:0px 10px 50px rgb(202, 202, 202);
     margin-top: 40px;
+    position: relative;
+
 }
 #Selections input[type=checkbox]{
    visibility: hidden;
@@ -104,4 +115,38 @@
     font-size: 130%;
     font-weight: bold;
     color: white;
+
+}
+
+/* 上传文章 */
+#upPic{
+    position: absolute;
+    top:10px;
+    right: 0;
+    width: 40%;
+}
+#upPic h2{
+    color: #30c27b;
+}
+#upPic h3{
+    color: #0011ff;
+}
+
+.img-box{
+    /* width: 50%; */
+    height: 200px;
+    border: 4px dashed rgb(194, 194, 194);
+    padding: 10px;
+    border-radius: 10px;
+}
+.img-box input{
+    display: none;
+}
+
+#uppicture{
+    width: 200px;
+    display: grid;
+    cursor: pointer;
+    margin: 0 auto;
+    border-radius: 20px;
 }

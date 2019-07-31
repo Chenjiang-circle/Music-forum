@@ -1,5 +1,6 @@
 @import url(http://fonts.useso.com/css?family=Raleway:200,500,700,800);
-@font-face {
+
+/* @font-face {
 	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot?yrquyl');
 	src:url('../fonts/icomoon.eot?#iefixyrquyl') format('embedded-opentype'),
@@ -8,7 +9,7 @@
 		url('../fonts/icomoon.svg?yrquyl#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
-}
+} */
 
 
 [class^="icon-"], [class*=" icon-"] {
@@ -54,7 +55,8 @@ body{
 	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
 }
 a{color: #2fa0ec;text-decoration: none;outline: none;}
-a:hover,a:focus{color:#74777b;}
+a:hover,a:focus{color:#74777b;};
+
 
 .container{
 	margin: 0 auto;
