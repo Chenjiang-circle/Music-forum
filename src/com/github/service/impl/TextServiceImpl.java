@@ -15,6 +15,7 @@ import com.github.domain.*;
 import com.github.service.TextService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -80,6 +81,12 @@ public class TextServiceImpl implements TextService {
     @Override
     public Boolean updateCommentNum(int textid) {
         return textDao.updateTextCommentNum(textid);
+    }
+
+    @Override
+    public List<simpletext> getsimpleTextByUserID(String userid) {
+        System.out.println("getsimpleTextByUserID被调用");
+        return textDao.getsimpleTextByUserID(userid);
     }
 
 

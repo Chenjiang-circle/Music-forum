@@ -7,10 +7,7 @@
 package com.github.dao.impl;
 
 import com.github.dao.TextDao;
-import com.github.domain.Text;
-import com.github.domain.comment;
-import com.github.domain.comment1;
-import com.github.domain.text2;
+import com.github.domain.*;
 import com.github.util.JDBCUtils;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import jdk.nashorn.internal.runtime.ECMAException;
@@ -214,6 +211,19 @@ public class TextDaoImpl implements TextDao {
             e.printStackTrace();
             System.out.println("该文章不存在 " + textid);
             return false;
+        }
+    }
+
+    @Override
+    public List<simpletext> getsimpleTextByUserID(String userid) {
+        try {
+            String sql = "select text.textid, text.title, textimage.textimage from text, textimage where text.textid=textimage.textid and text.userid='" + userid +"'";
+            List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
+            return query;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("该用户没有写文章!");
+            return null;
         }
     }
 

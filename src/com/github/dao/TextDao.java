@@ -2,9 +2,11 @@ package com.github.dao;
 
 import com.github.domain.Text;
 import com.github.domain.comment;
+import com.github.domain.simpletext;
 import com.github.domain.text2;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public interface TextDao {
@@ -52,4 +54,11 @@ public interface TextDao {
      * @return
      */
     Boolean updateTextCommentNum(int textid);
+
+    /**
+     * 通过userid查询用户的所有文章封面和标题
+     * @param userid
+     * @return
+     */
+    List<simpletext> getsimpleTextByUserID(String userid);
 }

@@ -4,16 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.dao.TextDao;
 import com.github.dao.impl.TextDaoImpl;
-import com.github.domain.Text;
-import com.github.domain.comment;
-import com.github.domain.text1;
-import com.github.domain.text2;
+import com.github.domain.*;
 import com.github.service.TextService;
 import org.junit.Test;
 
+import java.util.List;
+
 
 public class TextServiceImplTest {
-    private TextDao textDao = new  TextDaoImpl();
+    private TextDao textDao = new TextDaoImpl();
 
     @Test
     public void createText() {
@@ -75,5 +74,20 @@ public class TextServiceImplTest {
     public void updateCommentNum() {
         Boolean aBoolean = textDao.updateTextCommentNum(10);
         System.out.println(aBoolean);
+    }
+
+    @Test
+    public void getsimpleTextByUserID() {
+        TextService textService = new TextServiceImpl();
+        List<simpletext> simpletexts = textService.getsimpleTextByUserID("1455075085@qq.com");
+        String s1 = JSON.toJSONString(simpletexts);
+        System.out.println(s1);
+//        if (simpletexts != null){
+//            for (simpletext s :simpletexts) {
+//                System.out.println(s.toString());
+//            }
+//        }else {
+//            System.out.println("null");
+//        }
     }
 }
