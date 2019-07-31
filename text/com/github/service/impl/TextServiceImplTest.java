@@ -80,12 +80,14 @@ public class TextServiceImplTest {
     public void getsimpleTextByUserID() {
         TextService textService = new TextServiceImpl();
         List<simpletext> simpletexts = textService.getsimpleTextByUserID("1455075085@qq.com");
-        if (simpletexts != null){
-            for (simpletext s :simpletexts) {
-                System.out.println(s.toString());
-            }
-        }else {
-            System.out.println("null");
-        }
+        String s1 = JSON.toJSONString(simpletexts);
+        System.out.println(s1);
+//        if (simpletexts != null){
+//            for (simpletext s :simpletexts) {
+//                System.out.println(s.toString());
+//            }
+//        }else {
+//            System.out.println("null");
+//        }
     }
 }
