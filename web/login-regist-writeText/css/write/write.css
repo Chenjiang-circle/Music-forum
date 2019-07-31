@@ -30,12 +30,11 @@
 }
 
 
+
 #upload{
     width:100%;
     position: relative;
 }
-
-
 
 
 #Selections{
@@ -49,6 +48,7 @@
     box-shadow:0px 10px 50px rgb(202, 202, 202);
     margin-top: 40px;
     position: relative;
+
 }
 #Selections input[type=checkbox]{
    visibility: hidden;
@@ -115,6 +115,7 @@
     font-size: 130%;
     font-weight: bold;
     color: white;
+
 }
 
 /* 上传文章 */

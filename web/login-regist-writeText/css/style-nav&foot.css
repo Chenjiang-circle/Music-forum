@@ -158,6 +158,7 @@
             right: 110px;
             margin-top: 14px;
             display: none;
+
         }
             .login{
                 text-align: center;
@@ -203,7 +204,6 @@
     position:absolute;
     bottom: 330px;
 }
-
 
 .loginOn{
     height: 90px;

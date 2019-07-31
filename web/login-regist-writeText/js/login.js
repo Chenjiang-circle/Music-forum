@@ -55,21 +55,21 @@ $(document).ready(function(){
     $("#login-submit").click(function(){
         if($('#login-form').valid()){
             $.ajax({
-                type:"POST",
-                url:"",
+                type:"GET",
+                url:"http://172.20.151.112:8066/Music_forum/registerservlet",
                 data:{
                     username:$("#username").val(),
                     sex:$("#sex").val(),
-                    email:$("#loginEmail").val(),
+                    userid:$("#loginEmail").val(),
                     password:$("#loginPassword").val()
                 },
                 dataType:"json",
                 success:function(data){//请求成功，data为后台数据
                     if(data.success){
-                        window.location.href="enter.html";
-                        //跳转到登录页面
-                    }else{
-                        alert("OOOOPS! 服务器出现了一个小问题："+data.msg);
+                        window.location.href="http://172.20.151.112:8066/Music_forum/login-regist-writeText/enter.html";
+                    }
+                    else{
+                        alert("邮箱已存在!");
                     }
                 },
                 error:function(jqXHR){

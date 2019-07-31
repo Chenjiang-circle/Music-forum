@@ -12,6 +12,7 @@ $(document).ready(function(){
         }
     })
 
+
     $("#uppicture").click(function(){
         $("#uploadFile").click();
     }
@@ -48,6 +49,7 @@ $(document).ready(function(){
         }
 
     });
+
 
 
 
@@ -120,5 +122,6 @@ $(document).ready(function(){
         }
 
          return false;
+
     })
 })
