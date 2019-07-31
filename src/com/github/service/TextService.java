@@ -1,12 +1,10 @@
 package com.github.service;
 
-import com.github.domain.Text;
-import com.github.domain.comment;
-import com.github.domain.text1;
-import com.github.domain.text2;
+import com.github.domain.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public interface TextService {
@@ -50,4 +48,11 @@ public interface TextService {
      * @return
      */
     Boolean updateCommentNum(int textid);
+
+    /**
+     * 通过userid获取该用户所有文章的封面和标题
+     * @param userid 用户的邮箱
+     * @return 返回null说明此用户还没撰写过文章
+     */
+    List<simpletext> getsimpleTextByUserID(String userid);
 }

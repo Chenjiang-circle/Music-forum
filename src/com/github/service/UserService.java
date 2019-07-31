@@ -66,4 +66,6 @@ public interface UserService {
      * @return
      */
     Boolean addCheckin(String textid);
+
+
 }
