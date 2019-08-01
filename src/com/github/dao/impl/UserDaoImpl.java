@@ -70,6 +70,8 @@ public class UserDaoImpl implements UserDao {
     public void follow(follow followers) {
         String sql = "insert into follow values (?, ?)";
         template.update(sql, followers.getUserid(), followers.getFollowed());
+        String sql1 = "update user set fans = fans + 1 where userid = ?";
+        int update = template.update(sql1, followers.getFollowed());
     }
 
     @Override
