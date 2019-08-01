@@ -21,7 +21,7 @@ public class music {
     private String musicname;
     private String url;
     private String time;
-    private int ispass;
+    private String ispass;
     private String verifier;
 
     public String getVerifier() {
@@ -32,11 +32,11 @@ public class music {
         this.verifier = verifier;
     }
 
-    public int getIspass() {
+    public String getIspass() {
         return ispass;
     }
 
-    public void setIspass(int ispass) {
+    public void setIspass(String ispass) {
         this.ispass = ispass;
     }
 
@@ -88,7 +88,7 @@ public class music {
                 ", musicname='" + musicname + '\'' +
                 ", url='" + url + '\'' +
                 ", time='" + time + '\'' +
-                ", ispass=" + ispass +
+                ", ispass='" + ispass + '\'' +
                 ", verifier='" + verifier + '\'' +
                 '}';
     }

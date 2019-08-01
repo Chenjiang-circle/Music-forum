@@ -1,8 +1,11 @@
 package com.github.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.github.domain.music;
 import com.github.service.MusicService;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -19,5 +22,12 @@ public class MusicServiceImplTest {
         amusic.setUserid("1455075085@qq.com");
         Boolean aBoolean = musicService.uploadMusic(amusic);
         System.out.println(aBoolean);
+    }
+
+    @Test
+    public void getNotPassMusics() {
+        List<music> notPassMusics = musicService.getNotPassMusics();
+        String s = JSON.toJSONString(notPassMusics);
+        System.out.println(s);
     }
 }
