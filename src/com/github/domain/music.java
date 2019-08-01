@@ -22,6 +22,15 @@ public class music {
     private String url;
     private String time;
     private int ispass;
+    private String verifier;
+
+    public String getVerifier() {
+        return verifier;
+    }
+
+    public void setVerifier(String verifier) {
+        this.verifier = verifier;
+    }
 
     public int getIspass() {
         return ispass;
@@ -80,6 +89,7 @@ public class music {
                 ", url='" + url + '\'' +
                 ", time='" + time + '\'' +
                 ", ispass=" + ispass +
+                ", verifier='" + verifier + '\'' +
                 '}';
     }
 }
