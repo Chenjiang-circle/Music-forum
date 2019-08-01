@@ -13,6 +13,7 @@ import java.util.List;
 
 public class TextServiceImplTest {
     private TextDao textDao = new TextDaoImpl();
+    TextService textService = new TextServiceImpl();
 
     @Test
     public void createText() {
@@ -78,7 +79,7 @@ public class TextServiceImplTest {
 
     @Test
     public void getsimpleTextByUserID() {
-        TextService textService = new TextServiceImpl();
+
         List<simpletext> simpletexts = textService.getsimpleTextByUserID("1455075085@qq.com");
         String s1 = JSON.toJSONString(simpletexts);
         System.out.println(s1);
@@ -89,5 +90,12 @@ public class TextServiceImplTest {
 //        }else {
 //            System.out.println("null");
 //        }
+    }
+
+    @Test
+    public void getcollectionByUserID() {
+        List<simpletext> simpletexts = textService.getcollectionByUserID("1455075085@qq.com");
+        String s1 = JSON.toJSONString(simpletexts);
+        System.out.println(s1);
     }
 }

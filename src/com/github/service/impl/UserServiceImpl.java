@@ -69,4 +69,9 @@ public class UserServiceImpl implements UserService {
     public Boolean addCheckin(String textid) {
         return userDao.addCheckin(textid);
     }
+
+    @Override
+    public Boolean cancelFollow(follow follow) {
+        return userDao.cancelFollow(follow);
+    }
 }

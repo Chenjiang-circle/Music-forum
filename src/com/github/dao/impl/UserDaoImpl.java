@@ -134,4 +134,17 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
     }
+
+    @Override
+    public Boolean cancelFollow(follow follow) {
+        try {
+            String sql = "delete from follow where userid='"+follow.getUserid()+"' and followed='" + follow.getFollowed() + "'";
+            int update = template.update(sql);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("删除关注失败,可能是用户不存在");
+            return false;
+        }
+    }
 }

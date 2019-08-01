@@ -227,6 +227,19 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
+    @Override
+    public List<simpletext> getcollectionByUserID(String userid) {
+        try {
+            String sql = "select text.textid, text.title, textimage.textimage from text, textimage, collection where text.textid = textimage.textid and text.textid = collection.collectiontextid and collection.userid = '" + userid +"'";
+            List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
+            return query;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("该用户没有收藏文章");
+            return null;
+        }
+    }
+
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {
 //        try {

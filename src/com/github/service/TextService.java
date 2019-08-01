@@ -55,4 +55,11 @@ public interface TextService {
      * @return 返回null说明此用户还没撰写过文章
      */
     List<simpletext> getsimpleTextByUserID(String userid);
+
+    /**
+     * 通过userid获取该用户所有收藏的文章的封面和标题
+     * @param userid
+     * @return
+     */
+    List<simpletext> getcollectionByUserID(String userid);
 }
