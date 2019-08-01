@@ -12,6 +12,7 @@ import org.junit.Test;
 
 public class UserServiceImplTest {
     UserDao userDao = new UserDaoImpl();
+    UserService userService = new UserServiceImpl();
 
     @Test
     public void register() {
@@ -74,6 +75,15 @@ public class UserServiceImplTest {
     @Test
     public void addCheckin() {
         Boolean aBoolean = userDao.addCheckin("1455075085@qq.com");
+        System.out.println(aBoolean);
+    }
+
+    @Test
+    public void cancelFollow() {
+        follow follow = new follow();
+        follow.setUserid("1455075085@qq.com");
+        follow.setFollowed("root@qq.com");
+        Boolean aBoolean = userService.cancelFollow(follow);
         System.out.println(aBoolean);
     }
 }

@@ -67,5 +67,5 @@ public interface UserService {
      */
     Boolean addCheckin(String textid);
 
-
+    Boolean cancelFollow(follow follow);
 }

@@ -14,10 +14,38 @@ package com.github.domain;
  * @create 2019/7/23
  * @since 1.0.0
  */
+
 public class music {
     private int musicid;
+    private String userid;
     private String musicname;
     private String url;
+    private String time;
+    private int ispass;
+
+    public int getIspass() {
+        return ispass;
+    }
+
+    public void setIspass(int ispass) {
+        this.ispass = ispass;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public int getMusicid() {
         return musicid;
@@ -47,8 +75,11 @@ public class music {
     public String toString() {
         return "music{" +
                 "musicid=" + musicid +
+                ", userid='" + userid + '\'' +
                 ", musicname='" + musicname + '\'' +
                 ", url='" + url + '\'' +
+                ", time='" + time + '\'' +
+                ", ispass=" + ispass +
                 '}';
     }
 }

@@ -14,4 +14,5 @@ public interface UserDao {
     Boolean addCollectionText(collection collection);
     Boolean isCollection(collection collection);
     Boolean addCheckin(String userid);
+    Boolean cancelFollow(follow follow);
 }
