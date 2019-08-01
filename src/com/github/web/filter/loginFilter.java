@@ -29,7 +29,7 @@ public class loginFilter implements Filter {
         }else {
             //不包含，需要验证用户是否登录
             //3.从获取session中获取user
-            Object user = request.getSession().getAttribute("status");
+            Object user = request.getSession().getAttribute("usermsg");
             //System.out.println(user);
             if (user != null) {
                 //登录了。放行
