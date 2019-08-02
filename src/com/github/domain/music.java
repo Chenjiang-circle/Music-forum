@@ -23,6 +23,15 @@ public class music {
     private String time;
     private String ispass;
     private String verifier;
+    private String musicover;
+
+    public String getMusicover() {
+        return musicover;
+    }
+
+    public void setMusicover(String musicover) {
+        this.musicover = musicover;
+    }
 
     public String getVerifier() {
         return verifier;
@@ -90,6 +99,7 @@ public class music {
                 ", time='" + time + '\'' +
                 ", ispass='" + ispass + '\'' +
                 ", verifier='" + verifier + '\'' +
+                ", musicover='" + musicover + '\'' +
                 '}';
     }
 }
