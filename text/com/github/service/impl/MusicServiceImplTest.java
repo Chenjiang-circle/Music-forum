@@ -36,4 +36,11 @@ public class MusicServiceImplTest {
         Boolean pass = musicService.pass("http://172.20.151.112:8088/123.mp3", "圈圈root");
         System.out.println(pass);
     }
+
+    @Test
+    public void getAllPassMusics() {
+        List<music> allPassMusics = musicService.getAllPassMusics();
+        String s = JSON.toJSONString(allPassMusics);
+        System.out.println(s);
+    }
 }

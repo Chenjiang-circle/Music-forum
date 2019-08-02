@@ -52,4 +52,17 @@ public class MusicDaoImpl implements MusicDao {
             return false;
         }
     }
+
+    @Override
+    public List<music> getAllPassMusics() {
+        try {
+            String sql = "select * from music where ispass<>'null'";
+            List<music> musics = template.query(sql, new BeanPropertyRowMapper<music>(music.class));
+            return musics;
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("没有通过审核的音乐");
+            return null;
+        }
+    }
 }
