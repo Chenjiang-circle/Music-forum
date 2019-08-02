@@ -1,0 +1,166 @@
+
+.phone-body {
+  background-color: rgb(211, 96, 96);
+  font-family: "Microsoft YaHei", sans-serif;
+  overflow: hidden;
+}
+
+.nav-open {
+  background-color: rgb(211, 96, 96);
+  font-family: "Microsoft YaHei", sans-serif;
+  overflow: hidden;
+}
+
+.phone-body.nav-open .phone-nav {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+.phone-body.nav-open .nav-toggle {
+  box-shadow: none;
+}
+.phone-body.nav-open .nav-toggle:before {
+  width: 3000px;
+  height: 3000px;
+  background-color: rgba(64, 214, 114, 0.95);
+}
+.phone-body.nav-open .nav-toggle .icon {
+  width: 0;
+}
+.phone-body.nav-open .nav-toggle .icon:before {
+  -webkit-transform: translateY(9px) rotate(45deg);
+      -ms-transform: translateY(9px) rotate(45deg);
+          transform: translateY(9px) rotate(45deg);
+}
+.phone-body.nav-open .nav-toggle .icon:after {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+      -ms-transform: translateY(-9px) rotate(-45deg);
+          transform: translateY(-9px) rotate(-45deg);
+}
+
+.nav-toggle {
+  display: none;
+  width: 60px;
+  height: 60px;
+  z-index: 2;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition-duration: 0.66s;
+          transition-duration: 0.66s;
+  -webkit-transition-timing-function: swing;
+          transition-timing-function: swing;
+}
+.nav-toggle-open {
+  width: 60px;
+  height: 60px;
+  z-index: 2;
+  border-radius: 50%;
+  margin:0 45%;
+  position: absolute;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition-duration: 0.66s;
+          transition-duration: 0.66s;
+  -webkit-transition-timing-function: swing;
+          transition-timing-function: swing;
+}
+
+.nav-toggle:before {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgb(51, 204, 84);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  -webkit-transition-duration: 0.66s;
+          transition-duration: 0.66s;
+  -webkit-transition-timing-function: swing;
+          transition-timing-function: swing;
+}
+.nav-toggle .icon {
+  width: 30px;
+  height: 4px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 2px;
+  position: absolute;
+  top: 28px;
+  left: 15px;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  /* transiting-timing-function: swing; */
+}
+.nav-toggle .icon:before,
+.nav-toggle .icon:after {
+  width: 30px;
+  height: 4px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 2px;
+  content: "";
+  position: absolute;
+  left: 0;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  -webkit-transition-timing-function: swing;
+  transition-timing-function: swing;
+}
+.nav-toggle .icon:before {
+  top: -9px;
+}
+.nav-toggle .icon:after {
+  top: 9px;
+}
+.lower-screen {
+  padding: 60px 0 20px 0;
+  overflow-y: scroll;
+  height: 450px;
+  -webkit-transition-duration: 0.66s;
+          transition-duration: 0.66s;
+  -webkit-transition-timing-function: swing;
+          transition-timing-function: swing;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.lower-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-nav {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  padding: 0 20px;
+  -webkit-transition-duration: 0.66s;
+          transition-duration: 0.66s;
+  -webkit-transition-timing-function: swing;
+          transition-timing-function: swing;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+.phone-nav ul li {
+  list-style: none;
+}
+.phone-nav ul li a {
+  display: block;
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+}
+.phone-nav ul:hover li a {
+  opacity: 0.5;
+}
+.phone-nav ul:hover li:hover a {
+  opacity: 1;
+}
