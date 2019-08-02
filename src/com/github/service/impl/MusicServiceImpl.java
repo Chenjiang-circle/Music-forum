@@ -19,4 +19,9 @@ public class MusicServiceImpl implements MusicService {
     public List<music> getNotPassMusics() {
         return musicDao.getNotPassMusics();
     }
+
+    @Override
+    public Boolean pass(String url, String verifier) {
+        return musicDao.pass(url, verifier);
+    }
 }

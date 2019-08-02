@@ -15,8 +15,8 @@ public class MusicDaoImpl implements MusicDao {
     @Override
     public Boolean uploadMusic(music amusic) {
         try {
-            String sql = "insert into music values(?, ?, ?, ?, ?, ?, ?)";
-            int update = template.update(sql, amusic.getMusicid(), amusic.getMusicname(), amusic.getUrl(), amusic.getUserid(), amusic.getTime(), amusic.getIspass(), amusic.getVerifier());
+            String sql = "insert into music values(?, ?, ?, ?, ?, ?, ?, ?)";
+            int update = template.update(sql, amusic.getMusicid(), amusic.getMusicname(), amusic.getUrl(), amusic.getUserid(), amusic.getTime(), amusic.getIspass(), amusic.getVerifier(), amusic.getMusicover());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,6 +35,21 @@ public class MusicDaoImpl implements MusicDao {
             e.printStackTrace();
             System.out.println("没有未审核的音乐!");
             return null;
+        }
+    }
+
+    @Override
+    public Boolean pass(String url, String verifier) {
+        try{
+            String sql = "update music set ispass = 'pass' where url ='"+url+"'";
+            int update = template.update(sql);
+            String sql1 = "update music set verifier = '"+verifier+"' where url ='"+url+"'";
+            int update1 = template.update(sql1);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("设置失败,可能是该音乐不存在");
+            return false;
         }
     }
 }

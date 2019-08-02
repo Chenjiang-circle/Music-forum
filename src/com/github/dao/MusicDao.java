@@ -12,5 +12,16 @@ public interface MusicDao {
      */
     Boolean uploadMusic(music amusic);
 
+    /**
+     * 此方法用来获取所有未审核的音乐
+     * @return
+     */
     List<music> getNotPassMusics();
+
+    /**
+     * 此方法用来使音乐通过审核
+     * @param url
+     * @return
+     */
+    Boolean pass(String url, String verifier);
 }
