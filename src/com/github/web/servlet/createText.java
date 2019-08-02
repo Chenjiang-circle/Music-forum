@@ -1,10 +1,10 @@
 package com.github.web.servlet;
 
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.domain.Text;
-import com.github.domain.textimage;
+import com.github.service.TextService;
+import com.github.service.impl.TextServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -34,15 +34,9 @@ public class createText extends HttpServlet {
         }
         text.setUserid("1455075085@qq.com");
         System.out.println(text.toString());
-        textimage textimage = new textimage();
-        try {
-            BeanUtils.populate(textimage, map);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        System.out.println(textimage.toString());
+        TextService textService = new TextServiceImpl();
+        textService.createText(text);
+
         String s = "{\"success\" : \"true\"}";
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(resp.getWriter(), s);

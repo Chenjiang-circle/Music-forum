@@ -35,8 +35,8 @@ public class TextDaoImpl implements TextDao {
      */
     @Override
     public void createText(Text text) {
-        String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(sql, text.getUserid(), text.getTime(), text.getLikes(), text.getComment(), text.getCollection(), text.getText(), text.getTitle(), text.getType());
+        String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(sql, text.getUserid(), text.getTime(), text.getLikes(), text.getComment(), text.getCollection(), text.getText(), text.getTitle(), text.getType(), text.getTextimage());
     }
 
     /**
@@ -88,8 +88,8 @@ public class TextDaoImpl implements TextDao {
     public int addCommentToText(comment comments) {
         try {
             // 先将评论存入text表中，生成一个唯一的textid
-            String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?)";
-            template.update(sql, comments.getUserid(), comments.getTime(), comments.getLikes(), comments.getComment(), comments.getCollection(), comments.getText(), comments.getTitle(), comments.getType());
+            String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?, ?)";
+            template.update(sql, comments.getUserid(), comments.getTime(), comments.getLikes(), comments.getComment(), comments.getCollection(), comments.getText(), comments.getTitle(), comments.getType(), comments.getTextimage());
             // 获取这个唯一的textid，并返回值
             String sql2 = "select * from text where text = ? and userid = ? ";
             comment comment = template.queryForObject(sql2, new BeanPropertyRowMapper<comment>(comment.class), comments.getText(), comments.getUserid());
@@ -239,6 +239,8 @@ public class TextDaoImpl implements TextDao {
             return null;
         }
     }
+
+
 
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {
