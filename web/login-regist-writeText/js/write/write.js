@@ -56,7 +56,7 @@ $(document).ready(function(){
 
     $("#submitArticle").click(function(){
         
-        var title = $("#write-title");//文章标题
+        var title = $("#write-title").val();//文章标题
         var content = $("#editor1").val();//文章内容
 
         //判断是否在前面加0
@@ -89,24 +89,24 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"POST",
-                url:"http://172.20.151.112:8066/Music_forum/createText",
+                url:"",
+                dataType:"json",
                 data:{
                     userid:null,
                     textid:null,
                     time:now,
-                    likes:0,
-                    comment:0,
-                    collection:0,
+                    likes:null,
+                    comment:null,
+                    collection:null,
                     text:content,
                     title:title,
                     type:check,
                     textimage:img64//64base文章封面
                 },
-                dataType:"json",
                 success:function(data){//请求成功，data为后台数据
                     if(data.success){
                         alert("❤成功提交! \n❤文章将在审核后发表.\n❤感谢您的贡献.祝您拥有愉快的一天");
-                        //window.location.href="";
+                        window.location.href="";
                         //跳转到首页
                     }else{
                         alert("OOOOPS! 服务器出现了一个小问题："+data.msg);
