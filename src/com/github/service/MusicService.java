@@ -17,4 +17,17 @@ public interface MusicService {
      * @return
      */
     List<music> getNotPassMusics();
+
+    /**
+     * 此方法用来使音乐通过审核
+     * @param url
+     * @return
+     */
+    Boolean pass(String url, String verifier);
+
+    /**
+     * 此方法用来获取所有的已通过审核的音乐信息
+     * @return 返回音乐实体类集合,返回null表示没有审核通过的音乐或者没有上传音乐
+     */
+    List<music> getAllPassMusics();
 }

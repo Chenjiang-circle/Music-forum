@@ -62,4 +62,6 @@ public interface TextService {
      * @return
      */
     List<simpletext> getcollectionByUserID(String userid);
+
+
 }

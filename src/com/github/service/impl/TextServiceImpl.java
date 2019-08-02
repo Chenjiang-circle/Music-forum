@@ -95,6 +95,8 @@ public class TextServiceImpl implements TextService {
     }
 
 
+
+
 //    @Override
 //    public text2 findAlltext(ArrayList<Text> text) {
 //        ArrayList<text2> list2 = null;

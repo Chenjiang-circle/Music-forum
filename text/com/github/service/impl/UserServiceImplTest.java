@@ -21,7 +21,7 @@ public class UserServiceImplTest {
         user.setPassword("123456");
         user.setUsername("xyz");
         user.setSex("男");
-        user.setImageid(1);
+        user.setImageid("123");
         user.setDescription("大家好， 我是...");
         user.setFans(12);
         user.setNumsignin(101);
