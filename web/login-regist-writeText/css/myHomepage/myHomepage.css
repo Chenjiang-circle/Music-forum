@@ -1,0 +1,175 @@
+/* 公共部分 */
+.myTitle{
+    background: #30c27b;
+    border-radius: 100px;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    float: left;
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+}
+
+.more{
+    font-size: 20px;
+    text-align: center;
+    color: #30c27b;
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.arts{
+    /* border:palevioletred 3px solid; */
+    margin:80px auto;
+}
+
+.artLists{
+    width: 300px;
+    height: 400px;
+    background: linear-gradient(rgba(0,0,0,0),#30c27b);
+    border-radius: 20px;
+    display: inline-block;
+    margin-left: 93px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow:0px 40px 50px rgb(202, 202, 202);
+    transition: all 0.5s;
+    background-position-x: center;
+    background-position-y: center;
+
+}
+
+.artLists:hover{
+    box-shadow:0px 40px 50px rgb(128, 128, 128);
+}
+
+.artLists:nth-child(1){
+    background-image: url(../../img/artList/1207722775.jpg);
+}
+
+.artLists:nth-child(2){
+    background-image: url(../../img/artList/adele.jpg);
+
+}
+
+.artLists:nth-child(3){
+    background-image: url(../../img/artList/jonlin.jpg);
+}
+
+.artName{
+    width: 300px;
+    height: 200px;
+    font-size: 40px;
+    color: aliceblue;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    text-overflow:ellipsis;
+    white-space : wrap;
+    overflow : hidden;
+    padding: 0 20px;
+    background: linear-gradient(rgba(0,0,0,0),#30c27b);
+    transition: all 0.5s;
+    cursor: pointer;
+    
+
+}
+
+.artName:hover{
+    text-decoration: underline;
+}
+/* 公共部分 */
+
+
+
+
+
+#avatarBack{
+    width: 100%;
+    height: 500px;
+    margin-top: 50px;
+    background-image: url(../../img/search-back.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding-top: 50px;
+}
+
+#avatar{
+    width: 300px;
+    height: 300px;
+    margin:0 auto;
+    border: 4px solid #30c27b;
+    border-radius: 100%;
+    background-image: url(../../img/article/avatar-default.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+}
+
+#username{
+    margin:20px 10px auto;
+    width: auto;
+    font-size: 300%;
+    font-weight: bold;
+    color: aliceblue;
+    width: 100%;
+    text-align: center;
+
+}
+
+#fans{
+    width: auto;
+    margin: 0 auto;
+    color: aliceblue;
+    font-size: 120%;
+    width: 100%;
+    text-align: center;
+}
+
+#myDetail{
+    width: 1300px;
+    /* border: yellowgreen solid 2px; */
+    margin: 0 auto;
+    position: relative;
+}
+
+#myArt{
+    width: 100%;
+    height: 500px;
+    border: white 3px solid;
+    margin-top: 50px;
+}
+
+#myCollection{
+    width: 100%;
+    height: 500px;
+    border: white 3px solid;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+#out{
+    width: 200px;
+    height: 80px;
+    background: rgb(255, 59, 108);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius:100px; 
+    transition: all 0.5s;
+    margin:0 auto;
+    outline: none;
+    display: block;
+    margin-bottom: 100px;
+    cursor: pointer;
+}
+
+#out:hover{
+    box-shadow:0px 10px 50px rgb(202, 202, 202);
+
+}
