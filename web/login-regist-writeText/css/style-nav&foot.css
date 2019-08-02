@@ -19,6 +19,15 @@
 
 
         }
+
+        .grad3{
+            background: linear-gradient(left top, #2a1048,#30c27b);
+            background: -webkit-linear-gradient(left top, #2a1048,#30c27b);
+            background: -o-linear-gradient(left top, #2a1048,#30c27b);
+            background: -moz-linear-gradient(left top, #2a1048,#30c27b);
+
+
+        }
             /* li{
                 list-style: none;
                 float: left;

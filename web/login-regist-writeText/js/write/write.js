@@ -56,7 +56,7 @@ $(document).ready(function(){
 
     $("#submitArticle").click(function(){
         
-        var title = $("#write-title");//文章标题
+        var title = $("#write-title").val();//文章标题
         var content = $("#editor1").val();//文章内容
 
         //判断是否在前面加0
@@ -90,6 +90,7 @@ $(document).ready(function(){
             $.ajax({
                 type:"POST",
                 url:"",
+                dataType:"json",
                 data:{
                     userid:null,
                     textid:null,
@@ -102,7 +103,6 @@ $(document).ready(function(){
                     type:check,
                     textimage:img64//64base文章封面
                 },
-                dataType:"json",
                 success:function(data){//请求成功，data为后台数据
                     if(data.success){
                         alert("❤成功提交! \n❤文章将在审核后发表.\n❤感谢您的贡献.祝您拥有愉快的一天");
