@@ -24,8 +24,6 @@ $('document').ready(function () {
             //点击分页跳转相应页
             showpage(arr);
             //点击试听播放相应音乐
-            
-
         },
         error: (err) => {
             console.log(err)
