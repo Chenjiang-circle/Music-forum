@@ -89,14 +89,14 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"POST",
-                url:"",
+                url:"http://172.20.151.112:8066/Music_forum/createText",
                 data:{
                     userid:null,
                     textid:null,
                     time:now,
-                    likes:null,
-                    comment:null,
-                    collection:null,
+                    likes:0,
+                    comment:0,
+                    collection:0,
                     text:content,
                     title:title,
                     type:check,
@@ -106,7 +106,7 @@ $(document).ready(function(){
                 success:function(data){//请求成功，data为后台数据
                     if(data.success){
                         alert("❤成功提交! \n❤文章将在审核后发表.\n❤感谢您的贡献.祝您拥有愉快的一天");
-                        window.location.href="";
+                        //window.location.href="";
                         //跳转到首页
                     }else{
                         alert("OOOOPS! 服务器出现了一个小问题："+data.msg);

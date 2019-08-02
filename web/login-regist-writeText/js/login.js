@@ -53,6 +53,7 @@ $(document).ready(function(){
     })//验证表单格式
 
     $("#login-submit").click(function(){
+        alert("正在向您邮箱发送验证信息......");
         if($('#login-form').valid()){
             $.ajax({
                 type:"GET",

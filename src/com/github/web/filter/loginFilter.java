@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class loginFilter implements Filter {
     public void destroy() {
     }
