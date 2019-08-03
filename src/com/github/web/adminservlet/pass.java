@@ -3,6 +3,9 @@ package com.github.web.adminservlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.service.MusicService;
 import com.github.service.impl.MusicServiceImpl;
+import com.github.util.MailUtil;
+import com.github.util.MailUtil_musicupload;
+import com.github.util.MailUtil_musicupload_fail;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +23,7 @@ public class pass extends HttpServlet {
         String url = req.getParameter("url");
         String verifier = req.getParameter("verifier");
         String ispass = req.getParameter("ispass");
+        String email = req.getParameter("userid");
         MusicService musicService = new MusicServiceImpl();
         if ("true".equals(ispass)) {
 
@@ -27,10 +31,24 @@ public class pass extends HttpServlet {
             // 返回操作结果,true代表操作成功,false代表操作失败
             Map<String, Object> map1 = new HashMap<String, Object>();
             map1.put("do", pass);
+            if (pass){
+                try {
+                    MailUtil_musicupload.sendActiveMail(email);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(resp.getWriter(), map1);
         }else {
             Boolean notpass = musicService.notpass(url, verifier);
+            if (notpass){
+                try {
+                    MailUtil_musicupload_fail.sendActiveMail(email);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             Map<String, Object> map1 = new HashMap<String, Object>();
             map1.put("do", true);
             ObjectMapper mapper = new ObjectMapper();
