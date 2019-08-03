@@ -17,7 +17,6 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- css文件 -->
     <link rel="stylesheet" href="./css/administrator.css">
-    <script src="./js/cookie.js"></script>
 </head>
 
 <body>
@@ -37,14 +36,17 @@
             <!-- 左边栏  管理员信息 -->
             <div class="col-md-3 column">
                 <div id="adm_msg" align="center">
-                    <img src="img/head.jpg" alt="管理员头像" id="adm_img">
-                    <p id="adm_name">管理员</p>
                     <script>
                         window.onload = function () {
                             var name = $.cookie("user");
-                            $("#adm_name").html(name)
+                            $("#adm_name").html(name);
+                            var adm_img = document.getElementById("adm_img");
+                            var img=$.cookie("image");
+                            adm_img.src=img;
                         }
                     </script>
+                    <img src="img/head.jpg" alt="管理员头像" id="adm_img">
+                    <p id="adm_name">管理员</p>
                 </div>
                 <button class="btn btn-default">退出登录</button>
             </div>

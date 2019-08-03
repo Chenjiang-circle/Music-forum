@@ -23,14 +23,50 @@ public class music {
     private String time;
     private String ispass;
     private String verifier;
-    private String musicover;
+    private String musiccover;
+    private String album;
+    private String songer;
+    private String publictime;
+    private String company;
 
-    public String getMusicover() {
-        return musicover;
+    public String getSonger() {
+        return songer;
     }
 
-    public void setMusicover(String musicover) {
-        this.musicover = musicover;
+    public void setSonger(String songer) {
+        this.songer = songer;
+    }
+
+    public String getPublictime() {
+        return publictime;
+    }
+
+    public void setPublictime(String publictime) {
+        this.publictime = publictime;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public String getMusiccover() {
+        return musiccover;
+    }
+
+    public void setMusiccover(String musiccover) {
+        this.musiccover = musiccover;
     }
 
     public String getVerifier() {
@@ -99,7 +135,11 @@ public class music {
                 ", time='" + time + '\'' +
                 ", ispass='" + ispass + '\'' +
                 ", verifier='" + verifier + '\'' +
-                ", musicover='" + musicover + '\'' +
+                ", musiccover='" + musiccover + '\'' +
+                ", album='" + album + '\'' +
+                ", songer='" + songer + '\'' +
+                ", publictime='" + publictime + '\'' +
+                ", company='" + company + '\'' +
                 '}';
     }
 }

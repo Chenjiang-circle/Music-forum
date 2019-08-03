@@ -3,7 +3,7 @@ $('document').ready(function () {
     $.ajax({
         type: 'get',
         url: './administrator.json',
-        success: (data) => {
+        success: function(data)  {
             //将json分为15个一组，push到arr
             var arr=[];
             var a=Math.ceil(data.length/15);
@@ -27,7 +27,7 @@ $('document').ready(function () {
             
 
         },
-        error: (err) => {
+        error: function(err) {
             console.log(err)
         }
     })

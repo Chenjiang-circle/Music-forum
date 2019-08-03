@@ -1,10 +1,9 @@
-package com.github.web.servlet;
-
+package com.github.web.adminservlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.domain.Text;
-import com.github.service.TextService;
-import com.github.service.impl.TextServiceImpl;
+import com.github.domain.User;
+import com.github.service.UserService;
+import com.github.service.impl.UserServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -17,30 +16,28 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/createText")
-public class createText extends HttpServlet {
+@WebServlet("/enterservlet")
+public class enterservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 设置编码
-        req.setCharacterEncoding("utf-8");
-        Map<String, String[]> map = req.getParameterMap();
-        String text1 = req.getParameter("text");
-        System.out.println(text1);
-        Text text = new Text();
+        resp.setCharacterEncoding("utf-8");
+
+        Map<String, String[]> parameterMap = req.getParameterMap();
+        User user = new User();
         try {
-            BeanUtils.populate(text, map);
+            BeanUtils.populate(user, parameterMap);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        text.setUserid("1455075085@qq.com");
-        System.out.println(text.toString());
-        TextService textService = new TextServiceImpl();
-        textService.createText(text);
+        UserService userService = new UserServiceImpl();
+        User signin = userService.signin(user);
 
         Map<String, Object> map1 = new HashMap<String, Object>();
-        map1.put("success", true);
+        map1.put("pass", true);
+        map1.put("userid", user.getUserid());
+        map1.put("url", "http://172.20.151.112:8088/8caa11ca1c694299b04f3520b177163f.jpg");
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(resp.getWriter(), map1);
     }

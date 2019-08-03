@@ -2,6 +2,8 @@ package com.github.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.dao.TextDao;
 import com.github.dao.impl.TextDaoImpl;
 import com.github.domain.*;
@@ -62,7 +64,7 @@ public class TextServiceImplTest {
     @Test
     public void findAlltext() {
         TextService textService = new TextServiceImpl();
-        text2 alltext = textService.findAlltext(1);
+        text2 alltext = textService.findAlltext(33);
         String s = JSON.toJSONString(alltext);
         System.out.println(s);
     }
@@ -79,18 +81,24 @@ public class TextServiceImplTest {
     }
 
     @Test
-    public void getsimpleTextByUserID() {
+    public void getsimpleTextByUserID() throws JsonProcessingException {
 
         List<simpletext> simpletexts = textService.getsimpleTextByUserID("1455075085@qq.com");
-        String s1 = JSON.toJSONString(simpletexts);
-        System.out.println(s1);
+//        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(simpletexts.size());
+        String s = JSON.toJSONString(simpletexts);
+        System.out.println(s);
+//        JSON.writeJSONString(rsp);
 //        if (simpletexts != null){
 //            for (simpletext s :simpletexts) {
-//                System.out.println(s.toString());
+//                String s1 = JSON.toJSONString(s);
+//                System.out.println(s1);
 //            }
 //        }else {
 //            System.out.println("null");
 //        }
+//        String s = mapper.writeValueAsString(simpletexts);
+//        System.out.println(s);
     }
 
     @Test
