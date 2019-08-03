@@ -1,9 +1,6 @@
 package com.github.dao;
 
-import com.github.domain.Text;
-import com.github.domain.comment;
-import com.github.domain.simpletext;
-import com.github.domain.text2;
+import com.github.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,4 +58,12 @@ public interface TextDao {
      * @return
      */
     List<simpletext> getsimpleTextByUserID(String userid);
+
+    /**
+     * 通过userid查询用户的所有收藏的文章的封面和标题,以及对应的文章id
+     * @param userid
+     * @return
+     */
+    List<simpletext> getcollectionByUserID(String userid);
+
 }

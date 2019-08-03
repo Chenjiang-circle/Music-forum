@@ -27,7 +27,16 @@ public class text2 {
     private String title;
     private String type;
     private String username;
+    private String textimage;
     private ArrayList<text2> list = null;
+
+    public String getTextimage() {
+        return textimage;
+    }
+
+    public void setTextimage(String textimage) {
+        this.textimage = textimage;
+    }
 
     public String getUserid() {
         return userid;
@@ -130,6 +139,7 @@ public class text2 {
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
                 ", username='" + username + '\'' +
+                ", textimage='" + textimage + '\'' +
                 ", list=" + list +
                 '}';
     }

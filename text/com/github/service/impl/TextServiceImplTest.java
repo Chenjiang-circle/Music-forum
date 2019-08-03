@@ -13,6 +13,7 @@ import java.util.List;
 
 public class TextServiceImplTest {
     private TextDao textDao = new TextDaoImpl();
+    TextService textService = new TextServiceImpl();
 
     @Test
     public void createText() {
@@ -27,6 +28,7 @@ public class TextServiceImplTest {
                 "　　无论怎样你都永远不会真正得到它。");
         text.setTitle("哈哈哈");
         text.setTime("2018-8-8");
+        text.setTextimage("534408434.jpg");
 
         textDao.createText(text);
         System.out.println("添加文章成功");
@@ -35,10 +37,10 @@ public class TextServiceImplTest {
     @Test
     public void addComment() {
         comment comments = new comment();
-        comments.setTextid(13);
+        comments.setTextid(17);
         comments.setUserid("1455075085@qq.com");
         comments.setTime("2008-3-5");
-        comments.setText("3楼评论“哈哈哈”2楼");
+        comments.setText("1楼评论");
         int commentid = textDao.addCommentToText(comments);
         if (commentid != -1){
             Boolean aBoolean = textDao.addComment(comments, commentid);
@@ -78,7 +80,7 @@ public class TextServiceImplTest {
 
     @Test
     public void getsimpleTextByUserID() {
-        TextService textService = new TextServiceImpl();
+
         List<simpletext> simpletexts = textService.getsimpleTextByUserID("1455075085@qq.com");
         String s1 = JSON.toJSONString(simpletexts);
         System.out.println(s1);
@@ -90,4 +92,13 @@ public class TextServiceImplTest {
 //            System.out.println("null");
 //        }
     }
+
+    @Test
+    public void getcollectionByUserID() {
+        List<simpletext> simpletexts = textService.getcollectionByUserID("1455075085@qq.com");
+        String s1 = JSON.toJSONString(simpletexts);
+        System.out.println(s1);
+    }
+
+
 }

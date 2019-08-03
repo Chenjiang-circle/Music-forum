@@ -39,8 +39,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User signin(User users) {
         try {
-            String sql = "select * from user where userid = ? and password = ? ";
-            User user1 = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), users.getUserid(), users.getPassword());
+            String sql = "select * from user where userid = '"+users.getUserid()+"' and password = ? ";
+            User user1 = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), users.getPassword());
             return user1;
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,6 +131,19 @@ public class UserDaoImpl implements UserDao {
         if (update == 1){
             return true;
         } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean cancelFollow(follow follow) {
+        try {
+            String sql = "delete from follow where userid='"+follow.getUserid()+"' and followed='" + follow.getFollowed() + "'";
+            int update = template.update(sql);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("删除关注失败,可能是用户不存在");
             return false;
         }
     }

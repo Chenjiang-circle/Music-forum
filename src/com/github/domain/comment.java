@@ -36,6 +36,15 @@ public class comment {
     private String text;
     private String title;
     private String type;
+    private String textimage;
+
+    public String getTextimage() {
+        return textimage;
+    }
+
+    public void setTextimage(String textimage) {
+        this.textimage = textimage;
+    }
 
     public int getTextid() {
         return textid;
@@ -121,6 +130,7 @@ public class comment {
                 ", text='" + text + '\'' +
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
+                ", textimage='" + textimage + '\'' +
                 '}';
     }
 }

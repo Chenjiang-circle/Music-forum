@@ -12,6 +12,7 @@ import org.junit.Test;
 
 public class UserServiceImplTest {
     UserDao userDao = new UserDaoImpl();
+    UserService userService = new UserServiceImpl();
 
     @Test
     public void register() {
@@ -20,7 +21,7 @@ public class UserServiceImplTest {
         user.setPassword("123456");
         user.setUsername("xyz");
         user.setSex("男");
-        user.setImageid(1);
+        user.setImageid("123");
         user.setDescription("大家好， 我是...");
         user.setFans(12);
         user.setNumsignin(101);
@@ -56,8 +57,9 @@ public class UserServiceImplTest {
     public void addCollectionText() {
         collection colllection = new collection();
         colllection.setUserid("1455075085@qq.com");
-        colllection.setCollectiontextid(4);
-        Boolean aBoolean = userDao.addCollectionText(colllection);
+        colllection.setCollectiontextid(16);
+        UserService userService = new UserServiceImpl();
+        Boolean aBoolean = userService.addCollectionText(colllection);
         System.out.println(aBoolean);
     }
 
@@ -74,6 +76,15 @@ public class UserServiceImplTest {
     @Test
     public void addCheckin() {
         Boolean aBoolean = userDao.addCheckin("1455075085@qq.com");
+        System.out.println(aBoolean);
+    }
+
+    @Test
+    public void cancelFollow() {
+        follow follow = new follow();
+        follow.setUserid("1455075085@qq.com");
+        follow.setFollowed("root@qq.com");
+        Boolean aBoolean = userService.cancelFollow(follow);
         System.out.println(aBoolean);
     }
 }
