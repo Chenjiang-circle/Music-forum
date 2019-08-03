@@ -6,15 +6,16 @@ $('document').ready(function () {
         success: (str) => {
             //console.log(typeof(data))
             var data = eval(str);
+            console.log(data);
 
 
-            //将json分为15个一组，push到arr
+            //将json分为10个一组，push到arr
             var arr = [];
-            var a = Math.ceil(data.length / 15);
+            var a = Math.ceil(data.length / 10);
             var p = -1;
             for (var i = 0; i < a; i++) {
                 var arr_child = []
-                for (var j = 0; j < 15; j++) {
+                for (var j = 0; j < 10; j++) {
                     arr_child.push(data[++p])
                     // console.log(p)
                 }
@@ -75,7 +76,7 @@ function trylisten(data) {
 function createPage(length) {
     var fenye = $("#fenye");
     fenye.empty();
-    var page_num = Math.ceil(length / 15);
+    var page_num = Math.ceil(length / 10);
     var str1 = "<li><a href=\"#\">&laquo;</a></li>";
     var str2 = "<li><a href=\"#\">&raquo;</a></li>";
     fenye.append(str1);
@@ -88,7 +89,7 @@ function createPage(length) {
 
 //判断是否用分页
 function judgeLength(obj) {
-    if (obj.length > 15) {
+    if (obj.length > 10) {
         createPage(obj.length);
     }
 }
@@ -129,6 +130,7 @@ function dataBack(arr) {
                 type: "get",
                 data: {
                     "url": arr[this.index].url,
+                    "userid":arr[this.index].userid,
                     "ispass": true,
                     "verifier": $.cookie("user")
                 },
@@ -158,12 +160,13 @@ function dataBack(arr) {
                 type: "get",
                 data: {
                     "url": arr[this.index].url,
+                    "userid":arr[this.index].userid,
                     "ispass": false,
                     "verifier": $.cookie("user")
                 },
                 success: function (str) {
                     var data = eval("(" + str + ")");
-                    console.log(data);
+                    
                     if (data.do == true) {
                         alert('操作成功');
                         disappear(a);
@@ -181,7 +184,7 @@ function dataBack(arr) {
 }
 
 function disappear(n){
-    console.log(n)
+    
     var tr=document.getElementsByClassName('tr');
     tr[n].style.display='none';
 }
