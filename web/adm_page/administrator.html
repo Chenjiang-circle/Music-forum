@@ -44,7 +44,7 @@
                 <script>
                     window.onload = function () {
                         var name = $.cookie("user");
-                        var userimg=$.cookie("userimg");
+                        var userimg=$.cookie("image");
                         var adm_img=document.getElementById('adm_img');
                         $("#adm_name").html(name);
                         adm_img.src=userimg;
@@ -156,7 +156,7 @@
                                 <thead>
                                     <tr>
                                         <th>歌曲名</th>
-                                        <th> 曲风</th>
+                                        <th>专辑</th>
                                         <th>上传时间</th>
                                         <th>试听</th>
                                         <th> 审核结果</th>
