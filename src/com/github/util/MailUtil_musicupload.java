@@ -111,9 +111,8 @@ public class MailUtil_musicupload {
 
         // 4. Subject: 邮件主题
         message.setSubject("音乐上传成功!", "UTF-8");
-        String activeUrl="http://172.20.151.112:8066/Music_forum/activemailServlet";
         // 5. Content: 邮件正文（可以使用html标签）
-        message.setContent("尊敬的用户，您好！这里是515MusicBBS,您上传到唱片小店的音乐已通过审核,请到音乐小店进行欣赏.\n感谢您对515MusicBBC的支持!\n<a href=\"http://172.20.151.112:8066/Music_forum/comebackservlet\">去看看</a>", "text/html;charset=UTF-8");
+        message.setContent("尊敬的用户，您好！这里是515MusicBBS,您上传到唱片小店的音乐已通过审核,请到音乐小店进行欣赏.\n感谢您对515MusicBBC的支持!\n<a href=\"http://172.20.151.112:8066/Music_forum/combackservlet\">去看看</a>", "text/html;charset=UTF-8");
 
         // 6. 设置发件时间
         message.setSentDate(new Date());

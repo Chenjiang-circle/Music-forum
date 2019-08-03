@@ -111,9 +111,8 @@ public class MailUtil_musicupload_fail {
 
         // 4. Subject: 邮件主题
         message.setSubject("音乐审核未通过", "UTF-8");
-        String activeUrl="http://172.20.151.112:8066/Music_forum/activemailServlet";
         // 5. Content: 邮件正文（可以使用html标签）
-        message.setContent("尊敬的用户，您好！这里是515MusicBBS,您上传到唱片小店的音乐因为种种原因未能通过审核.\n但是依然感谢您对515MusicBBC的支持!\n<a href=\"http://172.20.151.112:8066/Music_forum/comebackservlet\">我要再去上传</a>", "text/html;charset=UTF-8");
+        message.setContent("尊敬的用户，您好！这里是515MusicBBS,您上传到唱片小店的音乐因为种种原因未能通过审核.\n但是依然感谢您对515MusicBBC的支持!\n<a href=\"http://172.20.151.112:8066/Music_forum/combackservlet\">我要再去上传</a>", "text/html;charset=UTF-8");
 
         // 6. 设置发件时间
         message.setSentDate(new Date());
