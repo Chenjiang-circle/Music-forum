@@ -45,6 +45,7 @@
 
 .artLists:hover{
     box-shadow:0px 40px 50px rgb(128, 128, 128);
+    
 }
 
 .artLists:nth-child(1){
@@ -67,7 +68,7 @@
     color: aliceblue;
     font-weight: bold;
     position: absolute;
-    bottom: 0px;
+    bottom: -20px;
     text-overflow:ellipsis;
     white-space : wrap;
     overflow : hidden;
@@ -81,6 +82,7 @@
 
 .artName:hover{
     text-decoration: underline;
+    bottom: 0px;
 }
 /* 公共部分 */
 
