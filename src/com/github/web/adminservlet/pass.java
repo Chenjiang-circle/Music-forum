@@ -19,13 +19,24 @@ public class pass extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = req.getParameter("url");
         String verifier = req.getParameter("verifier");
+        String ispass = req.getParameter("ispass");
         MusicService musicService = new MusicServiceImpl();
-        Boolean pass = musicService.pass(url, verifier);
-        // 返回操作结果,true代表操作成功,false代表操作失败
-        Map<String, Object> map1 = new HashMap<String, Object>();
-        map1.put("do", pass);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getWriter(), map1);
+        if ("true".equals(ispass)) {
+
+            Boolean pass = musicService.pass(url, verifier);
+            // 返回操作结果,true代表操作成功,false代表操作失败
+            Map<String, Object> map1 = new HashMap<String, Object>();
+            map1.put("do", pass);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), map1);
+        }else {
+            Boolean notpass = musicService.notpass(url, verifier);
+            Map<String, Object> map1 = new HashMap<String, Object>();
+            map1.put("do", true);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), map1);
+        }
+
     }
 
     @Override

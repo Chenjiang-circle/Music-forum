@@ -30,6 +30,12 @@ public class UserServiceImplTest {
 
     @Test
     public void signin() {
+        User user = new User();
+        user.setUserid("root@qq.com");
+        user.setPassword("123456");
+        UserService userService = new UserServiceImpl();
+        User signin = userService.signin(user);
+        System.out.println(signin);
     }
 
     @Test

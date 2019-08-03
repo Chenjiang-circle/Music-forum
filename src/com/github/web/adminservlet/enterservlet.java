@@ -33,13 +33,20 @@ public class enterservlet extends HttpServlet {
         }
         UserService userService = new UserServiceImpl();
         User signin = userService.signin(user);
+        if (signin != null){
+            Map<String, Object> map1 = new HashMap<String, Object>();
+            map1.put("pass", true);
+            map1.put("userid", user.getUserid());
+            map1.put("url", "http://172.20.151.112:8088/8caa11ca1c694299b04f3520b177163f.jpg");
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), map1);
+        }else {
+            Map<String, Object> map1 = new HashMap<String, Object>();
+            map1.put("pass", false);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), map1);
+        }
 
-        Map<String, Object> map1 = new HashMap<String, Object>();
-        map1.put("pass", true);
-        map1.put("userid", user.getUserid());
-        map1.put("url", "http://172.20.151.112:8088/8caa11ca1c694299b04f3520b177163f.jpg");
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getWriter(), map1);
     }
 
     @Override
