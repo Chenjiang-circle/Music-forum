@@ -15,8 +15,8 @@ public class MusicDaoImpl implements MusicDao {
     @Override
     public Boolean uploadMusic(music amusic) {
         try {
-            String sql = "insert into music values(?, ?, ?, ?, ?, ?, ?, ?)";
-            int update = template.update(sql, amusic.getMusicid(), amusic.getMusicname(), amusic.getUrl(), amusic.getUserid(), amusic.getTime(), amusic.getIspass(), amusic.getVerifier(), amusic.getMusicover());
+            String sql = "insert into music values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            int update = template.update(sql, amusic.getMusicname(), amusic.getUrl(), amusic.getUserid(), amusic.getTime(), amusic.getIspass(), amusic.getVerifier(), amusic.getMusiccover(), amusic.getAlbum(), amusic.getSonger(), amusic.getPublictime(), amusic.getCompany());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,9 +54,24 @@ public class MusicDaoImpl implements MusicDao {
     }
 
     @Override
+    public Boolean notpass(String url, String verifier) {
+        try{
+            String sql = "update music set ispass = 'notpass' where url ='"+url+"'";
+            int update = template.update(sql);
+            String sql1 = "update music set verifier = '"+verifier+"' where url ='"+url+"'";
+            int update1 = template.update(sql1);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("设置失败,可能是该音乐不存在");
+            return false;
+        }
+    }
+
+    @Override
     public List<music> getAllPassMusics() {
         try {
-            String sql = "select * from music where ispass<>'null'";
+            String sql = "select * from music where ispass='pass'";
             List<music> musics = template.query(sql, new BeanPropertyRowMapper<music>(music.class));
             return musics;
         }catch (Exception e) {

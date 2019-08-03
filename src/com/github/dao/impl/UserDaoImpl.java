@@ -147,4 +147,17 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
     }
+
+    @Override
+    public User getUserByUserID(String userid) {
+        try {
+            String sql = "select * from user where userid ='" + userid +"'";
+            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class));
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("通过用户id查询用户信息失败!可能是因为用户id不存在.");
+            return null;
+        }
+    }
 }

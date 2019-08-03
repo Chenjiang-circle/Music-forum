@@ -15,4 +15,10 @@ public interface UserDao {
     Boolean isCollection(collection collection);
     Boolean addCheckin(String userid);
     Boolean cancelFollow(follow follow);
+    /**
+     * 此方法通过userid获取到对应的用户信息
+     * @param userid
+     * @return
+     */
+    User getUserByUserID(String userid);
 }
