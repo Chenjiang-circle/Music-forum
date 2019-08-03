@@ -17,7 +17,6 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- css文件 -->
     <link rel="stylesheet" href="./css/administrator.css">
-    <script src="./js/cookie.js"></script>
 </head>
 
 <body>
@@ -39,14 +38,25 @@
                 <div id="adm_msg" align="center">
                     <img src="img/head.jpg" alt="管理员头像" id="adm_img">
                     <p id="adm_name">管理员</p>
-                    <script>
-                        window.onload = function () {
-                            var name = $.cookie("user");
-                            $("#adm_name").html(name)
-                        }
-                    </script>
+                    <button class="btn btn-default" id="logout">退出登录</button>
                 </div>
-                <button class="btn btn-default">退出登录</button>
+                
+                <script>
+                    window.onload = function () {
+                        var name = $.cookie("user");
+                        var userimg=$.cookie("userimg");
+                        var adm_img=document.getElementById('adm_img');
+                        $("#adm_name").html(name);
+                        adm_img.src=userimg;
+                        $("#logout").click(function () {
+                            if (confirm("确定要退出吗？")) {
+                                $.removeCookie('user');
+                                window.location.href = "./admLogin.html";
+                            }
+                        })
+
+                    }
+                </script>
             </div>
             <!-- main  网站信息  音乐审核 -->
             <div class="col-md-9 column">
@@ -153,7 +163,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody">
-                                    
+
                                 </tbody>
                             </table>
                             <ul class="pagination" id="fenye">

@@ -1,0 +1,6 @@
+{
+    "pass":true,
+    "err_msg":""
+    "username":"lixiaotao",
+    "url":"./img/admLogin-back.jpg"
+}

@@ -2,12 +2,16 @@ $('document').ready(function () {
     //获取数据
     $.ajax({
         type: 'get',
-        url: './administrator.json',
-        success: (data) => {
+        url: './abc.txt',
+        success: (str) => {
+            //console.log(typeof(data))
+            var data=eval(str);
+            console.log(data)
+
             //将json分为15个一组，push到arr
             var arr=[];
             var a=Math.ceil(data.length/15);
-            var p=0;
+            var p=-1;
             for(var i=0;i<a;i++){
                 var arr_child=[]
                 for(var j=0;j<15;j++){
@@ -20,7 +24,7 @@ $('document').ready(function () {
             judgeLength(data);
             //显示数据
             showData(arr[0]);
-            trylisten(arr[0])
+            trylisten(arr[0]);
             //点击分页跳转相应页
             showpage(arr);
             //点击试听播放相应音乐
