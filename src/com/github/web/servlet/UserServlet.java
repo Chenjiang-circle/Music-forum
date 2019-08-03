@@ -5,7 +5,11 @@ package com.github.web.servlet;
  */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.domain.User;
+import com.github.domain.simpletext;
+import com.github.service.TextService;
 import com.github.service.UserService;
+import com.github.service.impl.TextServiceImpl;
 import com.github.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -16,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -28,12 +33,24 @@ public class UserServlet extends HttpServlet {
          *
          **/
         HttpSession session = request.getSession();
-        Object user = session.getAttribute("usermsg");
-        UserService userService = new UserServiceImpl();
+        Object usermsg = session.getAttribute("usermsg");
+        User user = (User) usermsg;
+//        UserService userService = new UserServiceImpl();
+        TextServiceImpl textService = new TextServiceImpl();
+        String userid = request.getParameter("userid");
+        List<simpletext> list = textService.getsimpleTextByUserID(userid);
+        PrintWriter out = response.getWriter();
+        ObjectMapper mapper = new ObjectMapper();
         if(user != null){
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(response.getWriter(), user);
-
+            if(userid.equals(user.getUserid())){
+                out.println("{\"success\":true}");
+                mapper.writeValue(response.getWriter(), list);
+            }else{
+                out.println("{\"success\":false}");
+                mapper.writeValue(response.getWriter(), list);
+            }
+            out.flush();
+            out.close();
         }else{
 //            response.setContentType("text/html;charset=utf-8");
 //            PrintWriter out = response.getWriter();

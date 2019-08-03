@@ -23,8 +23,7 @@ public class FollowServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Object usermsg = session.getAttribute("usermsg");
         if(usermsg != null){
-            User user = new User();
-            user = (User) usermsg;
+            User user = (User) usermsg;
             /**
              * 查询follow表内容
              */
@@ -52,7 +51,7 @@ public class FollowServlet extends HttpServlet {
                 map1.put("success", true);
             }else{
                 /**
-                 *差一个加一减一
+                 *差一个加一减一，删除数据操作
                  */
                 map1.put("userid", follow.getUserid());
                 map1.put("followed", follow.getFollowed());
