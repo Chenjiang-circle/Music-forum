@@ -39,16 +39,19 @@ function showData(data) { //将数据渲染进表
 
     var table = $("#tbody");
     table.empty();
-    for (var i = 0; i < data.length; i++) {
+    if(data){
+        for (var i = 0; i < data.length; i++) {
         //拼接表格的行和列
         if (data[i]) {
-            var str = "<tr><td>" + data[i].musicname + "</td><td>" +
+            var str = "<tr class=\"tr\"><td>" + data[i].musicname + "</td><td>" +
                 data[i].album + "</td><td>" + data[i].time +
                 "</td><td> <button class=\"btn btn-default ado_btn\">试听</button></td><td><button class=\"btn btn-default pass_btn\">通过</button><button class=\"btn btn-default unpass_btn\">不过</button></td></tr>";
             //追加到table中
             table.append(str);
         }
     }
+    }
+    
 }
 // 数据类型
 // 数组嵌套多个json
@@ -120,6 +123,7 @@ function dataBack(arr) {
     for (var i = 0; i < passBtn.length; i++) {
         passBtn[i].index = i;
         passBtn[i].onclick = function () {
+            var a=this.index;
             $.ajax({
                 url: "http://172.20.151.112:8066/Music_forum/pass",
                 type: "get",
@@ -133,7 +137,7 @@ function dataBack(arr) {
                     console.log(data);
                     if (data.do == true) {
                         alert('操作成功')
-                        this.classname = "btn btn-default pass_btn passcolor"
+                        disappear(a);
                     } else {
                         alert("操作失败")
                     }
@@ -148,8 +152,9 @@ function dataBack(arr) {
     for (var i = 0; i < unpassBtn.length; i++) {
         unpassBtn[i].index = i;
         unpassBtn[i].onclick = function () {
+            var a=this.index;
             $.ajax({
-                url: "",
+                url: "http://172.20.151.112:8066/Music_forum/pass",
                 type: "get",
                 data: {
                     "url": arr[this.index].url,
@@ -157,10 +162,11 @@ function dataBack(arr) {
                     "verifier": $.cookie("user")
                 },
                 success: function (str) {
-                    var data = eval(str);
+                    var data = eval("(" + str + ")");
+                    console.log(data);
                     if (data.do == true) {
-                        alert('操作成功')
-                        this.classname = "btn btn-default pass_btn passcolor unpasscolor"
+                        alert('操作成功');
+                        disappear(a);
                     } else {
                         alert("操作失败")
                     }
@@ -174,19 +180,8 @@ function dataBack(arr) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//todo  登录页面
+function disappear(n){
+    console.log(n)
+    var tr=document.getElementsByClassName('tr');
+    tr[n].style.display='none';
+}
