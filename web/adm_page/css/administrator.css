@@ -1,4 +1,7 @@
 /* head  welcome */
+#head{
+    background-image:url("../img/head-back.jpg")
+}
 h1{
     color: white;
 }
@@ -22,6 +25,11 @@ h1{
     text-align: center;
     color: #00d7f3;
     font-size: 30px;
+}
+#logout{
+    background-color: red;
+    color: white;
+    border-radius: 16px;
 }
 
 
