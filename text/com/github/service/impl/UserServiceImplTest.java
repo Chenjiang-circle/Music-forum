@@ -1,6 +1,7 @@
 package com.github.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
 import com.github.dao.UserDao;
 import com.github.dao.impl.UserDaoImpl;
 import com.github.domain.User;
@@ -92,5 +93,12 @@ public class UserServiceImplTest {
         follow.setFollowed("root@qq.com");
         Boolean aBoolean = userService.cancelFollow(follow);
         System.out.println(aBoolean);
+    }
+
+    @Test
+    public void getUserByUserID() {
+        User userByUserID = userService.getUserByUserID("1455075085@qq.com");
+        String s = JSON.toJSONString(userByUserID);
+        System.out.println(s);
     }
 }

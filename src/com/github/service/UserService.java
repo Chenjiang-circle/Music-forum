@@ -67,5 +67,17 @@ public interface UserService {
      */
     Boolean addCheckin(String textid);
 
+    /**
+     * 取消对某个用户的关注
+     * @param follow
+     * @return
+     */
     Boolean cancelFollow(follow follow);
+
+    /**
+     * 此方法通过userid获取到对应的用户信息
+     * @param userid
+     * @return
+     */
+    User getUserByUserID(String userid);
 }
