@@ -89,6 +89,16 @@ public class TextServiceImpl implements TextService {
         return textDao.getsimpleTextByUserID(userid);
     }
 
+    @Override
+    public List<simpletext> getcollectionByUserID(String userid) {
+        return textDao.getcollectionByUserID(userid);
+    }
+
+    @Override
+    public void updateLikes(int likes, int textid) {
+        textDao.updateLikes(likes, textid);
+    }
+
 
 //    @Override
 //    public text2 findAlltext(ArrayList<Text> text) {

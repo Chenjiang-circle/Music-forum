@@ -18,7 +18,7 @@ public class User {
     private String userid;
     private String username;
     private String password;
-    private int imageid;
+    private String imageid;
     private int numsignin;
     private int fans;
     private String description;
@@ -48,11 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public int getImageid() {
+    public String getImageid() {
         return imageid;
     }
 
-    public void setImageid(int imageid) {
+    public void setImageid(String imageid) {
         this.imageid = imageid;
     }
 

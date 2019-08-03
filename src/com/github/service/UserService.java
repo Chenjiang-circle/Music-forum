@@ -4,6 +4,8 @@ import com.github.domain.User;
 import com.github.domain.collection;
 import com.github.domain.follow;
 
+import java.util.List;
+
 public interface UserService {
 
     /**
@@ -67,5 +69,24 @@ public interface UserService {
      */
     Boolean addCheckin(String textid);
 
+    /**
+     * 取消对某个用户的关注
+     * @param follow
+     * @return
+     */
+    Boolean cancelFollow(follow follow);
 
+    /**
+     * 此方法通过userid获取到对应的用户信息
+     * @param userid
+     * @return
+     */
+    User getUserByUserID(String userid);
+
+    /**
+     * 此方法通过用户id获取到他关注的所有人的信息
+     * @param userid 登录用户的id
+     * @return 返回null,表示没有follow别人
+     */
+    List<User> getAllFollowedUser(String userid);
 }

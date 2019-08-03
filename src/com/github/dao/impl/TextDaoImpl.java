@@ -35,8 +35,8 @@ public class TextDaoImpl implements TextDao {
      */
     @Override
     public void createText(Text text) {
-        String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(sql, text.getUserid(), text.getTime(), text.getLikes(), text.getComment(), text.getCollection(), text.getText(), text.getTitle(), text.getType());
+        String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(sql, text.getUserid(), text.getTime(), text.getLikes(), text.getComment(), text.getCollection(), text.getText(), text.getTitle(), text.getType(), text.getTextimage());
     }
 
     /**
@@ -88,8 +88,8 @@ public class TextDaoImpl implements TextDao {
     public int addCommentToText(comment comments) {
         try {
             // 先将评论存入text表中，生成一个唯一的textid
-            String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?)";
-            template.update(sql, comments.getUserid(), comments.getTime(), comments.getLikes(), comments.getComment(), comments.getCollection(), comments.getText(), comments.getTitle(), comments.getType());
+            String sql = "insert into text values(?, null, ?, ?, ?, ?, ?, ?, ?, ?)";
+            template.update(sql, comments.getUserid(), comments.getTime(), comments.getLikes(), comments.getComment(), comments.getCollection(), comments.getText(), comments.getTitle(), comments.getType(), comments.getTextimage());
             // 获取这个唯一的textid，并返回值
             String sql2 = "select * from text where text = ? and userid = ? ";
             comment comment = template.queryForObject(sql2, new BeanPropertyRowMapper<comment>(comment.class), comments.getText(), comments.getUserid());
@@ -217,7 +217,7 @@ public class TextDaoImpl implements TextDao {
     @Override
     public List<simpletext> getsimpleTextByUserID(String userid) {
         try {
-            String sql = "select text.textid, text.title, textimage.textimage from text, textimage where text.textid=textimage.textid and text.userid='" + userid +"'";
+            String sql = "select text.textid, text.title, text.textimage from text where text.userid='" + userid +"'";
             List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
             return query;
         } catch (Exception e) {
@@ -226,6 +226,32 @@ public class TextDaoImpl implements TextDao {
             return null;
         }
     }
+
+    @Override
+    public List<simpletext> getcollectionByUserID(String userid) {
+        try {
+            String sql = "select text.textid, text.title, text.textimage from text, collection where text.textid = collection.collectiontextid and collection.userid = '" + userid +"'";
+            List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
+            return query;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("该用户没有收藏文章");
+            return null;
+        }
+    }
+
+    @Override
+    public void updateLikes(int likes, int textid) {
+        try {
+            String sql = "update text set likes = likes + 1 where textid = ?";
+            int update = template.update(sql, textid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("点赞加一失败,可能是文章id不存在.");
+        }
+
+    }
+
 
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {

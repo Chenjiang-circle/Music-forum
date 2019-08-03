@@ -42,25 +42,25 @@ $(document).ready(function(){
                 type:"GET",
                 datatype:"json",
                 data:{
-                    email:$("#enterEmail").val(),
+                    userid:$("#enterEmail").val(),
                     password:$("#enterPassword").val()
                 },
                 success:function(data){
                     // 改动！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！1
                     if(data.success){
-                        $.ajax({
-                            url:"",
-                            type:"GET",
-                            datatype:"json",
-                            success:function(data){
-                                if(data){
-                                    cookies.set({'userid':$("#enterEmail").val(),'username':data.username,'avatar':data.avatar},{expires:7,path:''});
-                                }
-                            },
-                            error:function(jqXHR){
-                                alert("服务器请求失败，这意味着您下一次可能仍然需要登录以确认身份 \n 错误信息："+jqXHR.status)
-                            }
-                        })
+                        // $.ajax({
+                        //     url:"",
+                        //     type:"GET",
+                        //     datatype:"json",
+                        //     success:function(data){
+                        //         if(data){
+                        //             cookies.set({'userid':$("#enterEmail").val(),'username':data.username,'avatar':data.avatar},{expires:7,path:''});
+                        //         }
+                        //     },
+                        //     error:function(jqXHR){
+                        //         alert("服务器请求失败，这意味着您下一次可能仍然需要登录以确认身份 \n 错误信息："+jqXHR.status)
+                        //     }
+                        // })
 
                         window.location.href="http://172.20.151.112:8066/Music_forum/FrontEnd-demo/head&foot/index.html";
                         //跳转到首页

@@ -39,7 +39,7 @@ $(document).ready(function(){
                         $("#upPic h3").html('"OOPS ! 上传的封面尺寸不能小于720*470px哦!"');
                     }
                 }
-                img64=this.result;
+                img64=this.result.split(',')[1];
                 // console.log(this.result);
                 // $("#hhh").html('<img src="'+this.result+'"/>');
 
@@ -90,38 +90,38 @@ $(document).ready(function(){
         }else if(!picFiles){
             alert("请上传文章封面以展示在首页.")
         }else{
-            // $.ajax({
-            //     type:"POST",
-            //     url:"",
-            //     dataType:"json",
-            //     data:{
-            //         userid:null,
-            //         textid:null,
-            //         time:now,
-            //         likes:null,
-            //         comment:null,
-            //         collection:null,
-            //         text:content,
-            //         title:title,
-            //         type:check,
-            //         textimage:img64//64base文章封面
-            //     },
-            //     success:function(data){//请求成功，data为后台数据
-            //         if(data.success){
-            //             alert("❤成功提交! \n❤文章将在审核后发表.\n❤感谢您的贡献.祝您拥有愉快的一天");
-            //             window.location.href="";
-            //             //跳转到首页
-            //         }else{
-            //             alert("OOOOPS! 服务器出现了一个小问题："+data.msg);
-            //         }
-            //     },
-            //     error:function(jqXHR){
-            //         alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
-            //     }
-            // })
+            $.ajax({
+                type:"POST",
+                url:"http://172.20.151.112:8066/Music_forum/createText",
+                dataType:"json",
+                data:{
+                    userid:null,
+                    textid:null,
+                    time:now,
+                    likes:0,
+                    comment:0,
+                    collection:0,
+                    text:content,
+                    title:title,
+                    type:check,
+                    textimage:img64//64base文章封面
+                },
+                success:function(data){//请求成功，data为后台数据
+                    if(data.success){
+                        alert("❤成功提交! \n❤文章将在审核后发表.\n❤感谢您的贡献.祝您拥有愉快的一天");
+                        //window.location.href="";
+                        //跳转到首页
+                    }else{
+                        alert("OOOOPS! 服务器出现了一个小问题："+data.msg);
+                    }
+                },
+                error:function(jqXHR){
+                    alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
+                }
+            })
             
-            console.log(content);
-            console.log(contents);
+            // console.log(content);
+            // console.log(contents);
             
         }
 

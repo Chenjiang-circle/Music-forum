@@ -14,6 +14,8 @@ import com.github.domain.collection;
 import com.github.domain.follow;
 import com.github.service.UserService;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈用户注册〉
@@ -68,5 +70,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean addCheckin(String textid) {
         return userDao.addCheckin(textid);
+    }
+
+    @Override
+    public Boolean cancelFollow(follow follow) {
+        return userDao.cancelFollow(follow);
+    }
+
+    @Override
+    public User getUserByUserID(String userid) {
+
+        return userDao.getUserByUserID(userid);
+    }
+
+    @Override
+    public List<User> getAllFollowedUser(String userid) {
+        return userDao.getAllFollowedUser(userid);
     }
 }

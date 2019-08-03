@@ -2,6 +2,8 @@ package com.github.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.dao.TextDao;
 import com.github.dao.impl.TextDaoImpl;
 import com.github.domain.*;
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class TextServiceImplTest {
     private TextDao textDao = new TextDaoImpl();
+    TextService textService = new TextServiceImpl();
 
     @Test
     public void createText() {
@@ -27,6 +30,7 @@ public class TextServiceImplTest {
                 "　　无论怎样你都永远不会真正得到它。");
         text.setTitle("哈哈哈");
         text.setTime("2018-8-8");
+        text.setTextimage("534408434.jpg");
 
         textDao.createText(text);
         System.out.println("添加文章成功");
@@ -35,10 +39,10 @@ public class TextServiceImplTest {
     @Test
     public void addComment() {
         comment comments = new comment();
-        comments.setTextid(13);
+        comments.setTextid(17);
         comments.setUserid("1455075085@qq.com");
         comments.setTime("2008-3-5");
-        comments.setText("3楼评论“哈哈哈”2楼");
+        comments.setText("1楼评论");
         int commentid = textDao.addCommentToText(comments);
         if (commentid != -1){
             Boolean aBoolean = textDao.addComment(comments, commentid);
@@ -60,7 +64,7 @@ public class TextServiceImplTest {
     @Test
     public void findAlltext() {
         TextService textService = new TextServiceImpl();
-        text2 alltext = textService.findAlltext(1);
+        text2 alltext = textService.findAlltext(33);
         String s = JSON.toJSONString(alltext);
         System.out.println(s);
     }
@@ -77,17 +81,36 @@ public class TextServiceImplTest {
     }
 
     @Test
-    public void getsimpleTextByUserID() {
-        TextService textService = new TextServiceImpl();
+    public void getsimpleTextByUserID() throws JsonProcessingException {
+
         List<simpletext> simpletexts = textService.getsimpleTextByUserID("1455075085@qq.com");
-        String s1 = JSON.toJSONString(simpletexts);
-        System.out.println(s1);
+//        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(simpletexts.size());
+        String s = JSON.toJSONString(simpletexts);
+        System.out.println(s);
+//        JSON.writeJSONString(rsp);
 //        if (simpletexts != null){
 //            for (simpletext s :simpletexts) {
-//                System.out.println(s.toString());
+//                String s1 = JSON.toJSONString(s);
+//                System.out.println(s1);
 //            }
 //        }else {
 //            System.out.println("null");
 //        }
+//        String s = mapper.writeValueAsString(simpletexts);
+//        System.out.println(s);
+    }
+
+    @Test
+    public void getcollectionByUserID() {
+        List<simpletext> simpletexts = textService.getcollectionByUserID("1455075085@qq.com");
+        String s1 = JSON.toJSONString(simpletexts);
+        System.out.println(s1);
+    }
+
+
+    @Test
+    public void updateLikes() {
+        textService.updateLikes(1, 13);
     }
 }

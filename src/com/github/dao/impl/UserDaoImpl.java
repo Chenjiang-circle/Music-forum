@@ -15,6 +15,8 @@ import com.github.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈操作数据库〉
@@ -39,8 +41,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User signin(User users) {
         try {
-            String sql = "select * from user where userid = ? and password = ? ";
-            User user1 = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), users.getUserid(), users.getPassword());
+            String sql = "select * from user where userid = '"+users.getUserid()+"' and password = ? ";
+            User user1 = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), users.getPassword());
             return user1;
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,6 +134,45 @@ public class UserDaoImpl implements UserDao {
             return true;
         } else {
             return false;
+        }
+    }
+
+    @Override
+    public Boolean cancelFollow(follow follow) {
+        try {
+            String sql = "delete from follow where userid='"+follow.getUserid()+"' and followed='" + follow.getFollowed() + "'";
+            int update = template.update(sql);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("删除关注失败,可能是用户不存在");
+            return false;
+        }
+    }
+
+    @Override
+    public User getUserByUserID(String userid) {
+        try {
+            String sql = "select * from user where userid ='" + userid +"'";
+            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class));
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("通过用户id查询用户信息失败!可能是因为用户id不存在.");
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> getAllFollowedUser(String userid) {
+        try {
+            String sql = "select user.userid, user.username, user.numsignin, user.fans, user.description, user.sex, user.imageid from user,follow where follow.userid = '" + userid +"' and user.userid = follow.followed";
+            List<User> users = template.query(sql, new BeanPropertyRowMapper<User>(User.class));
+            return users;
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("这个用户没有follow别人");
+            return null;
         }
     }
 }

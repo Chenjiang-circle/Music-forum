@@ -1,0 +1,87 @@
+/* head  welcome */
+#head{
+    background-image:url("../img/head-back.jpg")
+}
+h1{
+    color: white;
+}
+
+
+
+
+
+/* 管理员信息 */
+#adm_msg{
+    margin: 10px auto;
+}
+#adm_img{
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px #00d7f3 solid;
+}
+#adm_msg p{
+    text-align: center;
+    color: #00d7f3;
+    font-size: 30px;
+}
+#logout{
+    background-color: red;
+    color: white;
+    border-radius: 16px;
+}
+
+
+
+/* 网站信息 */
+
+.sta_msg{
+    border-radius: 8px;
+    height: 100px;
+}
+.sta_msg p{
+    font-size:25px;
+}
+#tod_view{
+
+    background-color: #80dae6;
+}
+#total_view{
+    background-color: rgb(183, 243, 223);
+}
+#yes_post{
+    background-color: beige;
+}
+#total_post{
+    background-color: bisque;
+}
+.perc{
+    width: 50%;
+}
+
+
+
+
+
+/* 审核 */
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f1f1f1;
+}
+.table-hover>tbody>tr:hover {
+    background-color: #d8fa5e;
+}
+
+#fenye{
+    position: relative;
+    margin-bottom: 80px;
+}
+
+/* 音乐播放 */
+#ado{
+    position: fixed;
+    left: 25%;
+    bottom: 0px;
+    min-width: 300px;
+    width:30%;
+}

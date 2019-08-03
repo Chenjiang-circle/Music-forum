@@ -26,6 +26,17 @@ public class Text extends text1 {
     private String text;
     private String title;
     private String type;
+    private String textimage;
+
+    @Override
+    public String getTextimage() {
+        return textimage;
+    }
+
+    @Override
+    public void setTextimage(String textimage) {
+        this.textimage = textimage;
+    }
 
     @Override
     public String getUserid() {
@@ -129,6 +140,7 @@ public class Text extends text1 {
                 ", text='" + text + '\'' +
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
+                ", textimage='" + textimage + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.github.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
 import com.github.dao.UserDao;
 import com.github.dao.impl.UserDaoImpl;
 import com.github.domain.User;
@@ -9,9 +10,12 @@ import com.github.domain.follow;
 import com.github.service.UserService;
 import org.junit.Test;
 
+import java.util.List;
+
 
 public class UserServiceImplTest {
     UserDao userDao = new UserDaoImpl();
+    UserService userService = new UserServiceImpl();
 
     @Test
     public void register() {
@@ -20,7 +24,7 @@ public class UserServiceImplTest {
         user.setPassword("123456");
         user.setUsername("xyz");
         user.setSex("男");
-        user.setImageid(1);
+        user.setImageid("123");
         user.setDescription("大家好， 我是...");
         user.setFans(12);
         user.setNumsignin(101);
@@ -29,6 +33,12 @@ public class UserServiceImplTest {
 
     @Test
     public void signin() {
+        User user = new User();
+        user.setUserid("root@qq.com");
+        user.setPassword("123456");
+        UserService userService = new UserServiceImpl();
+        User signin = userService.signin(user);
+        System.out.println(signin);
     }
 
     @Test
@@ -56,8 +66,9 @@ public class UserServiceImplTest {
     public void addCollectionText() {
         collection colllection = new collection();
         colllection.setUserid("1455075085@qq.com");
-        colllection.setCollectiontextid(4);
-        Boolean aBoolean = userDao.addCollectionText(colllection);
+        colllection.setCollectiontextid(16);
+        UserService userService = new UserServiceImpl();
+        Boolean aBoolean = userService.addCollectionText(colllection);
         System.out.println(aBoolean);
     }
 
@@ -75,5 +86,28 @@ public class UserServiceImplTest {
     public void addCheckin() {
         Boolean aBoolean = userDao.addCheckin("1455075085@qq.com");
         System.out.println(aBoolean);
+    }
+
+    @Test
+    public void cancelFollow() {
+        follow follow = new follow();
+        follow.setUserid("1455075085@qq.com");
+        follow.setFollowed("root@qq.com");
+        Boolean aBoolean = userService.cancelFollow(follow);
+        System.out.println(aBoolean);
+    }
+
+    @Test
+    public void getUserByUserID() {
+        User userByUserID = userService.getUserByUserID("1455075085@qq.com");
+        String s = JSON.toJSONString(userByUserID);
+        System.out.println(s);
+    }
+
+    @Test
+    public void getAllFollowedUser() {
+        List<User> allFollowedUser = userService.getAllFollowedUser("1455075085@qq.com");
+        String s = JSON.toJSONString(allFollowedUser);
+        System.out.println(s);
     }
 }
