@@ -17,7 +17,6 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- css文件 -->
     <link rel="stylesheet" href="./css/administrator.css">
-    <script src="./js/cookie.js"></script>
 </head>
 
 <body>
@@ -39,14 +38,25 @@
                 <div id="adm_msg" align="center">
                     <img src="img/head.jpg" alt="管理员头像" id="adm_img">
                     <p id="adm_name">管理员</p>
-                    <script>
-                        window.onload = function () {
-                            var name = $.cookie("user");
-                            $("#adm_name").html(name)
-                        }
-                    </script>
+                    <button class="btn btn-default" id="logout">退出登录</button>
                 </div>
-                <button class="btn btn-default">退出登录</button>
+                
+                <script>
+                    window.onload = function () {
+                        var name = $.cookie("user");
+                        var userimg=$.cookie("image");
+                        var adm_img=document.getElementById('adm_img');
+                        $("#adm_name").html(name);
+                        adm_img.src=userimg;
+                        $("#logout").click(function () {
+                            if (confirm("确定要退出吗？")) {
+                                $.removeCookie('user');
+                                window.location.href = "./admLogin.html";
+                            }
+                        })
+
+                    }
+                </script>
             </div>
             <!-- main  网站信息  音乐审核 -->
             <div class="col-md-9 column">
@@ -146,48 +156,14 @@
                                 <thead>
                                     <tr>
                                         <th>歌曲名</th>
-                                        <th> 曲风</th>
+                                        <th>专辑</th>
                                         <th>上传时间</th>
                                         <th>试听</th>
                                         <th> 审核结果</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody">
-                                    <!-- <tr>
-                                        <td> 1</td>
-                                        <td> TB - Monthly</td>
-                                        <td>01/04/2012</td>
-                                        <td><button class="btn btn-default ado_btn">试听</button></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td> 1 </td>
-                                        <td>TB - Monthly</td>
-                                        <td>01/04/2012</td>
-                                        <td><button class="btn btn-default">试听</button></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td> 2</td>
-                                        <td> TB - Monthly</td>
-                                        <td> 02/04/2012</td>
-                                        <td><button class="btn btn-default">试听</button></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td> 3</td>
-                                        <td> TB - Monthly</td>
-                                        <td>03/04/2012</td>
-                                        <td><button class="btn btn-default">试听</button></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td> TB - Monthly</td>
-                                        <td>04/04/2012</td>
-                                        <td><button class="btn btn-default">试听</button></td>
-                                        <td></td>
-                                    </tr>  -->
+
                                 </tbody>
                             </table>
                             <ul class="pagination" id="fenye">
