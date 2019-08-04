@@ -110,4 +110,10 @@ public class UserServiceImplTest {
         String s = JSON.toJSONString(allFollowedUser);
         System.out.println(s);
     }
+
+    @Test
+    public void countFollowedNumByUserId() {
+        int i = userService.countFollowedNumByUserId("1455075085@qq.com");
+        System.out.println(i);
+    }
 }

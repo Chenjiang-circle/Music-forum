@@ -177,4 +177,17 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
+
+    @Override
+    public int countFollowedNumByUserId(String userid) {
+        try {
+            String sql = "select * from follow where userid = '" + userid+ "'";
+            List<follow> query = template.query(sql, new BeanPropertyRowMapper<follow>(follow.class));
+            return query.size();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("语法错误,请更正");
+            return 0;
+        }
+    }
 }

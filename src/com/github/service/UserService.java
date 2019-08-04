@@ -89,4 +89,11 @@ public interface UserService {
      * @return 返回null,表示没有follow别人
      */
     List<User> getAllFollowedUser(String userid);
+
+    /**
+     * 此方法通过用户id获取到他关注的总人数
+     * @param userid
+     * @return
+     */
+    int countFollowedNumByUserId(String userid);
 }
