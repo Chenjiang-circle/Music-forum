@@ -5,12 +5,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>515音乐小店</title>
+	<script src="js/jquery-1.11.0.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Caveat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/shop/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/shop/square-loader.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/shop/default.css">
 	<link rel="stylesheet" type="text/css" href="css/shop/component.css" />
 	<link rel="stylesheet" type="text/css" href="css/shop/shop.css" />
+
+
+
+
+	
 	<script>
 		document.documentElement.className = 'js';
 	</script>
@@ -37,94 +43,169 @@
 				歌曲名：<input type="text" id="song-name">
 				所属专辑：<input type="text" id="album">
 				歌手：<input type="text" id="songer">
-				发行时间：<input type="text" id="time">
+				发行时间：<input type="month" id="time">
 				发行公司：<input type="text" id="company">
 			</div>
 			<div id="upmusic-cover">
-				<input type="file" id="cover">
-				<img src="">
+				<h3 id="tips">现在，您可以上传歌曲及基本信息！感谢您的贡献。</h3>
+				选择专辑封面：<input type="file" id="select-cover" name="file" accept="image/*">
+				<button id="confirm-up">确认上传封面</button>
+				<div id="up-cover-image">
+					<img src="" id="up-cover">
+				</div>
+			</div>
+			<div id="upmusicfile">
+					选择音乐文件：<input type="file" id="select-cover2" name="file-music" accept="audio/*">
+					<button id="confirm-up2">确认上传音乐</button>
+			</div>
+			<button id="musicGo">提交</button>
+		</div>
+		<div id="show-music">
+			<div id="showOut">×</div>
+			<div id="showmusic-cover"></div>
+			<audio src="http://172.20.151.112:8088/96cbc4712d7f4567b5e8c5494c818bc4.mp3" controls="controls" id="audio"></audio>
+			<div id="showmusic-infor">
+				<div id="show-songname"> </div>
+				<div id="show-songer"> </div>
+				<div id="show-album"> </div>
+				<div id="show-time"> </div>
+				<div id="show-company"> </div>
 			</div>
 		</div>
 		<section class="page page--static">
 			<div class="page__title">
 				<h2 class="page__title-main">这是我们最近上架的一些音乐</h2>
-				<p class="page__title-sub">当然，您也可以点击 <a href="http://www.takeitapp.co/en" target="_blank">右下角图标</a> 来贡献更多好玩音乐</p>
+				<p class="page__title-sub">当然，您也可以点击 <b target="_blank" id="appearUpmusic">这里</b> 来贡献更多好玩音乐</p>
 			</div>
 			<ul class="grid">
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/1.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">LadyGaga的夏日消暑良曲《the cure》有没有治愈到你呢？</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/2.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">Auto-color and light</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/3.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">That special blur</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/4.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">Drama where you need it</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/5.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">Realistic depth</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/6.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">The common, but special</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/7.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">Natural saturation effects</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/8.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">That special blur</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/9.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">Auto-color and light</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/1.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">Natural saturation effects</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/2.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">Auto-color and light</h3>
 					</a>
 				</li>
 				<li class="grid__item">
 					<a class="grid__link" href="#">
-						<img class="grid__img" src="img/photos/3.jpg" alt="Some image" />
+						<img class="grid__img" src="" alt="Some image" />
 						<h3 class="grid__item-title">That special blur</h3>
 					</a>
+				</li>
+				<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">That special blur</h3>
+						</a>
+					</li>
+				<li class="grid__item">
+							<a class="grid__link" href="#">
+								<img class="grid__img" src="" alt="Some image" />
+								<h3 class="grid__item-title">That special blur</h3>
+							</a>
+				</li>
+				<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">That special blur</h3>
+						</a>
+				</li>
+				<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">Natural saturation effects</h3>
+						</a>
+					</li>
+					<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">Auto-color and light</h3>
+						</a>
+					</li>
+					<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">That special blur</h3>
+						</a>
+				</li>
+				<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">Natural saturation effects</h3>
+						</a>
+				</li>
+				<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">Auto-color and light</h3>
+						</a>
+				</li>
+				<li class="grid__item">
+						<a class="grid__link" href="#">
+							<img class="grid__img" src="" alt="Some image" />
+							<h3 class="grid__item-title">That special blur</h3>
+						</a>
 				</li>
 			</ul>
-			<button class="button button--load" aria-label="Load more images">
+			<!-- <button class="button button--load" id="plusmore" aria-label="Load more images">
 				<svg class="polaroid" width="100%" height="100%" viewBox="0 0 220 243" preserveAspectRatio="xMidYMid meet">
 					<rect class="polaroid__base" x="0" y="0" width="220" height="243" rx="5"></rect>
 					<rect class="polaroid__inner" x="16" y="20" width="189" height="149"></rect>
@@ -135,7 +216,7 @@
 					</g>
 				</svg>
 				<span class="button__text">Load more</span>
-			</button>
+			</button> -->
 
 			
 		</section>
@@ -155,5 +236,6 @@
 	<script src="js/shop/dynamics.min.js"></script>
 	<script src="js/shop/imagesloaded.pkgd.min.js"></script>
 	<script src="js/shop/main.js"></script>
+	<script src="js/shop/shop.js"></script>
 </body>
 </html>
