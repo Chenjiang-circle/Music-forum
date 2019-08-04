@@ -252,6 +252,25 @@ public class TextDaoImpl implements TextDao {
 
     }
 
+    @Override
+    public Boolean cancelCollection(collection collection) {
+        try {
+            String sql = "delete from collection where userid = ? and collectiontextid = ?";
+            int update = template.update(sql, collection.getUserid(), collection.getCollectiontextid());
+            String sql1 = "update text set collection = collection - 1 where textid = ?";
+            int update1 = template.update(sql1, collection.getCollectiontextid());
+            if (update == 1 && update1 == 1){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("取消关注的文章不存在,或者其他愿意..");
+            return false;
+        }
+    }
+
 
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {

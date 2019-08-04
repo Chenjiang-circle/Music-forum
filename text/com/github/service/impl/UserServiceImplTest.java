@@ -66,7 +66,7 @@ public class UserServiceImplTest {
     public void addCollectionText() {
         collection colllection = new collection();
         colllection.setUserid("1455075085@qq.com");
-        colllection.setCollectiontextid(16);
+        colllection.setCollectiontextid(15);
         UserService userService = new UserServiceImpl();
         Boolean aBoolean = userService.addCollectionText(colllection);
         System.out.println(aBoolean);

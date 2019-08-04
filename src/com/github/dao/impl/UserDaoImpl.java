@@ -107,6 +107,8 @@ public class UserDaoImpl implements UserDao {
         try {
             String sql = "insert into collection values(?, ?)";
             int update = template.update(sql, collection.getUserid(), collection.getCollectiontextid());
+            String sql1 = "update text set collection = collection + 1 where textid = ?";
+            int update1 = template.update(sql1, collection.getCollectiontextid());
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -113,4 +113,13 @@ public class TextServiceImplTest {
     public void updateLikes() {
         textService.updateLikes(1, 13);
     }
+
+    @Test
+    public void cancelCollection() {
+        collection collection = new collection();
+        collection.setUserid("1455075085@qq.com");
+        collection.setCollectiontextid(15);
+        Boolean aBoolean = textService.cancelCollection(collection);
+        System.out.println(aBoolean);
+    }
 }
