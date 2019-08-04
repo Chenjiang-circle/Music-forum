@@ -66,4 +66,9 @@ public interface TextDao {
      */
     List<simpletext> getcollectionByUserID(String userid);
 
+    /**
+     * 此方法用来更新文章喜欢数
+     * @param likes
+     */
+    void updateLikes(int likes, int textid);
 }
