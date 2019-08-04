@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/UserServlet")
+@WebServlet("/userServlet")
 public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /**
@@ -32,22 +32,28 @@ public class UserServlet extends HttpServlet {
          * 3....
          *
          **/
+        TextServiceImpl textService = new TextServiceImpl();
+        PrintWriter out = response.getWriter();
+        ObjectMapper mapper = new ObjectMapper();
         HttpSession session = request.getSession();
+
         Object usermsg = session.getAttribute("usermsg");
         User user = (User) usermsg;
 //        UserService userService = new UserServiceImpl();
-        TextServiceImpl textService = new TextServiceImpl();
+        mapper.writeValue(response.getWriter(), user);
         String userid = request.getParameter("userid");
-        List<simpletext> list = textService.getsimpleTextByUserID(userid);
-        PrintWriter out = response.getWriter();
-        ObjectMapper mapper = new ObjectMapper();
+        List<simpletext> listArtical = textService.getsimpleTextByUserID(userid);
+        List<simpletext> listComment = textService.getcollectionByUserID(userid);
         if(user != null){
             if(userid.equals(user.getUserid())){
                 out.println("{\"success\":true}");
-                mapper.writeValue(response.getWriter(), list);
+                mapper.writeValue(response.getWriter(), listArtical);
+                mapper.writeValue(response.getWriter(), listComment);
             }else{
                 out.println("{\"success\":false}");
-                mapper.writeValue(response.getWriter(), list);
+                //mapper.writeValue(response.getWriter(), ); 根据userid查询数据
+                mapper.writeValue(response.getWriter(), listArtical);
+                mapper.writeValue(response.getWriter(), listComment);
             }
             out.flush();
             out.close();

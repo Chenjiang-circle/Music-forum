@@ -17,6 +17,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 文章页中打开别人主页进行follow
+ * @author lzy
+ */
 @WebServlet("/followservlet")
 public class FollowServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +29,7 @@ public class FollowServlet extends HttpServlet {
         if(usermsg != null){
             User user = (User) usermsg;
             /**
-             * 查询follow表内容
+             * 查询follow表内容，follow了谁，传给前端 ----------> 未实现
              */
             follow follow = new follow();
             Map<String, String[]> map = request.getParameterMap();
@@ -41,18 +45,14 @@ public class FollowServlet extends HttpServlet {
             Map<String, Object> map1 = new HashMap<String, Object>();
             UserServiceImpl userService = new UserServiceImpl();
             if( ! userService.isFollow(follow) ){
+                //未关注，添加关注
                 userService.follow(follow);
-                /**
-                 * 差一个加一减一操作
-                 *
-                 */
                 map1.put("userid", follow.getUserid());
                 map1.put("followed", follow.getFollowed());
                 map1.put("success", true);
             }else{
-                /**
-                 *差一个加一减一，删除数据操作
-                 */
+                //已关注，取消关注
+                userService.cancelFollow(follow);
                 map1.put("userid", follow.getUserid());
                 map1.put("followed", follow.getFollowed());
                 map1.put("success", false);

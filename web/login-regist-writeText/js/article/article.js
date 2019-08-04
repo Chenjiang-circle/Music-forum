@@ -61,7 +61,7 @@ $(document).ready(function(){
     }
 
     $.ajax({//请求得到文章、标题、点赞数、收藏数、作者等
-        url:"http://172.20.151.112:8066/Music_forum/get",
+        url:"http://172.20.151.117:8066/Music_forum/get",
         type:"GET",
         datatype:"text",
         success:function(data){
@@ -77,7 +77,7 @@ $(document).ready(function(){
                 $("#arti-collections").html("收藏"+collection);
                 if(cookies.get('userid')){//说明该用户已经登录
                     $.ajax({//则发送请求看该用户是否已经收藏这篇文章
-                        url:"",
+                        url:"http://172.20.151.117:8066/Music_forum/get",
                         type:"POST",
                         datatype:"json",
                         data:{userid:cookies.get('userid'),textid:data.tetxid},//发送了用户id和文章id
