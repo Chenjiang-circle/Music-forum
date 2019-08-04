@@ -9,16 +9,25 @@ package com.github.web.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.domain.User;
+import com.github.domain.collection;
 import com.github.domain.text1;
 import com.github.domain.text2;
 import com.github.service.impl.TextServiceImpl;
+import com.github.service.impl.UserServiceImpl;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 @WebServlet("/getText")
 public class getText extends HttpServlet {
@@ -26,6 +35,8 @@ public class getText extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json;charset=utf-8");
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("usermsg");
         /*text.setUserid("1455075085@qq.com");
         text.setTime("2019-7-25");
         text.setTitle("hello world");
@@ -64,14 +75,36 @@ public class getText extends HttpServlet {
         text.setType("摇滚");
         text.setTextid(99);
         text.setUsername("圈圈");*/
+        if(user != null) {
 //        int textid = Integer.parseInt(req.getParameter("textid"));
-        TextServiceImpl textService = new TextServiceImpl();
-        text2 text = textService.findAlltext(1);
-        String s = JSON.toJSONString(text);
-        System.out.println(s);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getWriter(), text);
+            TextServiceImpl textService = new TextServiceImpl();
+            UserServiceImpl userService = new UserServiceImpl();
+            text2 text = textService.findAlltext(1);
+            collection collection = new collection();
+//        String userid = req.getParameter("userid");
+//        String collectiontextid = req.getParameter("collectiontextid");
+            Map<String, String[]> map = req.getParameterMap();
+            try {
+                BeanUtils.populate(collection, map);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            String s = JSON.toJSONString(text);
+            System.out.println(s);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), text);
+            mapper.writeValue(resp.getWriter(), user);
+            PrintWriter out = resp.getWriter();
+            out.println("{\"ifColl\":" + userService.isCollection(collection) + "}");
+            System.out.println("{\"ifColl\":" + userService.isCollection(collection) + "}");
+            out.flush();
+            out.close();
 //        JSON.writeJSONString(resp.getWriter(), text);
+        }else{
+            //木有登录
+        }
     }
 
     @Override

@@ -3,7 +3,7 @@ $(document).ready(function(){
     var collection;
 
     var ifColl=0;//这篇文章是否被该用户收藏？全局
-    
+    var textid = null;
     function left(depth){  //printComments函数会用到
         var leftComm=50;
         for(var i=0;i<depth;i++){
@@ -65,6 +65,7 @@ $(document).ready(function(){
         type:"GET",
         datatype:"text",
         success:function(data){
+            textid = data.textid;
             if(data){
                 $("#article-title").html(data.title);
                 $("#author-time").html("发表于 "+data.time);
@@ -75,9 +76,18 @@ $(document).ready(function(){
                 $("#article-conmmet-title").html("评论"+data.comment);
                 collection=data.collection;
                 $("#arti-collections").html("收藏"+collection);
-                if(cookies.get('userid')){//说明该用户已经登录
+                if(data.ifColl){//说明该用户已经收藏该文章
+                    ifColl=1;
+                    alert(ifColl);
+                    $("#arti-collections").css({'background':'yellow'});
+                }else{//莫得收藏
+                    ifColl=0;
+                    alert(ifColl);
+                    $("#arti-collections").css({'background':'wheat'});
+                }
+                /*if(cookies.get('userid')){//说明该用户已经登录
                     $.ajax({//则发送请求看该用户是否已经收藏这篇文章
-                        url:"http://172.20.151.117:8066/Music_forum/get",
+                        url:"http://172.20.151.117:8066/Music_forum/getText",
                         type:"POST",
                         datatype:"json",
                         data:{userid:cookies.get('userid'),textid:data.tetxid},//发送了用户id和文章id
@@ -86,6 +96,7 @@ $(document).ready(function(){
                                 ifColl=1;
                                 $("#arti-collections").css({'background':'yellow'});
                             }else{//莫得收藏
+                                alert("jfkajf");
                                 ifColl=0;
                                 $("#arti-collections").css({'background':'wheat'});
                             }
@@ -93,7 +104,7 @@ $(document).ready(function(){
                     })
                 }else{
                     //说明该用户没有登陆
-                }
+                }*/
             }else{
                 alert("文章加载失败："+data.msg)
             }
@@ -331,7 +342,8 @@ $(document).ready(function(){
             type:"POST",
             datatype:"json",
             data:{
-                likes:1
+                likes:1,
+                textid:textid,
             },
             error:function(jqXHR){
                 alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
@@ -357,7 +369,9 @@ $(document).ready(function(){
                     type:"POST",
                     datatype:"text",
                     data:{
-                        collection:collection
+                        collection:collection,
+                        collectiontextid:textid,
+                        ifColl:ifColl,
                     }
                 })
 

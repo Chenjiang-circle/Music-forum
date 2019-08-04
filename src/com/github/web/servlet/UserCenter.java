@@ -49,11 +49,11 @@ public class UserCenter extends HttpServlet {
 
         if(user != null){
             if(userid.equals(user.getUserid())){
-                out.println("{\"success\":true}");
+                out.println("{\"isself\":true}");
                 mapper.writeValue(response.getWriter(), listArtical);
                 mapper.writeValue(response.getWriter(), listComment);
             }else{
-                out.println("{\"success\":false}");
+                out.println("{\"isself\":false}");
                 mapper.writeValue(response.getWriter(), userByUserID); //根据userid查询数据
                 mapper.writeValue(response.getWriter(), listArtical);
                 mapper.writeValue(response.getWriter(), listComment);
