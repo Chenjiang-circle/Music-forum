@@ -39,7 +39,7 @@ $(document).ready(function(){
                         $("#upPic h3").html('"OOPS ! 上传的封面尺寸不能小于720*470px哦!"');
                     }
                 }
-                img64=this.result;
+                img64=this.result.split(',')[1];
                 // console.log(this.result);
                 // $("#hhh").html('<img src="'+this.result+'"/>');
 
@@ -58,7 +58,6 @@ $(document).ready(function(){
         
         var title = $("#write-title").val();//文章标题
         var content = $("#editor1").val();//文章内容
-
         //判断是否在前面加0
         function getNow(s) {
             return s < 10 ? '0' + s: s;
@@ -80,7 +79,7 @@ $(document).ready(function(){
         var check = $("input[name='ArticleSelect']:checked").serialize();
         if(check.length==0){
             alert("您至少需要选择一个文章分类哦!");
-        }else if(title.val()=="请输入文章标题"||title.val()==""||title.val()=="别忘记写文章标题哦"){
+        }else if(title=="请输入文章标题"||title==""||title=="别忘记写文章标题哦"){
             alert("别忘了写文章标题哦!")
         }else if(content.length==0){
             alert("请编辑您的文章内容后再发表.")
@@ -89,7 +88,7 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"POST",
-                url:"",
+                url:"http://172.20.151.112:8066/Music_forum/createText",
                 dataType:"json",
                 data:{
                     userid:0,
@@ -106,7 +105,7 @@ $(document).ready(function(){
                 success:function(data){//请求成功，data为后台数据
                     if(data.success){
                         alert("❤成功提交! \n❤文章将在审核后发表.\n❤感谢您的贡献.祝您拥有愉快的一天");
-                        window.location.href="";
+                        //window.location.href="";
                         //跳转到首页
                     }else{
                         alert("OOOOPS! 服务器出现了一个小问题："+data.msg);

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/createText")
@@ -23,8 +24,9 @@ public class createText extends HttpServlet {
         // 设置编码
         req.setCharacterEncoding("utf-8");
         Map<String, String[]> map = req.getParameterMap();
+        String text1 = req.getParameter("text");
+        System.out.println(text1);
         Text text = new Text();
-        System.out.println(text.toString());
         try {
             BeanUtils.populate(text, map);
         } catch (IllegalAccessException e) {
@@ -37,9 +39,10 @@ public class createText extends HttpServlet {
         TextService textService = new TextServiceImpl();
         textService.createText(text);
 
-        String s = "{\"success\" : \"true\"}";
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("success", true);
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getWriter(), s);
+        mapper.writeValue(resp.getWriter(), map1);
     }
 
     @Override

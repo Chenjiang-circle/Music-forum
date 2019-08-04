@@ -74,4 +74,10 @@ public class UserServiceImpl implements UserService {
     public Boolean cancelFollow(follow follow) {
         return userDao.cancelFollow(follow);
     }
+
+    @Override
+    public User getUserByUserID(String userid) {
+
+        return userDao.getUserByUserID(userid);
+    }
 }
