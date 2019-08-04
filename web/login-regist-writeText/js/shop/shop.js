@@ -262,7 +262,6 @@ $(document).ready(function(){
     //     $("#show-time").text(dataa[a].publictime);
     //     $("#show-company").text('©发行公司：'+dataa[a].company)
     // })
-
     // $("#showOut").click(function(){
     //     $("#show-music").css('display','none');
     // })
@@ -279,11 +278,11 @@ $(document).ready(function(){
 
     $.ajax({ 
         type:"get",
-        url:"",
+        url:"http://172.20.151.112:8066/Music_forum/getAllMusicInformation",
         datatype:'json',
         success:function(dataa){
+            dataa = eval(dataa);
             var dataLength=dataa.length//共有多少个歌曲
-
             for(i=0;i<dataLength;i++){
                 $(".grid__img").eq(i).attr('src',dataa[i].musiccover);
                 $(".grid__item-title").eq(i).text(dataa[i].musicname+" - "+dataa[i].songer);
