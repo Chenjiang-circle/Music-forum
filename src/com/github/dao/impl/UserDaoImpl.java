@@ -15,6 +15,8 @@ import com.github.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈操作数据库〉
@@ -159,6 +161,19 @@ public class UserDaoImpl implements UserDao {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("通过用户id查询用户信息失败!可能是因为用户id不存在.");
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> getAllFollowedUser(String userid) {
+        try {
+            String sql = "select user.userid, user.username, user.numsignin, user.fans, user.description, user.sex, user.imageid from user,follow where follow.userid = '" + userid +"' and user.userid = follow.followed";
+            List<User> users = template.query(sql, new BeanPropertyRowMapper<User>(User.class));
+            return users;
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("这个用户没有follow别人");
             return null;
         }
     }
