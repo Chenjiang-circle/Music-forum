@@ -279,11 +279,13 @@ $(document).ready(function(){
 
     $.ajax({ 
         type:"get",
-        url:"",
+        url:"http://172.20.151.112:8066/Music_forum/getAllMusicInformation",
         datatype:'json',
         success:function(dataa){
-            var dataLength=dataa.length//共有多少个歌曲
 
+
+            dataa = eval(dataa);
+            var dataLength=dataa.length//共有多少个歌曲
             for(i=0;i<dataLength;i++){
                 $(".grid__img").eq(i).attr('src',dataa[i].musiccover);
                 $(".grid__item-title").eq(i).text(dataa[i].musicname+" - "+dataa[i].songer);
@@ -401,7 +403,7 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"post",
-                url:"",
+                url:"http://172.20.151.112:8066/Music_forum/uploadMusic",
                 datatype:"json",
                 data:{
                     musiccover:coverImg,

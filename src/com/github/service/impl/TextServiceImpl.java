@@ -99,6 +99,12 @@ public class TextServiceImpl implements TextService {
         textDao.updateLikes(likes, textid);
     }
 
+    @Override
+    public Boolean cancelCollection(collection collection) {
+
+        return textDao.cancelCollection(collection);
+    }
+
 
 //    @Override
 //    public text2 findAlltext(ArrayList<Text> text) {

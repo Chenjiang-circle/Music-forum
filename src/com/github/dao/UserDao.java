@@ -30,4 +30,11 @@ public interface UserDao {
      * @return
      */
     List<User> getAllFollowedUser(String userid);
+
+    /**
+     * 此方法通过用户id获取到他关注的总人数
+     * @param userid
+     * @return
+     */
+    int countFollowedNumByUserId(String userid);
 }

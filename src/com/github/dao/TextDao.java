@@ -71,4 +71,11 @@ public interface TextDao {
      * @param likes
      */
     void updateLikes(int likes, int textid);
+
+    /**
+     * 该方法用来取消对谋篇文章的收藏
+     * @param collection
+     * @return
+     */
+    Boolean cancelCollection(collection collection);
 }

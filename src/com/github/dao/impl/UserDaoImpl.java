@@ -107,6 +107,8 @@ public class UserDaoImpl implements UserDao {
         try {
             String sql = "insert into collection values(?, ?)";
             int update = template.update(sql, collection.getUserid(), collection.getCollectiontextid());
+            String sql1 = "update text set collection = collection + 1 where textid = ?";
+            int update1 = template.update(sql1, collection.getCollectiontextid());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,6 +175,19 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             System.out.println("这个用户没有follow别人");
             return null;
+        }
+    }
+
+    @Override
+    public int countFollowedNumByUserId(String userid) {
+        try {
+            String sql = "select * from follow where userid = '" + userid+ "'";
+            List<follow> query = template.query(sql, new BeanPropertyRowMapper<follow>(follow.class));
+            return query.size();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("语法错误,请更正");
+            return 0;
         }
     }
 }
