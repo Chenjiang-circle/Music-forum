@@ -24,8 +24,29 @@
     /* border:palevioletred 3px solid; */
     margin:80px auto;
 }
+.collections{
+    margin:80px auto;
+}
 
 .artLists{
+    width: 300px;
+    height: 400px;
+    background: linear-gradient(rgba(0,0,0,0),#30c27b);
+    border-radius: 20px;
+    display: inline-block;
+    margin-left: 93px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow:0px 40px 50px rgb(202, 202, 202);
+    transition: all 0.5s;
+    background-position-x: center;
+    background-position-y: center;
+
+}
+.collectionLists{
+    
     width: 300px;
     height: 400px;
     background: linear-gradient(rgba(0,0,0,0),#30c27b);
@@ -46,6 +67,9 @@
 .artLists:hover{
     box-shadow:0px 40px 50px rgb(128, 128, 128);
 }
+.collectionLists:hover{
+    box-shadow:0px 40px 50px rgb(128, 128, 128);
+}
 
 .artLists:nth-child(1){
     background-image: url(../../img/artList/1207722775.jpg);
@@ -59,8 +83,38 @@
 .artLists:nth-child(3){
     background-image: url(../../img/artList/jonlin.jpg);
 }
+.collectionLists:nth-child(1){
+    background-image: url(../../img/artList/1207722775.jpg);
+}
+
+.collectionLists:nth-child(2){
+    background-image: url(../../img/artList/adele.jpg);
+
+}
+
+.collectionLists:nth-child(3){
+    background-image: url(../../img/artList/jonlin.jpg);
+}
 
 .artName{
+    width: 300px;
+    height: 200px;
+    font-size: 40px;
+    color: aliceblue;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0px;
+    text-overflow:ellipsis;
+    white-space : wrap;
+    overflow : hidden;
+    padding: 0 20px;
+    background: linear-gradient(rgba(0,0,0,0),#30c27b);
+    transition: all 0.5s;
+    cursor: pointer;
+    
+
+}
+.collectionName{
     width: 300px;
     height: 200px;
     font-size: 40px;
