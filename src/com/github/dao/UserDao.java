@@ -4,6 +4,8 @@ import com.github.domain.User;
 import com.github.domain.collection;
 import com.github.domain.follow;
 
+import java.util.List;
+
 public interface UserDao {
     void register(User users);
     User signin(User users);
@@ -21,4 +23,11 @@ public interface UserDao {
      * @return
      */
     User getUserByUserID(String userid);
+
+    /**
+     * 此方法通过用户id获取到他关注的所有人的信息
+     * @param userid
+     * @return
+     */
+    List<User> getAllFollowedUser(String userid);
 }

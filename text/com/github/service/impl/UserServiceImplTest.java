@@ -10,6 +10,8 @@ import com.github.domain.follow;
 import com.github.service.UserService;
 import org.junit.Test;
 
+import java.util.List;
+
 
 public class UserServiceImplTest {
     UserDao userDao = new UserDaoImpl();
@@ -99,6 +101,13 @@ public class UserServiceImplTest {
     public void getUserByUserID() {
         User userByUserID = userService.getUserByUserID("1455075085@qq.com");
         String s = JSON.toJSONString(userByUserID);
+        System.out.println(s);
+    }
+
+    @Test
+    public void getAllFollowedUser() {
+        List<User> allFollowedUser = userService.getAllFollowedUser("1455075085@qq.com");
+        String s = JSON.toJSONString(allFollowedUser);
         System.out.println(s);
     }
 }
