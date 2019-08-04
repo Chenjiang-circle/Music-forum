@@ -57,7 +57,11 @@ $(document).ready(function(){
     $("#submitArticle").click(function(){
         
         var title = $("#write-title").val();//文章标题
-        var content = $("#editor1").val();//文章内容
+        var content = $("#editor1").val();
+        var items = content.split("data:image/png;base64,");
+        var contents = items.join("");
+        //文章内容
+
         //判断是否在前面加0
         function getNow(s) {
             return s < 10 ? '0' + s: s;
@@ -117,6 +121,7 @@ $(document).ready(function(){
             })
             
             // console.log(content);
+            // console.log(contents);
             
         }
 
