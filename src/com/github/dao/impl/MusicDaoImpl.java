@@ -14,6 +14,7 @@ public class MusicDaoImpl implements MusicDao {
 
     @Override
     public Boolean uploadMusic(music amusic) {
+        amusic.setIspass("null");
         try {
             String sql = "insert into music values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             int update = template.update(sql, amusic.getMusicname(), amusic.getUrl(), amusic.getUserid(), amusic.getTime(), amusic.getIspass(), amusic.getVerifier(), amusic.getMusiccover(), amusic.getAlbum(), amusic.getSonger(), amusic.getPublictime(), amusic.getCompany());
