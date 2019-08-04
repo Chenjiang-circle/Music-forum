@@ -61,7 +61,7 @@ $(document).ready(function(){
     }
 
     $.ajax({//请求得到文章、标题、点赞数、收藏数、作者等
-        url:"http://172.20.151.117:8066/Music_forum/get",
+        url:"http://172.20.151.117:8066/Music_forum/getText",
         type:"GET",
         datatype:"text",
         success:function(data){
@@ -327,11 +327,11 @@ $(document).ready(function(){
         like++;
         $("#article-like").html("喜欢"+like);
         $.ajax({
-            url:"",
+            url:"http://172.20.151.117:8066/Music_forum/like",
             type:"POST",
             datatype:"json",
             data:{
-                likes:like
+                likes:1
             },
             error:function(jqXHR){
                 alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
@@ -353,7 +353,7 @@ $(document).ready(function(){
                 }
                 $("#arti-collections").html("收藏"+collection);
                 $.ajax({//每次点击都会传一次新的collection值
-                    url:"",
+                    url:"http://172.20.151.117:8066/Music_forum/collect",
                     type:"POST",
                     datatype:"text",
                     data:{

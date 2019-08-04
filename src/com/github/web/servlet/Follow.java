@@ -18,19 +18,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 文章页中打开别人主页进行follow
+ * 进行follow操作
  * @author lzy
  */
-@WebServlet("/followservlet")
-public class FollowServlet extends HttpServlet {
+@WebServlet("/follow")
+public class Follow extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Object usermsg = session.getAttribute("usermsg");
         if(usermsg != null){
             User user = (User) usermsg;
-            /**
-             * 查询follow表内容，follow了谁，传给前端 ----------> 未实现
-             */
             follow follow = new follow();
             Map<String, String[]> map = request.getParameterMap();
             try {

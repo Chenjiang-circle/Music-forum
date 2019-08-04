@@ -6,6 +6,7 @@ package com.github.web.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.domain.User;
+import com.github.domain.follow;
 import com.github.domain.simpletext;
 import com.github.service.TextService;
 import com.github.service.UserService;
@@ -22,8 +23,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/userServlet")
-public class UserServlet extends HttpServlet {
+@WebServlet("/usercenter")
+public class UserCenter extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /**
          *
@@ -39,11 +40,13 @@ public class UserServlet extends HttpServlet {
 
         Object usermsg = session.getAttribute("usermsg");
         User user = (User) usermsg;
-//        UserService userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         mapper.writeValue(response.getWriter(), user);
         String userid = request.getParameter("userid");
         List<simpletext> listArtical = textService.getsimpleTextByUserID(userid);
         List<simpletext> listComment = textService.getcollectionByUserID(userid);
+        User userByUserID = userService.getUserByUserID(userid);
+
         if(user != null){
             if(userid.equals(user.getUserid())){
                 out.println("{\"success\":true}");
@@ -51,9 +54,16 @@ public class UserServlet extends HttpServlet {
                 mapper.writeValue(response.getWriter(), listComment);
             }else{
                 out.println("{\"success\":false}");
-                //mapper.writeValue(response.getWriter(), ); 根据userid查询数据
+                mapper.writeValue(response.getWriter(), userByUserID); //根据userid查询数据
                 mapper.writeValue(response.getWriter(), listArtical);
                 mapper.writeValue(response.getWriter(), listComment);
+                follow follow = new follow();
+                follow.setUserid(user.getUserid());
+                follow.setFollowed(userid);
+                if(userService.isFollow(follow))
+                    out.println("{\"isfollow\":true}");
+                else
+                    out.println("{\"isfollow\":false}");
             }
             out.flush();
             out.close();
