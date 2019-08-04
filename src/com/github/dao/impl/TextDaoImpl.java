@@ -271,6 +271,19 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
+    @Override
+    public List<simpletext_article> getAllsimpleartcle() {
+        try {
+            String sql = "select * from text where title is not null";
+            List<simpletext_article> query = template.query(sql, new BeanPropertyRowMapper<simpletext_article>(simpletext_article.class));
+            return query;
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("获取所有文章失败");
+            return null;
+        }
+    }
+
 
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {

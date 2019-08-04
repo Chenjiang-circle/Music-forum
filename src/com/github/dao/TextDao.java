@@ -78,4 +78,10 @@ public interface TextDao {
      * @return
      */
     Boolean cancelCollection(collection collection);
+
+    /**
+     * 该方法用来获取所有文章的详情(不包括内容),用于在乐评页进行展示
+     * @return
+     */
+    List<simpletext_article> getAllsimpleartcle();
 }
