@@ -19,6 +19,7 @@ import java.util.Map;
 public class UploadNMusic extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("utf-8");
         resp.setCharacterEncoding("utf-8");
         Map<String, String[]> parameterMap = req.getParameterMap();
         music music = new music();
