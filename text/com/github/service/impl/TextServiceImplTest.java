@@ -109,4 +109,8 @@ public class TextServiceImplTest {
     }
 
 
+    @Test
+    public void updateLikes() {
+        textService.updateLikes(1, 13);
+    }
 }

@@ -240,6 +240,17 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
+    @Override
+    public void updateLikes(int likes, int textid) {
+        try {
+            String sql = "update text set likes = likes + 1 where textid = ?";
+            int update = template.update(sql, textid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("点赞加一失败,可能是文章id不存在.");
+        }
+
+    }
 
 
 //    @Override
