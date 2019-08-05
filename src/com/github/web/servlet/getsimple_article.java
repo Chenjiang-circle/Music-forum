@@ -6,16 +6,15 @@ import com.github.service.TextService;
 import com.github.service.impl.TextServiceImpl;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * 该servlet用来处理乐评页的请求,获取数据库中的乐评文章返回给前段
- */
 
+@WebServlet("/getsimplearticle")
 public class getsimple_article extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
