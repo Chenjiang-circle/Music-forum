@@ -95,8 +95,8 @@ $(document).ready(function(){
                 url:"http://172.20.151.112:8066/Music_forum/createText",
                 dataType:"json",
                 data:{
-                    userid:null,
-                    textid:null,
+                    userid:0,
+                    textid:0,
                     time:now,
                     likes:0,
                     comment:0,

@@ -144,6 +144,8 @@ public class UserDaoImpl implements UserDao {
         try {
             String sql = "delete from follow where userid='"+follow.getUserid()+"' and followed='" + follow.getFollowed() + "'";
             int update = template.update(sql);
+            String sql1 = "update user set fans = fans - 1 where userid = ?";
+            template.update(sql1, follow.getFollowed());
             return true;
         } catch (Exception e) {
             e.printStackTrace();

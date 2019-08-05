@@ -118,4 +118,18 @@ public class TextServiceImplTest {
         String s = JSON.toJSONString(allsimpleartcle);
         System.out.println(s);
     }
+
+    @Test
+    public void getTopArticle() {
+        List<simpletext_article> topArticle = textService.getTopArticle();
+        String s = JSON.toJSONString(topArticle);
+        System.out.println(s);
+    }
+
+    @Test
+    public void searchArticleByKeyWorks() {
+        List<simpletext_article> simpletext_articles = textService.searchArticleByKeyWorks("大");
+        String s = JSON.toJSONString(simpletext_articles);
+        System.out.println(s);
+    }
 }

@@ -3,14 +3,18 @@ $(document).ready(function () {
 
     // $.cookie("userid","sadoifjo",{expirers:7,path:'/'})
     // var userid = $.cookie("userid");
+
     var userid = '';
     //$.removeCookie('userid');
+
     $.ajax({
         url: "http://172.20.151.117:8066/Music_forum/usercenter",
         type: "get",
+        dataType: "json",
         data: {
             "userid": userid
         },
+
         dataType: "json",
         success: function (data) {
             console.log(data)
@@ -18,6 +22,7 @@ $(document).ready(function () {
             showdata(data);
             //判断是不是自己的个人主页
             isSelf(data.isself,data.isfollow,data.user.fans,data.user.follownum)
+
 
         },
         error: function (err) {
@@ -29,7 +34,9 @@ $(document).ready(function () {
 
 function showdata(data) {
     $("#userimg").src = data.user.imageid;
+
     $("#avatar").css('background-image', data.user.imageid);
+
     $("#loginOn-name").html(data.user.username);
     $("#username").html(data.user.username);
     var str = "<div id=\"fans\">粉丝：" + data.user.fans + "关注：" + data.user.follownum + "</div>"
@@ -55,6 +62,7 @@ function showdata(data) {
         } else {
             collectionLists[i].style.display = 'none';
         }
+
 
     }
 };

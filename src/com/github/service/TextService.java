@@ -81,4 +81,17 @@ public interface TextService {
      * @return
      */
     List<simpletext_article> getAllsimpleartcle();
+
+    /**
+     * 获取热度高的文章
+     * @return
+     */
+    List<simpletext_article> getTopArticle();
+
+    /**
+     * 通过关键字查询文章
+     * @param keyworks
+     * @return
+     */
+    List<simpletext_article> searchArticleByKeyWorks(String keyworks);
 }

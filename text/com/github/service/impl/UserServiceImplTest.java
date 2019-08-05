@@ -76,7 +76,7 @@ public class UserServiceImplTest {
     public void isCollection() {
         collection colllection = new collection();
         colllection.setUserid("1455075085@qq.com");
-        colllection.setCollectiontextid(23);
+        colllection.setCollectiontextid(15);
         UserService userService = new UserServiceImpl();
         Boolean collection = userService.isCollection(colllection);
         System.out.println(collection);

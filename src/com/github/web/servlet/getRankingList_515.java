@@ -13,22 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
-@WebServlet("/getsimplearticle")
-public class getsimple_article extends HttpServlet {
+@WebServlet("/getRankingList515")
+public class getRankingList_515 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doPost(req, resp);
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        TextService textService = new TextServiceImpl();
+        List<simpletext_article> topArticle = textService.getTopArticle();
+        String s = JSON.toJSONString(topArticle);
+        System.out.println(s);
+        JSON.writeJSONString(resp.getWriter(), topArticle);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
-        resp.setCharacterEncoding("utf-8");
-        TextService textService = new TextServiceImpl();
-        List<simpletext_article> allsimpleartcle = textService.getAllsimpleartcle();
-        String s = JSON.toJSONString(allsimpleartcle);
-        System.out.println(s);
-        JSON.writeJSONString(resp.getWriter() ,allsimpleartcle);
+        this.doGet(req, resp);
     }
 }

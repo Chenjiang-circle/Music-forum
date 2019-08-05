@@ -43,4 +43,10 @@ public class MusicServiceImplTest {
         String s = JSON.toJSONString(allPassMusics);
         System.out.println(s);
     }
+
+    @Test
+    public void getRankingList() {
+        String i = musicService.getRankingList("B");
+        System.out.println(i);
+    }
 }

@@ -157,6 +157,70 @@
 #artical-list{
     width: 1200px;
     height:2000px;
-    background: #616161;
+    /* background: #616161; */
     margin: 0 auto;
+}
+
+#artical-list h1{
+color: #4a0bc7;
+}
+
+.articals{
+    height: 300px;
+    width: 100%;
+    background: #ffffff;
+    padding: 20px 0;
+    position: relative;
+    transition: all 0.5s;
+    border-radius: 40px;
+    margin: 50px 0;
+}
+
+.articals:hover{
+    background: #4a0bc7;
+    color: white;
+}
+
+.artCover{
+    background-image: url(../../img/artList/TaylorSwift.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    width: 400px;
+    height: 250px;
+    position: absolute;
+    border-radius: 40px;
+    left: 20px;
+}
+
+.artTitle{
+    font-size: 50px;
+    font-weight: bold;
+    position: relative;
+    left: 450px;
+    top: 20px;
+    width: 720px;
+}
+
+.artFeedback{
+    position: absolute;
+    right: 70px;
+    top: 220px;
+    
+}
+
+.artLike{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.artLike img{
+    margin-right: 10px;
+}
+.artComm{
+    display: inline-block;
+    margin-right: 10px;
+}
+.artComm img{
+    margin-right: 10px;
 }
