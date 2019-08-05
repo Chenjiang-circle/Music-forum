@@ -68,4 +68,30 @@ public interface TextService {
      * @param likes
      */
     void updateLikes(int likes, int textid);
+
+    /**
+     * 该方法用来取消对某篇文章的收藏
+     * @param collection
+     * @return
+     */
+    Boolean cancelCollection(collection collection);
+
+    /**
+     * 该方法用来获取所有文章的详情(不包括内容),用于在乐评页进行展示
+     * @return
+     */
+    List<simpletext_article> getAllsimpleartcle();
+
+    /**
+     * 获取热度高的文章
+     * @return
+     */
+    List<simpletext_article> getTopArticle();
+
+    /**
+     * 通过关键字查询文章
+     * @param keyworks
+     * @return
+     */
+    List<simpletext_article> searchArticleByKeyWorks(String keyworks);
 }

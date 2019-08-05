@@ -1,8 +1,6 @@
 package com.github.web.servlet;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.domain.music;
 import com.github.service.MusicService;
 import com.github.service.impl.MusicServiceImpl;
 
@@ -12,21 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/getAllMusicInformation")
-public class getAllMusicInformation extends HttpServlet {
+@WebServlet("/getRankingList")
+public class getRankingList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setCharacterEncoding("utf-8");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        String wherefrom = req.getParameter("wherefrom");
+
         MusicService musicService = new MusicServiceImpl();
-        List<music> allPassMusics = musicService.getAllPassMusics();
-        String s = JSON.toJSONString(allPassMusics);
-        System.out.println(s);
-        //JSON.writeJSONString(resp.getWriter(), allPassMusics);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getWriter(), allPassMusics);
-        System.out.println("发送音乐信息成功!");
+        String rankingList = musicService.getRankingList(wherefrom);
+        System.out.println(rankingList);
+        JSON.writeJSONString(resp.getWriter(), rankingList);
     }
 
     @Override

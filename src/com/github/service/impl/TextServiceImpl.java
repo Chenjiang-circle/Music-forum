@@ -85,7 +85,6 @@ public class TextServiceImpl implements TextService {
 
     @Override
     public List<simpletext> getsimpleTextByUserID(String userid) {
-//        System.out.println("getsimpleTextByUserID被调用");
         return textDao.getsimpleTextByUserID(userid);
     }
 
@@ -97,6 +96,27 @@ public class TextServiceImpl implements TextService {
     @Override
     public void updateLikes(int likes, int textid) {
         textDao.updateLikes(likes, textid);
+    }
+
+    @Override
+    public Boolean cancelCollection(collection collection) {
+
+        return textDao.cancelCollection(collection);
+    }
+
+    @Override
+    public List<simpletext_article> getAllsimpleartcle() {
+        return textDao.getAllsimpleartcle();
+    }
+
+    @Override
+    public List<simpletext_article> getTopArticle() {
+        return textDao.getTopArticle();
+    }
+
+    @Override
+    public List<simpletext_article> searchArticleByKeyWorks(String keyworks) {
+        return textDao.searchArticleByKeyWorks(keyworks);
     }
 
 
