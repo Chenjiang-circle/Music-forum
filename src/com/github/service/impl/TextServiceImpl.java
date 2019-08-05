@@ -109,6 +109,12 @@ public class TextServiceImpl implements TextService {
         return textDao.getAllsimpleartcle();
     }
 
+    @Override
+    public List<simpletext_article> getTopArticle() {
+        List<simpletext_article> topArticle = textDao.getTopArticle();
+        return topArticle;
+    }
+
 
 //    @Override
 //    public text2 findAlltext(ArrayList<Text> text) {

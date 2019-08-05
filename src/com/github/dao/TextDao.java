@@ -84,4 +84,10 @@ public interface TextDao {
      * @return
      */
     List<simpletext_article> getAllsimpleartcle();
+
+    /**
+     * 获取热度高的文章
+     * @return
+     */
+    List<simpletext_article> getTopArticle();
 }

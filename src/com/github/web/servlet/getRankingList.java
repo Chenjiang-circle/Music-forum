@@ -21,6 +21,7 @@ public class getRankingList extends HttpServlet {
 
         MusicService musicService = new MusicServiceImpl();
         String rankingList = musicService.getRankingList(wherefrom);
+        System.out.println(rankingList);
         JSON.writeJSONString(resp.getWriter(), rankingList);
     }
 
