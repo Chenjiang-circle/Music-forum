@@ -9,31 +9,38 @@ package com.github.web.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.domain.User;
+import com.github.domain.collection;
 import com.github.domain.text1;
+import com.github.domain.text2;
+import com.github.service.impl.TextServiceImpl;
+import com.github.service.impl.UserServiceImpl;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
-/**
- * 〈一句话功能简述〉<br>
- * 〈获取文章〉
- *
- * @author 陈江超
- * @create 2019/7/25
- * @since 1.0.0
- */
-@WebServlet("/get")
+@WebServlet("/getText")
 public class getText extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json;charset=utf-8");
-        text1 text = new text1();
-        text.setUserid("1455075085@qq.com");
+
+        HttpSession session = req.getSession();
+        Object user = session.getAttribute("usermsg");
+
+        System.out.println("user:"+user);
+        /*text.setUserid("1455075085@qq.com");
         text.setTime("2019-7-25");
         text.setTitle("hello world");
         text.setText("阿里巴巴集团主席兼首席执行官马云说：“永不抱怨的人生态度才是第一位的”。可我们许多人，却经常抱怨。面对工作，抱怨压力太大；面对家庭，抱怨烦恼太多；面对社会，抱怨世风日下；面对变化，抱怨命运不公。总之，他们总能找到抱怨的事，而且还觉得振振有词。偶然的抱怨属于情绪宣泄的一个出口，情有可原，倘可理解。但若不分时机，不讲场合，经常性的抱怨就是问题了。那是一种病态心理，一种不良的习惯，一种人生的负能量。一旦这种习惯养成，既伤害自己又影响别人。我们必须引起高度注意，自觉克服，远离抱怨，积极生活。\n" +
@@ -70,13 +77,38 @@ public class getText extends HttpServlet {
         text.setLikes(1000);
         text.setType("摇滚");
         text.setTextid(99);
-        text.setUsername("圈圈");
-
-        String s = JSON.toJSONString(text);
-        System.out.println(s);
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(resp.getWriter(), text);
+        text.setUsername("圈圈");*/
+        if(user != null) {
+//        int textid = Integer.parseInt(req.getParameter("textid"));
+            TextServiceImpl textService = new TextServiceImpl();
+            UserServiceImpl userService = new UserServiceImpl();
+            //返回text对象
+            text2 text = textService.findAlltext(1);
+            collection collection = new collection();
+//        String userid = req.getParameter("userid");
+//        String collectiontextid = req.getParameter("collectiontextid");
+            Map<String, String[]> map = req.getParameterMap();
+            try {
+                BeanUtils.populate(collection, map);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+//            String s = JSON.toJSONString(text);
+//            System.out.println(s);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), text);
+            mapper.writeValue(resp.getWriter(), user);
+            PrintWriter out = resp.getWriter();
+            out.println("{\"ifColl\":" + userService.isCollection(collection) + "}");
+            System.out.println("{\"ifColl\":" + userService.isCollection(collection) + "}");
+            out.flush();
+            out.close();
 //        JSON.writeJSONString(resp.getWriter(), text);
+        }else{
+            //木有登录
+        }
     }
 
     @Override
