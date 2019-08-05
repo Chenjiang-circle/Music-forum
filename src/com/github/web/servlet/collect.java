@@ -22,19 +22,28 @@ import java.util.Map;
 @WebServlet("/collect")
 public class collect extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.setCharacterEncoding("Utf-8");
+
         try {
+
             String textid = request.getParameter("collectiontextid");
             int ifColl = Integer.parseInt(request.getParameter("ifColl"));
+
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("usermsg");
+
             TextService textService= new TextServiceImpl();
-            text2 text = textService.findAlltext(1);
-            Map<String, String[]> map = request.getParameterMap();
+
+            //text2 text = textService.findAlltext(1);
             collection collection = new collection();
+            Map<String, String[]> map = request.getParameterMap();
+
             BeanUtils.populate(collection,map);
             collection.setUserid(user.getUserid());
+
             System.out.println(collection+"----------");
+
             if(ifColl == 1){
                 UserServiceImpl userService = new UserServiceImpl();
                 userService.addCollectionText(collection);

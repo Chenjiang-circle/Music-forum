@@ -65,18 +65,19 @@ $(document).ready(function(){
         type:"GET",
         datatype:"text",
         success:function(data){
-            textid = data.textid;
+            textid = data.text.textid;
+            //alert("text-->"+textid);
             if(data){
-                $("#article-title").html(data.title);
-                $("#author-time").html("发表于 "+data.time);
-                $("#author-username").html(data.username);
-                $("#article-content").html("<pre>"+data.text+"</pre>");
-                like=data.likes;
+                $("#article-title").html(data.text.title);
+                $("#author-time").html("发表于 "+data.text.time);
+                $("#author-username").html(data.text.username);
+                $("#article-content").html("<pre>"+data.text.text+"</pre>");
+                like=data.text.likes;
                 $("#article-like").html("喜欢"+like);
-                $("#article-conmmet-title").html("评论"+data.comment);
-                collection=data.collection;
+                $("#article-conmmet-title").html("评论"+data.text.comment);
+                collection=data.text.collection;
                 $("#arti-collections").html("收藏"+collection);
-                if(!data.ifColl){//说明该用户已经收藏该文章
+                if(data.ifColl){//说明该用户已经收藏该文章
                     ifColl=1;
                     alert(ifColl);
                     $("#arti-collections").css({'background':'yellow'});
@@ -364,6 +365,7 @@ $(document).ready(function(){
                     collection++;
                 }
                 $("#arti-collections").html("收藏"+collection);
+                alert(textid);
                 $.ajax({//每次点击都会传一次新的collection值
                     url:"http://172.20.151.117:8066/Music_forum/collect",
                     type:"POST",

@@ -30,13 +30,6 @@ import java.util.Map;
 public class UserCenter extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        /**
-         *
-         * 1.获取个人信息（user表所有内容），将其封装json发给前端
-         * 2.获取已传的text，collect（标题+封面），传给前端
-         * 3....
-         *
-         **/
         response.setCharacterEncoding("UTF-8");
 
         Map<String, Object> map = new HashMap<String, Object>();
@@ -47,12 +40,12 @@ public class UserCenter extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("usermsg");
         map.put("user", user);
-        System.out.println(user.getUserid());
+        System.out.println("userid : "+user.getUserid());
 
         //接收userid
 
         String userid = request.getParameter("userid");
-        System.out.println(userid+"---------------------------");
+//        System.out.println(userid+"---------------------------");
 
         //获取发过的 text 和 comment
 
@@ -65,9 +58,8 @@ public class UserCenter extends HttpServlet {
 
         //用于传递list集合，将list集合再放入一个json中传给前端
 
-
         String isself= "";
-        String isfollow = "";
+        String isfollow = "false";
         if(user != null){
             if(userid.equals(user.getUserid())){
 
@@ -92,6 +84,7 @@ public class UserCenter extends HttpServlet {
                     isfollow = "true";
                 else
                     isfollow = "false";
+
 
             }
             //传递list集合
