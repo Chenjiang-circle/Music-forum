@@ -217,7 +217,7 @@ public class TextDaoImpl implements TextDao {
     @Override
     public List<simpletext> getsimpleTextByUserID(String userid) {
         try {
-            String sql = "select text.textid, text.title, text.textimage from text where text.userid='" + userid +"'";
+            String sql = "select text.textid, text.title, text.textimage from text where text.userid='" + userid +"' and title is not null";
             List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
             return query;
         } catch (Exception e) {
@@ -250,6 +250,38 @@ public class TextDaoImpl implements TextDao {
             System.out.println("点赞加一失败,可能是文章id不存在.");
         }
 
+    }
+
+    @Override
+    public Boolean cancelCollection(collection collection) {
+        try {
+            String sql = "delete from collection where userid = ? and collectiontextid = ?";
+            int update = template.update(sql, collection.getUserid(), collection.getCollectiontextid());
+            String sql1 = "update text set collection = collection - 1 where textid = ?";
+            int update1 = template.update(sql1, collection.getCollectiontextid());
+            if (update == 1 && update1 == 1){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("取消关注的文章不存在,或者其他愿意..");
+            return false;
+        }
+    }
+
+    @Override
+    public List<simpletext_article> getAllsimpleartcle() {
+        try {
+            String sql = "select * from text where title is not null";
+            List<simpletext_article> query = template.query(sql, new BeanPropertyRowMapper<simpletext_article>(simpletext_article.class));
+            return query;
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("获取所有文章失败");
+            return null;
+        }
     }
 
 

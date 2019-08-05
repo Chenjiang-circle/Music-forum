@@ -84,21 +84,10 @@ public class TextServiceImplTest {
     public void getsimpleTextByUserID() throws JsonProcessingException {
 
         List<simpletext> simpletexts = textService.getsimpleTextByUserID("1455075085@qq.com");
-//        ObjectMapper mapper = new ObjectMapper();
         System.out.println(simpletexts.size());
         String s = JSON.toJSONString(simpletexts);
         System.out.println(s);
-//        JSON.writeJSONString(rsp);
-//        if (simpletexts != null){
-//            for (simpletext s :simpletexts) {
-//                String s1 = JSON.toJSONString(s);
-//                System.out.println(s1);
-//            }
-//        }else {
-//            System.out.println("null");
-//        }
-//        String s = mapper.writeValueAsString(simpletexts);
-//        System.out.println(s);
+
     }
 
     @Test
@@ -112,5 +101,21 @@ public class TextServiceImplTest {
     @Test
     public void updateLikes() {
         textService.updateLikes(1, 13);
+    }
+
+    @Test
+    public void cancelCollection() {
+        collection collection = new collection();
+        collection.setUserid("1455075085@qq.com");
+        collection.setCollectiontextid(15);
+        Boolean aBoolean = textService.cancelCollection(collection);
+        System.out.println(aBoolean);
+    }
+
+    @Test
+    public void getAllsimpleartcle() {
+        List<simpletext_article> allsimpleartcle = textService.getAllsimpleartcle();
+        String s = JSON.toJSONString(allsimpleartcle);
+        System.out.println(s);
     }
 }

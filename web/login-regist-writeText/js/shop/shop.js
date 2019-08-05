@@ -281,6 +281,10 @@ $(document).ready(function(){
         url:"http://172.20.151.112:8066/Music_forum/getAllMusicInformation",
         datatype:'json',
         success:function(dataa){
+
+
+
+
             dataa = eval(dataa);
             var dataLength=dataa.length//共有多少个歌曲
             for(i=0;i<dataLength;i++){
@@ -400,7 +404,7 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"post",
-                url:"",
+                url:"http://172.20.151.112:8066/Music_forum/uploadMusic",
                 datatype:"json",
                 data:{
                     musiccover:coverImg,

@@ -87,4 +87,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllFollowedUser(String userid) {
         return userDao.getAllFollowedUser(userid);
     }
+
+    @Override
+    public int countFollowedNumByUserId(String userid) {
+        return userDao.countFollowedNumByUserId(userid);
+    }
 }
