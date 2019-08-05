@@ -38,4 +38,11 @@ public interface MusicService {
      * @return 返回音乐实体类集合,返回null表示没有审核通过的音乐或者没有上传音乐
      */
     List<music> getAllPassMusics();
+
+    /**
+     * 此方法用来获取排行榜
+     * @param wherefrom
+     * @return
+     */
+    String getRankingList(String wherefrom);
 }
