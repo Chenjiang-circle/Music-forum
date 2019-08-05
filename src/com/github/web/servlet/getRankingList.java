@@ -1,6 +1,7 @@
 package com.github.web.servlet;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.service.MusicService;
 import com.github.service.impl.MusicServiceImpl;
 
@@ -21,8 +22,9 @@ public class getRankingList extends HttpServlet {
 
         MusicService musicService = new MusicServiceImpl();
         String rankingList = musicService.getRankingList(wherefrom);
-        System.out.println(rankingList);
-        JSON.writeJSONString(resp.getWriter(), rankingList);
+        Object parse = JSON.parse(rankingList);
+        System.out.println(parse);
+        JSON.writeJSONString(resp.getWriter(), parse);
     }
 
     @Override
