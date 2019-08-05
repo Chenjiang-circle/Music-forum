@@ -85,7 +85,7 @@ public class TextServiceImpl implements TextService {
 
     @Override
     public List<simpletext> getsimpleTextByUserID(String userid) {
-        System.out.println("getsimpleTextByUserID被调用");
+//        System.out.println("getsimpleTextByUserID被调用");
         return textDao.getsimpleTextByUserID(userid);
     }
 

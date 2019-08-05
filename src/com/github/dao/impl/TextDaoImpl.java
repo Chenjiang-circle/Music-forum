@@ -217,7 +217,7 @@ public class TextDaoImpl implements TextDao {
     @Override
     public List<simpletext> getsimpleTextByUserID(String userid) {
         try {
-            String sql = "select text.textid, text.title, text.textimage from text where text.userid='" + userid +"'";
+            String sql = "select text.textid, text.title, text.textimage from text where text.userid='" + userid +"' and title is not null";
             List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
             return query;
         } catch (Exception e) {

@@ -22,6 +22,7 @@ import java.util.Map;
 @WebServlet("/collect")
 public class collect extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("Utf-8");
         try {
             String textid = request.getParameter("collectiontextid");
             int ifColl = Integer.parseInt(request.getParameter("ifColl"));
@@ -33,7 +34,7 @@ public class collect extends HttpServlet {
             collection collection = new collection();
             BeanUtils.populate(collection,map);
             collection.setUserid(user.getUserid());
-
+            System.out.println(collection+"----------");
             if(ifColl == 1){
                 UserServiceImpl userService = new UserServiceImpl();
                 userService.addCollectionText(collection);

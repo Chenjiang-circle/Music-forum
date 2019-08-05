@@ -4,6 +4,7 @@ package com.github.web.servlet;
  * @autor lzy
  */
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.domain.User;
 import com.github.domain.follow;
@@ -21,52 +22,88 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/usercenter")
 public class UserCenter extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         /**
          *
          * 1.获取个人信息（user表所有内容），将其封装json发给前端
-         * 2.获取已传的text，comment（标题+封面），传给前端
+         * 2.获取已传的text，collect（标题+封面），传给前端
          * 3....
          *
          **/
-        TextServiceImpl textService = new TextServiceImpl();
-        PrintWriter out = response.getWriter();
-        ObjectMapper mapper = new ObjectMapper();
-        HttpSession session = request.getSession();
+        response.setCharacterEncoding("UTF-8");
 
-        Object usermsg = session.getAttribute("usermsg");
-        User user = (User) usermsg;
+        Map<String, Object> map = new HashMap<String, Object>();
+        TextServiceImpl textService = new TextServiceImpl();
         UserService userService = new UserServiceImpl();
-        mapper.writeValue(response.getWriter(), user);
+        //获取session数据
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("usermsg");
+        map.put("user", user);
+        System.out.println(user.getUserid());
+
+        //接收userid
+
         String userid = request.getParameter("userid");
+        System.out.println(userid+"---------------------------");
+
+        //获取发过的 text 和 comment
+
         List<simpletext> listArtical = textService.getsimpleTextByUserID(userid);
-        List<simpletext> listComment = textService.getcollectionByUserID(userid);
+        List<simpletext> listCollection = textService.getcollectionByUserID(userid);
+
+        //查询user信息
+
         User userByUserID = userService.getUserByUserID(userid);
 
+        //用于传递list集合，将list集合再放入一个json中传给前端
+
+
+        String isself= "";
+        String isfollow = "";
         if(user != null){
             if(userid.equals(user.getUserid())){
-                out.println("{\"isself\":true}");
-                mapper.writeValue(response.getWriter(), listArtical);
-                mapper.writeValue(response.getWriter(), listComment);
+
+                //判断是否为自己的主页
+                isself = "true";
+
             }else{
-                out.println("{\"isself\":false}");
-                mapper.writeValue(response.getWriter(), userByUserID); //根据userid查询数据
-                mapper.writeValue(response.getWriter(), listArtical);
-                mapper.writeValue(response.getWriter(), listComment);
+
+                //判断是否为他人主页
+                isself = "false";
+
+                // 根据userid查询数据
+
+                map.put("user1", userByUserID);
+
+                //判断关注情况
+
                 follow follow = new follow();
                 follow.setUserid(user.getUserid());
                 follow.setFollowed(userid);
                 if(userService.isFollow(follow))
-                    out.println("{\"isfollow\":true}");
+                    isfollow = "true";
                 else
-                    out.println("{\"isfollow\":false}");
+                    isfollow = "false";
+
             }
-            out.flush();
-            out.close();
+            //传递list集合
+            map.put("listArticle", listArtical);
+            map.put("listCollection", listCollection);
+            map.put("isself", isself);
+            map.put("isfollow", isfollow);
+            String s = JSON.toJSONString(map);
+            System.out.println(s);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(response.getWriter(), map);
+
         }else{
 //            response.setContentType("text/html;charset=utf-8");
 //            PrintWriter out = response.getWriter();

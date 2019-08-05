@@ -76,7 +76,7 @@ $(document).ready(function(){
                 $("#article-conmmet-title").html("评论"+data.comment);
                 collection=data.collection;
                 $("#arti-collections").html("收藏"+collection);
-                if(data.ifColl){//说明该用户已经收藏该文章
+                if(!data.ifColl){//说明该用户已经收藏该文章
                     ifColl=1;
                     alert(ifColl);
                     $("#arti-collections").css({'background':'yellow'});

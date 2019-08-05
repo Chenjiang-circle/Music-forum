@@ -14,7 +14,7 @@ public class like extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int likes = Integer.parseInt(request.getParameter("likes"));
         int textid = Integer.parseInt(request.getParameter("textid"));
-//        System.out.println(likes);
+        System.out.println(likes);
         TextServiceImpl textService = new TextServiceImpl();
         textService.updateLikes(likes, textid);
     }

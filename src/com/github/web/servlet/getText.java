@@ -35,8 +35,11 @@ public class getText extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json;charset=utf-8");
+
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("usermsg");
+        Object user = session.getAttribute("usermsg");
+
+        System.out.println("user:"+user);
         /*text.setUserid("1455075085@qq.com");
         text.setTime("2019-7-25");
         text.setTitle("hello world");
@@ -79,6 +82,7 @@ public class getText extends HttpServlet {
 //        int textid = Integer.parseInt(req.getParameter("textid"));
             TextServiceImpl textService = new TextServiceImpl();
             UserServiceImpl userService = new UserServiceImpl();
+            //返回text对象
             text2 text = textService.findAlltext(1);
             collection collection = new collection();
 //        String userid = req.getParameter("userid");
@@ -91,8 +95,8 @@ public class getText extends HttpServlet {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
-            String s = JSON.toJSONString(text);
-            System.out.println(s);
+//            String s = JSON.toJSONString(text);
+//            System.out.println(s);
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(resp.getWriter(), text);
             mapper.writeValue(resp.getWriter(), user);
