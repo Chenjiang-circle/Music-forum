@@ -35,4 +35,9 @@ public class MusicServiceImpl implements MusicService {
     public List<music> getAllPassMusics() {
         return musicDao.getAllPassMusics();
     }
+
+    @Override
+    public String getRankingList(String wherefrom) {
+        return musicDao.getRankingList(wherefrom);
+    }
 }

@@ -2,6 +2,7 @@ package com.github.dao.impl;
 
 import com.github.dao.MusicDao;
 import com.github.domain.music;
+import com.github.domain.rankinglist;
 import com.github.util.JDBCUtils;
 import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -78,6 +79,19 @@ public class MusicDaoImpl implements MusicDao {
         }catch (Exception e) {
             e.printStackTrace();
             System.out.println("没有通过审核的音乐");
+            return null;
+        }
+    }
+
+    @Override
+    public String getRankingList(String wherefrom) {
+        try {
+            String sql = "select * from rankinglist where wherefrom = ?";
+            rankinglist rankinglist = template.queryForObject(sql, new BeanPropertyRowMapper<rankinglist>(rankinglist.class), wherefrom);
+            return rankinglist.getContents();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("没有找到排行榜");
             return null;
         }
     }
