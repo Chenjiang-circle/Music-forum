@@ -262,7 +262,6 @@ $(document).ready(function(){
     //     $("#show-time").text(dataa[a].publictime);
     //     $("#show-company").text('©发行公司：'+dataa[a].company)
     // })
-
     // $("#showOut").click(function(){
     //     $("#show-music").css('display','none');
     // })
@@ -282,6 +281,8 @@ $(document).ready(function(){
         url:"http://172.20.151.112:8066/Music_forum/getAllMusicInformation",
         datatype:'json',
         success:function(dataa){
+
+
 
 
             dataa = eval(dataa);
