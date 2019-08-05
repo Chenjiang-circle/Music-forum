@@ -90,4 +90,11 @@ public interface TextDao {
      * @return
      */
     List<simpletext_article> getTopArticle();
+
+    /**
+     * 通过关键字查询文章
+     * @param keyworks
+     * @return
+     */
+    List<simpletext_article> searchArticleByKeyWorks(String keyworks);
 }

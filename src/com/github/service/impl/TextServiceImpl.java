@@ -111,8 +111,12 @@ public class TextServiceImpl implements TextService {
 
     @Override
     public List<simpletext_article> getTopArticle() {
-        List<simpletext_article> topArticle = textDao.getTopArticle();
-        return topArticle;
+        return textDao.getTopArticle();
+    }
+
+    @Override
+    public List<simpletext_article> searchArticleByKeyWorks(String keyworks) {
+        return textDao.searchArticleByKeyWorks(keyworks);
     }
 
 
