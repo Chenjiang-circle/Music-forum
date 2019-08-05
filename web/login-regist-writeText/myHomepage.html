@@ -122,7 +122,30 @@
 
         <div id="main-content">
             <div id="avatarBack">
-                <div id="avatar"></div>
+                <div id="avatar">
+                    <div id="addfans-box">
+                        <img src="./img/加.png" alt="加粉丝" id="addfans">
+                        <img src="./img/对勾小.png" alt="减粉丝" id="defans">
+                    </div>
+                </div>
+                <script>
+                var oAvatar=document.getElementById('avatarBack');
+                var ofans=document.getElementById('addfans-box')
+                var oAddfans=document.getElementById('addfans')
+                var odefans=document.getElementById('defans')
+                ofans.onclick=oAvatar.onmouseover=oAvatar.onclick=function(){
+                    ofans.style.top="80%"
+                    ofans.style.opacity='1';
+                }
+                oAvatar.onmouseout=function(){
+                    ofans.style.top="60%"
+                    ofans.style.opacity='0';
+                }
+                //  ofans.onclick=function(){
+                //      oAddfans.style.top='-50px';
+                //      odefans.style.top='0px';
+                // }
+                </script>
                 <p id="username">Alice</p>
                 <!-- <div id="fans">粉丝：19 关注：180</div> -->
             </div>
@@ -135,14 +158,13 @@
                         <div class="artLists">
                             <div class="artName">LadyGaga:五尺二寸</div>
                         </div>
-                         <div class="artLists">
+                        <div class="artLists">
                             <div class="artName">ADELE:后来我遇到的人都像你</div>
 
                         </div>
                         <div class="artLists">
                             <div class="artName">蔡依林：我还怪美的！</div>
-
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div id="myCollection">
@@ -152,14 +174,14 @@
                         <div class="collectionLists">
                             <div class="collectionName">LadyGaga:五尺二寸</div>
                         </div>
-                         <div class="collectionLists">
+                        <div class="collectionLists">
                             <div class="collectionName">ADELE:后来我遇到的人都像你</div>
 
                         </div>
                         <div class="collectionLists">
                             <div class="collectionName">蔡依林：我还怪美的！</div>
 
-                        </div> 
+                        </div>
                     </div>
                 </div>
 
