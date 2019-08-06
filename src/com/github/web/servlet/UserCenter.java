@@ -1,6 +1,7 @@
 package com.github.web.servlet;
 /**
  * 个人主页
+ *
  * @autor lzy
  */
 
@@ -30,13 +31,6 @@ import java.util.Map;
 public class UserCenter extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        /**
-         *
-         * 1.获取个人信息（user表所有内容），将其封装json发给前端
-         * 2.获取已传的text，collect（标题+封面），传给前端
-         * 3....
-         *
-         **/
         response.setCharacterEncoding("UTF-8");
 
         Map<String, Object> map = new HashMap<String, Object>();
@@ -46,13 +40,14 @@ public class UserCenter extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("usermsg");
-        map.put("user", user);
-        System.out.println(user.getUserid());
+
+        System.out.println("userid : " + user.getUserid());
 
         //接收userid
 
         String userid = request.getParameter("userid");
-        System.out.println(userid+"---------------------------");
+// 测试       String userid = "2464792469@qq.com";
+//        System.out.println(userid+"---------------------------");
 
         //获取发过的 text 和 comment
 
@@ -65,33 +60,34 @@ public class UserCenter extends HttpServlet {
 
         //用于传递list集合，将list集合再放入一个json中传给前端
 
-
-        String isself= "";
-        String isfollow = "";
-        if(user != null){
-            if(userid.equals(user.getUserid())){
+        String isself = "";
+        String isfollow = "false";
+        if (user != null) {
+            if (userid.equals(user.getUserid())) {
 
                 //判断是否为自己的主页
                 isself = "true";
+                map.put("user", user);
 
-            }else{
+            } else {
 
                 //判断是否为他人主页
                 isself = "false";
 
                 // 根据userid查询数据
 
-                map.put("user1", userByUserID);
+                map.put("user", userByUserID);
 
                 //判断关注情况
 
                 follow follow = new follow();
                 follow.setUserid(user.getUserid());
                 follow.setFollowed(userid);
-                if(userService.isFollow(follow))
+                if (userService.isFollow(follow))
                     isfollow = "true";
                 else
                     isfollow = "false";
+
 
             }
             //传递list集合
@@ -104,7 +100,7 @@ public class UserCenter extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(response.getWriter(), map);
 
-        }else{
+        } else {
 //            response.setContentType("text/html;charset=utf-8");
 //            PrintWriter out = response.getWriter();
 //            out.print("<script language='javascript'>alert('登录已失效请重新登陆');window.location.href='http://172.20.151.117:8066/Music_forum/login-regist-writeText/enter.html';</script>");

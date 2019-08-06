@@ -40,4 +40,6 @@ public class MusicServiceImpl implements MusicService {
     public String getRankingList(String wherefrom) {
         return musicDao.getRankingList(wherefrom);
     }
+
+
 }

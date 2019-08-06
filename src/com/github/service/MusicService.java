@@ -45,4 +45,5 @@ public interface MusicService {
      * @return
      */
     String getRankingList(String wherefrom);
+
 }

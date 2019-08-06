@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    var userid = '';
+
+    var userid = '2464792469@qq.com';
+
     $.ajax({
         url: "http://172.20.151.112:8066/Music_forum/usercenter",
         type: "get",
@@ -14,8 +16,9 @@ $(document).ready(function () {
             //写入数据
             showdata(data);
             //判断是不是自己的个人主页
-            isSelf(data.isself, data.isfollow, data.user.fans, data.user.follownum)
 
+            isSelf(data.isself,data.isfollow,data.user.fans,data.user.follownum)
+            console.log(typeof (data.isself))
 
         },
         error: function (err) {
@@ -60,14 +63,17 @@ function showdata(data) {
     }
 };
 
+
 function isSelf(isself, isfollow, fans, follow) {
     if (isself == "true") {
+
         logout(); //退出登录
         alter();
         $("#addfans-box").css('display', "none");
     } else {
         //tudo 关注按钮 
         if (isfollow == "true") {
+
             oAddfans.style.top = '-50px';
             odefans.style.top = '0px';
         }
@@ -81,6 +87,22 @@ function isSelf(isself, isfollow, fans, follow) {
                 isfollow = "true";
             }
         })
+
+        var t = fans;
+
+        $("#addfans-box").click(function () {
+
+            if (isfollow!="false") {
+                defan(t,follow);
+                isfollow="false";
+                t-=1;
+            } else {
+                befan(t,follow);
+                isfollow="true";
+                t+=1;
+            }
+        })
+
 
         $("#out").css("display", "none");
     }
@@ -99,55 +121,38 @@ function alter() {
 
 }
 
-function befan(fans, follow) {
-
-    $.ajax({
-        url: "http://172.20.151.117:8066/Music_forum/follow",
-        type: "GET",
-        dataType: "json",
-        data: {
-            "followed": userid
-        },
-        success: function (data) {
-            console.log(data)
-            oAddfans.style.top = '-50px';
-            odefans.style.top = '0px';
-            fans += 1;
-            showfans(fans, follow);
-        },
-        error: function (err) {
-            alert('网络错误' + err.status);
-            console.log(err)
-        }
-    })
-
+function befan(fans,follow) {
+    fans+=1;
+        var userid='2464792469@qq.com';
+        $.ajax({
+            url: "http://172.20.151.117:8066/Music_forum/follow",
+            type: "GET",
+            dataType: "json",
+            data: {
+                "followed":userid
+            },
+        })
+    oAddfans.style.top = '-50px';
+    odefans.style.top = '0px';
+    showfans(fans ,follow);
 }
 
-function defan(fans, follow) {
-
-    $.ajax({
-        url: "http://172.20.151.117:8066/Music_forum/follow",
-        type: "GET",
-        dataType: "json",
-        data: {
-            "followed": userid
-        },
-        success: function (data) {
-            console.log(data)
-            oAddfans.style.top = '0px';
-            odefans.style.top = '50px';
-            fans -= 1;
-            showfans(fans, follow)
-        },
-        error: function (err) {
-            alert('网络错误' + err.status);
-            console.log(err)
-        }
-    })
-
+function defan(fans,follow) {
+    fans-=1;
+        var userid='2464792469@qq.com';
+        $.ajax({
+            url: "http://172.20.151.117:8066/Music_forum/follow",
+            type: "GET",
+            dataType: "json",
+            data: {
+                "followed":userid
+            },
+        })
+    oAddfans.style.top = '0px';
+    odefans.style.top = '50px';
+    showfans(fans,follow)
 }
-
-function showfans(fans, follow) {
-    var fansbox = document.getElementById('fans')
-    fansbox.innerHTML = "粉丝：" + fans + "关注：" + follow;
+function showfans(fans,follow){
+    var fansbox=document.getElementById('fans')
+    fansbox.innerHTML="粉丝："+fans+"关注："+follow;
 }

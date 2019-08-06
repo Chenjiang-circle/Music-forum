@@ -46,13 +46,13 @@ public class Follow extends HttpServlet {
                 userService.follow(follow);
 //                map1.put("userid", follow.getUserid());
 //                map1.put("followed", follow.getFollowed());
-                map1.put("success", true);
+//                map1.put("success", true);
             }else{
                 //已关注，取消关注
                 userService.cancelFollow(follow);
 //                map1.put("userid", follow.getUserid());
 //                map1.put("followed", follow.getFollowed());
-                map1.put("success", false);
+//                map1.put("success", false);
             }
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(response.getWriter(),map1);
