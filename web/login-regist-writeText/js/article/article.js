@@ -1,9 +1,9 @@
 $(document).ready(function(){
     var like;
     var collection;
-
     var ifColl=0;//这篇文章是否被该用户收藏？全局
     var textid = null;
+    var thistext = 1;
     function left(depth){  //printComments函数会用到
         var leftComm=50;
         for(var i=0;i<depth;i++){
@@ -63,6 +63,9 @@ $(document).ready(function(){
     $.ajax({//请求得到文章、标题、点赞数、收藏数、作者等
         url:"http://172.20.151.117:8066/Music_forum/getText",
         type:"GET",
+        data:{
+          collectiontextid: thistext ,
+        },
         datatype:"text",
         success:function(data){
             textid = data.text.textid;

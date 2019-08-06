@@ -42,7 +42,7 @@ public class collect extends HttpServlet {
             BeanUtils.populate(collection,map);
             collection.setUserid(user.getUserid());
 
-            System.out.println(collection+"----------");
+            System.out.println(collection+"----------"+"ifColl");
 
             if(ifColl == 1){
                 UserServiceImpl userService = new UserServiceImpl();
