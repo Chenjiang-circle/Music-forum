@@ -73,6 +73,35 @@ $(document).ready(function(){
         }
     })
 
+    $.ajax({//515
+        url:"http://172.20.151.112:8066/Music_forum/getRankingList515",
+        datatype:"json",
+        type:"post",
+        success:function(data){
+            // JSON.parse(data);
+            data = eval(data);
+            for(i=0;i<30;i++){
+                                            //用于打印type👇
+                                            var type = data[i].type.split("&ArticleSelect=");
+                                            type[0] = type[0].replace("ArticleSelect=","");
+                                            console.log(type);
+                                            var typeHtml="";
+                                            for(j = 0;j<type.length;j++){
+                                                typeHtml = typeHtml+"<div class='arttypes'>"+type[j]+"</div>"
+                                            }
+                                            // console.log(typeHtml);
+                                            //用于打印type👆
+                $("#box-515 .rank-cover").eq(i).css({'background-image':'url("'+data[i].textimage+'")'});
+                $("#box-515 .rank-songname").eq(i).text(data[i].title);
+                $("#box-515 .rank-album").eq(i).html(typeHtml);
+                $("#box-515 .rank-songer").eq(i).html("💖热度："+data[i].likes+"&nbsp&nbsp|&nbsp&nbsp💬跟帖："+data[i].comment);
+             }
+            },
+        error:function(jqXHR){
+            alert("OOPS! 资源加载失败："+jqXHR.status);
+        }
+    })
+
     $("#bill").click(function(){
         $(".rank-box").css({'display':'none'});        
         $("#box-bill").css({'display':'block'});
