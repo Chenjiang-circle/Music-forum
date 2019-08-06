@@ -64,7 +64,7 @@ public class TextServiceImplTest {
     @Test
     public void findAlltext() {
         TextService textService = new TextServiceImpl();
-        text2 alltext = textService.findAlltext(33);
+        text2 alltext = textService.findAlltext(13);
         String s = JSON.toJSONString(alltext);
         System.out.println(s);
     }
