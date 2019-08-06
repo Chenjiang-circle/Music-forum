@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var userid = '2464792469@qq.com';
     $.ajax({
-        url: "http://172.20.151.117:8066/Music_forum/usercenter",
+        url: "http://172.20.151.112:8066/Music_forum/usercenter",
         type: "get",
         dataType: "json",
         data: {

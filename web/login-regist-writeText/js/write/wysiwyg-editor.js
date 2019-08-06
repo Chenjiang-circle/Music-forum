@@ -131,19 +131,44 @@
                 // File-API
                 var loadImageFromFile = function( file )
                 {
-                    // Only process image files
-                    if( ! file.type.match('image.*') )
-                        return;
-                    var reader = new FileReader();
-                    reader.onload = function(event) {
-                        var dataurl = event.target.result;
-                        insert_image_wysiwyg( dataurl, file.name );
-                    };
-                    // Read in the image file as a data URL
-                    reader.readAsDataURL( file );
+                    // // Only process image files
+                    // if( ! file.type.match('image.*') )
+                    //     return;
+                    // var reader = new FileReader();
+                    // reader.onload = function(event) {
+                    //     var dataurl = event.target.result;
+                    //     insert_image_wysiwyg( dataurl, file.name );
+                    // };
+                    // // Read in the image file as a data URL
+                    // reader.readAsDataURL( file );
+                    var formData = new FormData();
+                    formData.append('file',document.getElementById("shangchuantupian").files[0]);
+                    $.ajax({
+                        type:"POST",
+                        url:"http://172.20.151.112:8066//Music_forum/uploadfile",
+                        datatype:"json",
+                        data:formData,
+                        processData:false,
+                        contentType:false,
+                        success:function(data){
+                            // coverImg = data;
+                            data=data.replace("\"","");
+                            data=data.replace("\"","");
+                            // alert(data);
+                            insert_image_wysiwyg( data,'515lab©' );
+
+                           
+                        },
+                        error:function(jqXHR){
+                            alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
+                        }
+            
+                    })
+
                 };
                 $fileuploader = $('<input type="file" />')
                                     .attr('draggable','true')
+                                    .attr('id','shangchuantupian')
                                     .css({position: 'absolute',
                                             left: 0,
                                             top: 0,
@@ -192,6 +217,7 @@
                            .html( label_dropfileclick )
                            .append( $fileuploader )
                            .appendTo( $content );
+                
             // Add image via 'URL'
             var $button = toolbar_button( toolbar_submit );
             var $inputurl = $('<input type="text" value=""' + (placeholder_url ? ' placeholder="'+placeholder_url+'"' : '') + ' />').addClass('wysiwyg-input')
