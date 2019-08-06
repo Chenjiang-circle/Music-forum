@@ -85,3 +85,13 @@ h1{
     min-width: 300px;
     width:30%;
 }
+
+/* 文章审核 */
+.all-image{
+    width: 100px;
+    height: auto;
+}
+.home-image{
+    width: 100px;
+    height: auto;
+}
