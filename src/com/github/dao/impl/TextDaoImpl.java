@@ -310,6 +310,28 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
+    @Override
+    public void addHomearticle(int textid) {
+        try {
+            String sql = "insert into hometext values(?, 'pass')";
+            int update = template.update(sql, textid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("可能此文章已经在home页展示了,不需要再添加上去");
+        }
+    }
+
+    @Override
+    public void cancleHomearticle(int textid) {
+        try {
+            String sql = "delete from hometext where textid = ?";
+            int update = template.update(sql, textid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("可能取消的这篇文章本来就不在home页展示");
+        }
+    }
+
 
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {

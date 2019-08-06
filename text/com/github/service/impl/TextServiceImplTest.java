@@ -132,4 +132,14 @@ public class TextServiceImplTest {
         String s = JSON.toJSONString(simpletext_articles);
         System.out.println(s);
     }
+
+    @Test
+    public void addHomearticle() {
+        textService.addHomearticle(51);
+    }
+
+    @Test
+    public void cancleHomearticle() {
+        textService.cancleHomearticle(51);
+    }
 }

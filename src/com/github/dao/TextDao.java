@@ -97,4 +97,16 @@ public interface TextDao {
      * @return
      */
     List<simpletext_article> searchArticleByKeyWorks(String keyworks);
+
+    /**
+     * 管理员让某一篇文章上传到home主页
+     * @param textid
+     */
+    void addHomearticle(int textid);
+
+    /**
+     * 管理员取消某篇文章再首页展示
+     * @param textid
+     */
+    void cancleHomearticle(int textid);
 }

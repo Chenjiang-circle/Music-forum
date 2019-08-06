@@ -95,4 +95,10 @@ public class MusicDaoImpl implements MusicDao {
             return null;
         }
     }
+
+    @Override
+    public List<music> getCanToHomeArtivcle() {
+
+        return null;
+    }
 }

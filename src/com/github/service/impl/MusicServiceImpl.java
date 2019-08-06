@@ -40,4 +40,9 @@ public class MusicServiceImpl implements MusicService {
     public String getRankingList(String wherefrom) {
         return musicDao.getRankingList(wherefrom);
     }
+
+    @Override
+    public List<music> getCanToHomeArtivcle() {
+        return null;
+    }
 }

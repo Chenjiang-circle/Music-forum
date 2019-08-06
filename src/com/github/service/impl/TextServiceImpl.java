@@ -119,6 +119,16 @@ public class TextServiceImpl implements TextService {
         return textDao.searchArticleByKeyWorks(keyworks);
     }
 
+    @Override
+    public void addHomearticle(int textid) {
+        textDao.addHomearticle(textid);
+    }
+
+    @Override
+    public void cancleHomearticle(int textid) {
+        textDao.cancleHomearticle(textid);
+    }
+
 
 //    @Override
 //    public text2 findAlltext(ArrayList<Text> text) {
