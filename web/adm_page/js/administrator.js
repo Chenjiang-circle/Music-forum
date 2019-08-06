@@ -241,10 +241,10 @@ function printdata(data) {
         allImage[i].src=data[i].textimage;
     }
     $("#alltext").html("共："+data.length+"篇")
-    var textLine=document.getElementsByClassName('t');
-     textLine[i].onclick=function(){
-        //跳转文章详情页
-     }
+    // var textLine=document.getElementsByClassName('t');
+    //  textLine[i].onclick=function(){
+    //     //跳转文章详情页
+    //  }
 }
 function commitdata(data){
     var textLine=document.getElementsByClassName('t');

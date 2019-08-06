@@ -17,6 +17,8 @@ import java.util.List;
 public class home_getArticle extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         TextService textService = new TextServiceImpl();
         List<simpletext> canToHomeArtivcle = textService.getCanToHomeArtivcle();
         JSON.writeJSONString(resp.getWriter(), canToHomeArtivcle);
