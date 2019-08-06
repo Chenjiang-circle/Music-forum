@@ -46,9 +46,4 @@ public interface MusicService {
      */
     String getRankingList(String wherefrom);
 
-    /**
-     * 获取所有管理员同意上传到首页的文章
-     * @return
-     */
-    List<music> getCanToHomeArtivcle();
 }

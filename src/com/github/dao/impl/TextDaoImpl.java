@@ -332,6 +332,20 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
+    @Override
+    public List<simpletext> getCanToHomeArtivcle() {
+        try {
+            String sql = "select text.textid, text.title, text.textimage from text, hometext where text.textid = hometext.textid and hometext.ispass = 'pass'";
+            List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
+            return query;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("没有获取到能上传到home页的文章");
+        }
+
+        return null;
+    }
+
 
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {

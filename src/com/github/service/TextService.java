@@ -106,4 +106,10 @@ public interface TextService {
      * @param textid
      */
     void cancleHomearticle(int textid);
+
+    /**
+     * 获取所有管理员同意上传到首页的文章
+     * @return
+     */
+    List<simpletext> getCanToHomeArtivcle();
 }

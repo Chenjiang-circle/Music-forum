@@ -96,9 +96,5 @@ public class MusicDaoImpl implements MusicDao {
         }
     }
 
-    @Override
-    public List<music> getCanToHomeArtivcle() {
 
-        return null;
-    }
 }

@@ -142,4 +142,11 @@ public class TextServiceImplTest {
     public void cancleHomearticle() {
         textService.cancleHomearticle(51);
     }
+
+    @Test
+    public void getCanToHomeArtivcle() {
+        List<simpletext> canToHomeArtivcle = textService.getCanToHomeArtivcle();
+        String s = JSON.toJSONString(canToHomeArtivcle);
+        System.out.println(s);
+    }
 }

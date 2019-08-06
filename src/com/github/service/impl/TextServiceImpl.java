@@ -129,6 +129,11 @@ public class TextServiceImpl implements TextService {
         textDao.cancleHomearticle(textid);
     }
 
+    @Override
+    public List<simpletext> getCanToHomeArtivcle() {
+        return textDao.getCanToHomeArtivcle();
+    }
+
 
 //    @Override
 //    public text2 findAlltext(ArrayList<Text> text) {
