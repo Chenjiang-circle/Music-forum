@@ -1,0 +1,141 @@
+#rank-select-box{
+    width: 1620px;
+    height: 200px;
+    /* background: paleturquoise; */
+    margin:100px auto;
+}
+
+.rank-select{
+    width: 400px;
+    height: 200px;
+    display: inline-block;
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+
+}
+
+#bill{
+    background-image: url(../../img/rankingList/bill.jpg)
+}
+#apple{
+    background-image: url(../../img/rankingList/apple.jpg);
+}
+#tencent{
+    background-image: url(../../img/rankingList/tencent.jpg)
+}
+#fof{
+    background-image: url(../../img/rankingList/515.jpg)
+}
+#bill:hover{
+    background-image: url(../../img/rankingList/bill2.jpg)
+}
+#apple:hover{
+    background-image: url(../../img/rankingList/apple2.jpg)
+}
+#tencent:hover{
+    background-image: url(../../img/rankingList/tencent2.jpg)
+}
+#fof:hover{
+    background-image: url(../../img/rankingList/5152.jpg)
+}
+
+.rank-box{
+    width: 1000px;
+    margin:0 auto;
+    /* border: 2px solid saddlebrown; */
+
+}
+
+.rank{
+    width:100%;
+    position: relative;
+
+}
+
+#box-bill{
+    display: none;
+}
+#box-apple{
+    display: none;
+}
+#box-tencent{
+    display: none;
+}
+#box-515{
+    display: none;
+}
+
+.rank-title{
+    width: 800px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.rank h1{
+    font-size: 60px;
+    color: #ffffff;
+    font-weight: bold;
+    position: absolute;
+    left: -50px;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    margin-top: 85px;
+}
+.rank-son{
+    width: 100%;
+    height: 260px;
+    padding: 50px 0;
+    border-bottom: 2px solid #c8c8c8;
+}
+
+.rank-cover{
+    background-image: url(../../img/artList/jonlin.jpg);
+    background-size: cover;
+    height: 150px;
+    width: 150px;
+}
+
+.rank-songname{
+    font-size: 50px;
+    color: #272222;
+    position: relative;
+    left: 200px;
+    top: -140px;
+    font-weight: bold;
+    width: 90%;
+    text-overflow:ellipsis;
+    white-space : nowrap;
+    overflow : hidden;
+}
+
+.rank-songer{
+    font-size: 20px;
+    color: #4e4646;
+    position: relative;
+    left: 200px;
+    top: -130px;
+}
+
+.rank-album{
+    font-size: 20px;
+    color: #56147c;
+    position: relative;
+    left: 200px;
+    top: -120px;
+
+}
+#rocket{
+    width: 100px;
+    height: 100px;
+    background-image: url(../../img/rankingList/shejiyeiconb2gzhwyitqc.png);
+    background-size: cover;
+    position: fixed;
+    right: 100px;
+    bottom: 100px;
+    z-index: 100;
+    display: none;
+    cursor: pointer;
+}

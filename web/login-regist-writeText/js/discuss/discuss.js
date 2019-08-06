@@ -33,9 +33,11 @@ jQuery(document).ready(function($){
               s=$(this).index();
               $.ajax({
                 url:"",
-                datatype:"text",
+                datatype:"json",
                 type:"post",
-                data:data[s].textid,
+                data:{
+                  thistext:data[s].textid
+                },
                 success:function(dataa){
                   location.href = dataa;//跳转进入文章详情页
                 },
