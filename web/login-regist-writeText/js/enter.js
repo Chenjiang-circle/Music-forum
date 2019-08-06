@@ -49,7 +49,7 @@
                     // 改动！！！加入cookie
                     if(data.success){
                         // $.ajax({
-                        //     url:"",
+                        //     url:"http://172.20.151.117:8066/Music_forum/signinservlet",
                         //     type:"GET",
                         //     datatype:"json",
                         //     success:function(data){
@@ -61,7 +61,9 @@
                         //         alert("服务器请求失败，这意味着您下一次可能仍然需要登录以确认身份 \n 错误信息："+jqXHR.status)
                         //     }
                         // })
-                        window.location.href="http://172.20.151.112:8066/Music_forum/FrontEnd-demo/head&foot/index.html";
+
+                        window.location.href="http://172.20.151.117:8066/Music_forum/login-regist-writeText/home.html";
+
                         //跳转到首页
                     }else{
                          alert("用户名或密码错误！");

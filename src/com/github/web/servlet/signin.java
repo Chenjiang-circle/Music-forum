@@ -39,6 +39,7 @@ public class signin extends HttpServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+        System.out.println(user.toString());
         //验证用户名密码是否匹配
         UserService userService = new UserServiceImpl();
         Boolean have = userService.isHave(user);
