@@ -139,3 +139,14 @@
     display: none;
     cursor: pointer;
 }
+
+.arttypes{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 15px;
+    margin-right: 10px;
+    background: #30c27b;
+    color: white;
+    display: inline-block;
+    border-radius: 100px;
+}
