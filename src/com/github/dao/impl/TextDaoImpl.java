@@ -310,6 +310,42 @@ public class TextDaoImpl implements TextDao {
         }
     }
 
+    @Override
+    public void addHomearticle(int textid) {
+        try {
+            String sql = "insert into hometext values(?, 'pass')";
+            int update = template.update(sql, textid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("可能此文章已经在home页展示了,不需要再添加上去");
+        }
+    }
+
+    @Override
+    public void cancleHomearticle(int textid) {
+        try {
+            String sql = "delete from hometext where textid = ?";
+            int update = template.update(sql, textid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("可能取消的这篇文章本来就不在home页展示");
+        }
+    }
+
+    @Override
+    public List<simpletext> getCanToHomeArtivcle() {
+        try {
+            String sql = "select text.textid, text.title, text.textimage from text, hometext where text.textid = hometext.textid and hometext.ispass = 'pass'";
+            List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
+            return query;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("没有获取到能上传到home页的文章");
+        }
+
+        return null;
+    }
+
 
 //    @Override
 //    public ArrayList<Text> findFirstComment(int textid) {

@@ -1,5 +1,7 @@
 $(document).ready(function () {
+
     var userid = '2464792469@qq.com';
+
     $.ajax({
         url: "http://172.20.151.117:8066/Music_forum/usercenter",
         type: "get",
@@ -14,7 +16,9 @@ $(document).ready(function () {
             //写入数据
             showdata(data);
             //判断是不是自己的个人主页
+
             isSelf(data.isself,data.isfollow,data.user.fans,data.follownum)
+
             console.log(typeof (data.isself))
 
         },
@@ -60,17 +64,30 @@ function showdata(data) {
     }
 };
 
-function isSelf(isself,isfollow,fans,follow) {
-    if (isself!="false") {
+
+function isSelf(isself, isfollow, fans, follow) {
+    if (isself == "true") {
+
         logout(); //退出登录
         alter();
         $("#addfans-box").css('display', "none");
     } else {
-        //tudo 关注按钮
-        if(isfollow=="true"){
+        //tudo 关注按钮 
+        if (isfollow == "true") {
+
             oAddfans.style.top = '-50px';
             odefans.style.top = '0px';
         }
+        $("#addfans-box").click(function () {
+            var t=fans;
+            if (isfollow == "true") {
+                defan(fans, follow);
+                isfollow = "false";
+            } else {
+                befan(fans, follow);
+                isfollow = "true";
+            }
+        })
 
         var t = fans;
 

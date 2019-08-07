@@ -39,7 +39,7 @@ public class TextServiceImplTest {
     @Test
     public void addComment() {
         comment comments = new comment();
-        comments.setTextid(1);
+        comments.setTextid(17);
         comments.setUserid("1455075085@qq.com");
         comments.setTime("2008-3-5");
         comments.setText("1楼评论");
@@ -64,7 +64,7 @@ public class TextServiceImplTest {
     @Test
     public void findAlltext() {
         TextService textService = new TextServiceImpl();
-        text2 alltext = textService.findAlltext(1);
+        text2 alltext = textService.findAlltext(13);
         String s = JSON.toJSONString(alltext);
         System.out.println(s);
     }
@@ -130,6 +130,23 @@ public class TextServiceImplTest {
     public void searchArticleByKeyWorks() {
         List<simpletext_article> simpletext_articles = textService.searchArticleByKeyWorks("大");
         String s = JSON.toJSONString(simpletext_articles);
+        System.out.println(s);
+    }
+
+    @Test
+    public void addHomearticle() {
+        textService.addHomearticle(51);
+    }
+
+    @Test
+    public void cancleHomearticle() {
+        textService.cancleHomearticle(51);
+    }
+
+    @Test
+    public void getCanToHomeArtivcle() {
+        List<simpletext> canToHomeArtivcle = textService.getCanToHomeArtivcle();
+        String s = JSON.toJSONString(canToHomeArtivcle);
         System.out.println(s);
     }
 }

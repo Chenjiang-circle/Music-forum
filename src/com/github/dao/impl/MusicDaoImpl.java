@@ -73,7 +73,7 @@ public class MusicDaoImpl implements MusicDao {
     @Override
     public List<music> getAllPassMusics() {
         try {
-            String sql = "select * from music where ispass='pass'";
+            String sql = "select * from music where ispass='pass' order by musicid desc";
             List<music> musics = template.query(sql, new BeanPropertyRowMapper<music>(music.class));
             return musics;
         }catch (Exception e) {
@@ -95,4 +95,6 @@ public class MusicDaoImpl implements MusicDao {
             return null;
         }
     }
+
+
 }
