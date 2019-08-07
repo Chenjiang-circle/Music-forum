@@ -161,7 +161,7 @@
     border: 4px solid #30c27b;
     border-radius: 100%;
     background-image: url(../../img/article/avatar-default.jpg);
-    background-size: 100%;
+    background-size: inherit;
     background-repeat: no-repeat;
 
 }

@@ -38,7 +38,7 @@
 
 
             $.ajax({
-                url:"http://172.20.151.112:8066/Music_forum/signinservlet",
+                url:"http://172.20.151.117:8066/Music_forum/signinservlet",
                 type:"GET",
                 datatype:"json",
                 data:{

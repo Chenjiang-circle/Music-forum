@@ -34,6 +34,7 @@ public class collect extends HttpServlet {
             User user = (User) session.getAttribute("usermsg");
 
             TextService textService= new TextServiceImpl();
+            UserServiceImpl userService = new UserServiceImpl();
 
             //text2 text = textService.findAlltext(1);
             collection collection = new collection();
@@ -42,13 +43,14 @@ public class collect extends HttpServlet {
             BeanUtils.populate(collection,map);
             collection.setUserid(user.getUserid());
 
-            System.out.println(collection+"----------"+"ifColl");
+//            System.out.println(collection+"----------"+"ifColl: "+ifColl);
 
             if(ifColl == 1){
-                UserServiceImpl userService = new UserServiceImpl();
+                //添加收藏
                 userService.addCollectionText(collection);
             }else{
                 //取消收藏
+                textService.cancelCollection(collection);
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

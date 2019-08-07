@@ -45,8 +45,8 @@ public class UserCenter extends HttpServlet {
 
         //接收userid
 
-        String userid = request.getParameter("userid");
-// 测试       String userid = "2464792469@qq.com";
+        // 测试       String userid = request.getParameter("userid");
+       String userid = "2464792469@qq.com";
 //        System.out.println(userid+"---------------------------");
 
         //获取发过的 text 和 comment
@@ -62,6 +62,10 @@ public class UserCenter extends HttpServlet {
 
         String isself = "";
         String isfollow = "false";
+
+        //获取follownum
+        int follownum = userService.countFollowedNumByUserId(userid);
+
         if (user != null) {
             if (userid.equals(user.getUserid())) {
 
@@ -95,6 +99,10 @@ public class UserCenter extends HttpServlet {
             map.put("listCollection", listCollection);
             map.put("isself", isself);
             map.put("isfollow", isfollow);
+            map.put("follownum", follownum);
+            map.put("username", user.getUsername());
+            map.put("userid", user.getUserid());
+            map.put("imageid", user.getImageid());
             String s = JSON.toJSONString(map);
             System.out.println(s);
             ObjectMapper mapper = new ObjectMapper();

@@ -1,7 +1,5 @@
 /**
- * FileName: getText
- * Author:   陈江超
- * Date:     2019/7/25 21:43
+ * Author:   lzy
  * Description: 获取文章
  */
 package com.github.web.servlet;
@@ -11,12 +9,10 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.domain.User;
 import com.github.domain.collection;
-import com.github.domain.text1;
 import com.github.domain.text2;
 import com.github.service.impl.TextServiceImpl;
 import com.github.service.impl.UserServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +31,7 @@ public class getText extends HttpServlet {
 
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json;charset=utf-8");
+
         try {
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("usermsg");
@@ -44,13 +39,13 @@ public class getText extends HttpServlet {
             System.out.println("user -----> " + user);
             Map<String, Object> map = new HashMap<String, Object>();
 
-            Boolean isColl = true;
+            Boolean ifColl = true;
             if (user != null) {
-//              int textid = Integer.parseInt(req.getParameter("textid"));
+//              int textid = Integer.parseInt(req.getParameter("thistext"));
                 TextServiceImpl textService = new TextServiceImpl();
                 UserServiceImpl userService = new UserServiceImpl();
 
-                //返回text对象
+                //返回text对象和collection对象（用于显示按钮）
 
                 text2 text = textService.findAlltext(1);
                 collection collection = new collection();
@@ -58,8 +53,10 @@ public class getText extends HttpServlet {
                 BeanUtils.populate(collection, map1);
                 collection.setUserid(user.getUserid());
                 System.out.println(collection.toString());
-                isColl = userService.isCollection(collection);
-                map.put("isColl", isColl);
+
+                ifColl = userService.isCollection(collection);
+
+                map.put("ifColl", ifColl);
                 map.put("user", user);
                 map.put("text", text);
                 ObjectMapper mapper = new ObjectMapper();
