@@ -57,7 +57,7 @@ $(document).ready(function(){
         if($('#login-form').valid()){
             $.ajax({
                 type:"GET",
-                url:"http://172.20.151.112:8066/Music_forum/registerservlet",
+                url:"http://localhost:8066/Music_forum/registerservlet",
                 data:{
                     username:$("#username").val(),
                     sex:$("#sex").val(),
@@ -67,7 +67,7 @@ $(document).ready(function(){
                 dataType:"json",
                 success:function(data){//请求成功，data为后台数据
                     if(data.success){
-                        window.location.href="http://172.20.151.112:8066/Music_forum/login-regist-writeText/enter.html";
+                        window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html";
                     }
                     else{
                         alert("邮箱已存在!");

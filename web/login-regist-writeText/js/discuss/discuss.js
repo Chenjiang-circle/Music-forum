@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
     $.ajax({//渲染数据到页面上
-        url:"http://172.20.151.112:8066/Music_forum/getsimplearticle",
+        url:"http://localhost:8066/Music_forum/getsimplearticle",
         datatype:"json",
         type:"get",
         success:function(data){

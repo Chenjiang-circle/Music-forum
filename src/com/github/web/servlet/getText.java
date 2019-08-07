@@ -47,7 +47,8 @@ public class getText extends HttpServlet {
 
                 //返回text对象和collection对象（用于显示按钮）
 
-                text2 text = textService.findAlltext(51);
+                int atextid = (int) session.getAttribute("atextid");
+                text2 text = textService.findAlltext(atextid);
                 collection collection = new collection();
                 Map<String, String[]> map1 = req.getParameterMap();
                 BeanUtils.populate(collection, map1);

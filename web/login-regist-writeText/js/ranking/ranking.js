@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({//公告牌
-        url:"http://172.20.151.112:8066/Music_forum/getRankingList",
+        url:"http://localhost:8066/Music_forum/getRankingList",
         datatype:"json",
         type:"post",
         data:{
@@ -26,7 +26,7 @@ $(document).ready(function(){
     })
 
     $.ajax({//苹果
-        url:"http://172.20.151.112:8066/Music_forum/getRankingList",
+        url:"http://localhost:8066/Music_forum/getRankingList",
         datatype:"json",
         type:"post",
         data:{
@@ -52,7 +52,7 @@ $(document).ready(function(){
     })
 
     $.ajax({//腾讯
-        url:"http://172.20.151.112:8066/Music_forum/getRankingList",
+        url:"http://localhost:8066/Music_forum/getRankingList",
         datatype:"json",
         type:"post",
         data:{

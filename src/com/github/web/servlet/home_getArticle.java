@@ -5,6 +5,8 @@ import com.github.domain.simpletext;
 import com.github.domain.simpletext_article;
 import com.github.service.TextService;
 import com.github.service.impl.TextServiceImpl;
+import com.github.service.impl.monitorServiceImpl;
+import com.github.service.monitorService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,8 @@ public class home_getArticle extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
+        monitorService monitorService = new monitorServiceImpl();
+        monitorService.view();
         TextService textService = new TextServiceImpl();
         List<simpletext_article> canToHomeArtivcle = textService.getCanToHomeArtivcle();
         JSON.writeJSONString(resp.getWriter(), canToHomeArtivcle);

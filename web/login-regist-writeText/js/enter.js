@@ -38,7 +38,7 @@
 
 
             $.ajax({
-                url:"http://172.20.151.112:8066/Music_forum/signinservlet",
+                url:"http://localhost:8066/Music_forum/signinservlet",
                 type:"GET",
                 datatype:"json",
                 data:{
@@ -62,7 +62,7 @@
                         //     }
                         // })
 
-                        window.location.href="http://172.20.151.112:8066/Music_forum/login-regist-writeText/home.html";
+                        window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/home.html";
 
                         //跳转到首页
                     }else{
