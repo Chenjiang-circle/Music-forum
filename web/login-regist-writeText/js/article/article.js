@@ -3,7 +3,7 @@ $(document).ready(function(){
     var collection;
     var ifColl=0;//这篇文章是否被该用户收藏？全局
     var textid = null;
-    var thistext = 1;
+    var thistext = 51;
     function left(depth){  //printComments函数会用到
         var leftComm=50;
         for(var i=0;i<depth;i++){
@@ -61,7 +61,7 @@ $(document).ready(function(){
     }
 
     $.ajax({//请求得到文章、标题、点赞数、收藏数、作者等
-        url:"http://172.20.151.117:8066/Music_forum/getText",
+        url:"http://172.20.151.112:8066/Music_forum/getText",
         type:"GET",
         data:{
           collectiontextid: thistext ,
@@ -261,7 +261,7 @@ $(document).ready(function(){
 
 
     $.ajax({//请求得到评论
-        url:"http://172.20.151.117:8066/Music_forum/comment",
+        url:"http://172.20.151.112:8066/Music_forum/comment",
         type:"GET",
         datatype:"json",
         success:function(data){
@@ -283,7 +283,7 @@ $(document).ready(function(){
         
                     //传递ajax
                     $.ajax({
-                        url:"http://172.20.151.117:8066/Music_forum/changecomment",
+                        url:"http://172.20.151.112:8066/Music_forum/changecomment",
                         dataType:"json",
                         type:"post",
                         data:{
@@ -292,7 +292,8 @@ $(document).ready(function(){
                             // username:"",
                             // userid:"",
                             "time":"2017-8-9",//time,
-                            "textid":$(this).parent().attr("textid")
+                            //"textid":$(this).parent().attr("textid")
+                            "textid":52
                         },
                         success:function(){
                             //插入头像
@@ -341,7 +342,7 @@ $(document).ready(function(){
         like++;
         $("#article-like").html("喜欢"+like);
         $.ajax({
-            url:"http://172.20.151.117:8066/Music_forum/like",
+            url:"http://172.20.151.112:8066/Music_forum/like",
             type:"POST",
             datatype:"json",
             data:{
@@ -369,7 +370,7 @@ $(document).ready(function(){
                 $("#arti-collections").html("收藏"+collection);
 
                 $.ajax({//每次点击都会传一次新的collection值
-                    url:"http://172.20.151.117:8066/Music_forum/collect",
+                    url:"http://172.20.151.112:8066/Music_forum/collect",
                     type:"POST",
                     datatype:"text",
                     data:{

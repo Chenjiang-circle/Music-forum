@@ -130,7 +130,7 @@ public class TextServiceImpl implements TextService {
     }
 
     @Override
-    public List<simpletext> getCanToHomeArtivcle() {
+    public List<simpletext_article> getCanToHomeArtivcle() {
         return textDao.getCanToHomeArtivcle();
     }
 

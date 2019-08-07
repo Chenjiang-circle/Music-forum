@@ -3,7 +3,7 @@ $(document).ready(function () {
     var userid = '2464792469@qq.com';
 
     $.ajax({
-        url: "http://172.20.151.117:8066/Music_forum/usercenter",
+        url: "http://172.20.151.112:8066/Music_forum/usercenter",
         type: "get",
         dataType: "json",
         data: {
@@ -126,7 +126,7 @@ function befan(fans,follow) {
     fans+=1;
         var userid='2464792469@qq.com';
         $.ajax({
-            url: "http://172.20.151.117:8066/Music_forum/follow",
+            url: "http://172.20.151.112:8066/Music_forum/follow",
             type: "GET",
             dataType: "json",
             data: {
@@ -142,7 +142,7 @@ function defan(fans,follow) {
     fans-=1;
         var userid='2464792469@qq.com';
         $.ajax({
-            url: "http://172.20.151.117:8066/Music_forum/follow",
+            url: "http://172.20.151.112:8066/Music_forum/follow",
             type: "GET",
             dataType: "json",
             data: {

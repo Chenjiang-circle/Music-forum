@@ -333,10 +333,10 @@ public class TextDaoImpl implements TextDao {
     }
 
     @Override
-    public List<simpletext> getCanToHomeArtivcle() {
+    public List<simpletext_article> getCanToHomeArtivcle() {
         try {
-            String sql = "select text.textid, text.title, text.textimage from text, hometext where text.textid = hometext.textid and hometext.ispass = 'pass'";
-            List<simpletext> query = template.query(sql, new BeanPropertyRowMapper<simpletext>(simpletext.class));
+            String sql = "select text.textid, text.title, text.textimage, text.likes, text.comment, text.type from text, hometext where text.textid = hometext.textid and hometext.ispass = 'pass'";
+            List<simpletext_article> query = template.query(sql, new BeanPropertyRowMapper<simpletext_article>(simpletext_article.class));
             return query;
         } catch (Exception e) {
             e.printStackTrace();

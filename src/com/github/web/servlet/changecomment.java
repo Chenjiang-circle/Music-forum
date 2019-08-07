@@ -32,7 +32,7 @@ public class changecomment extends HttpServlet {
                 Map<String, String[]> map = request.getParameterMap();
                 BeanUtils.populate(comment, map);
                 comment.setUserid(user.getUserid());
-
+                System.out.println("再调用addComment方法之间打印一下textid以及其他值" + comment.toString());
                 textService.addComment(comment);
 
                 String s = JSON.toJSONString(comment);
