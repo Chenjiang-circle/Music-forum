@@ -39,7 +39,7 @@ public class TextServiceImplTest {
     @Test
     public void addComment() {
         comment comments = new comment();
-        comments.setTextid(17);
+        comments.setTextid(1);
         comments.setUserid("1455075085@qq.com");
         comments.setTime("2008-3-5");
         comments.setText("1楼评论");
@@ -64,7 +64,7 @@ public class TextServiceImplTest {
     @Test
     public void findAlltext() {
         TextService textService = new TextServiceImpl();
-        text2 alltext = textService.findAlltext(33);
+        text2 alltext = textService.findAlltext(1);
         String s = JSON.toJSONString(alltext);
         System.out.println(s);
     }
