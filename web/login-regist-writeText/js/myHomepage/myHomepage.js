@@ -17,7 +17,8 @@ $(document).ready(function () {
             showdata(data);
             //判断是不是自己的个人主页
 
-            isSelf(data.isself,data.isfollow,data.user.fans,data.user.follownum)
+            isSelf(data.isself,data.isfollow,data.user.fans,data.follownum)
+
             console.log(typeof (data.isself))
 
         },
@@ -29,13 +30,13 @@ $(document).ready(function () {
 })
 
 function showdata(data) {
-    $("#userimg").src = data.user.imageid;
+    $("#userimg").attr("src",data.imageid);
 
-    $("#avatar").css('background-image', data.user.imageid);
+    $("#avatar").css('background-image', "url("+data.user.imageid+")");
 
-    $("#loginOn-name").html(data.user.username);
+    $("#loginOn-name").html(data.username);
     $("#username").html(data.user.username);
-    var str = "<div id=\"fans\">粉丝：" + data.user.fans + "关注：" + data.user.follownum + "</div>"
+    var str = "<div id=\"fans\">粉丝：" + data.user.fans + "关注：" + data.follownum + "</div>"
     $("#avatarBack").append(str);
     //TODO  myart  mycollection
     var myart = data.listArticle;
@@ -125,7 +126,7 @@ function befan(fans,follow) {
     fans+=1;
         var userid='2464792469@qq.com';
         $.ajax({
-            url: "http://172.20.151.117:8066/Music_forum/follow",
+            url: "http://172.20.151.112:8066/Music_forum/follow",
             type: "GET",
             dataType: "json",
             data: {
@@ -141,7 +142,7 @@ function defan(fans,follow) {
     fans-=1;
         var userid='2464792469@qq.com';
         $.ajax({
-            url: "http://172.20.151.117:8066/Music_forum/follow",
+            url: "http://172.20.151.112:8066/Music_forum/follow",
             type: "GET",
             dataType: "json",
             data: {

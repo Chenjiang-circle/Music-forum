@@ -39,7 +39,7 @@ public class Follow extends HttpServlet {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
-            Map<String, Object> map1 = new HashMap<String, Object>();
+//            Map<String, Object> map1 = new HashMap<String, Object>();
             UserServiceImpl userService = new UserServiceImpl();
             if( ! userService.isFollow(follow) ){
                 //未关注，添加关注
@@ -54,8 +54,8 @@ public class Follow extends HttpServlet {
 //                map1.put("followed", follow.getFollowed());
 //                map1.put("success", false);
             }
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(response.getWriter(),map1);
+//            ObjectMapper mapper = new ObjectMapper();
+//            mapper.writeValue(response.getWriter(),map1);
         }
     }
 

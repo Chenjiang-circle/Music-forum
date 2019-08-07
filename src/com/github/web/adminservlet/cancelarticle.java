@@ -25,7 +25,7 @@ public class cancelarticle extends HttpServlet {
         TextService textService = new TextServiceImpl();
         textService.cancleHomearticle(textid);
 
-        List<simpletext> canToHomeArtivcle = textService.getCanToHomeArtivcle();
+        List<simpletext_article> canToHomeArtivcle = textService.getCanToHomeArtivcle();
         JSON.writeJSONString(resp.getWriter(), canToHomeArtivcle);
     }
 

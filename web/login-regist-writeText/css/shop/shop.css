@@ -88,6 +88,10 @@
     top: 80px;
 }
 
+#upMusicOut:hover{
+    color: #ff1d74;
+}
+
 #musicGo{
     font-weight: bold;
     font-size: 25px;

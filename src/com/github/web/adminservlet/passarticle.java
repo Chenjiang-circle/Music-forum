@@ -24,7 +24,7 @@ public class passarticle extends HttpServlet {
         TextService textService = new TextServiceImpl();
         textService.addHomearticle(textid);
 
-        List<simpletext> canToHomeArtivcle = textService.getCanToHomeArtivcle();
+        List<simpletext_article> canToHomeArtivcle = textService.getCanToHomeArtivcle();
         JSON.writeJSONString(resp.getWriter(), canToHomeArtivcle);
     }
 

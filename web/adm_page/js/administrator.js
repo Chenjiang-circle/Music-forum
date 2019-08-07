@@ -242,7 +242,9 @@ function printdata(data) {
     for (var i = 0; i < data.length; i++) {
         allImage[i].src = data[i].textimage;
     }
-    $("#alltext").html("共：" + data.length + "篇")
+
+    $("#alltext").html("共："+data.length+"篇")
+
     // var textLine=document.getElementsByClassName('t');
     //  textLine[i].onclick=function(){
     //     //跳转文章详情页

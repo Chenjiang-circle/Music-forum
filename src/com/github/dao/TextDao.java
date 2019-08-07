@@ -114,5 +114,5 @@ public interface TextDao {
      * 获取所有管理员同意上传到首页的文章
      * @return
      */
-    List<simpletext> getCanToHomeArtivcle();
+    List<simpletext_article> getCanToHomeArtivcle();
 }
