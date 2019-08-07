@@ -55,7 +55,7 @@ $(document).ready(function(){
         formData.append('file',document.getElementById("uploadFile").files[0]);
         $.ajax({
             type:"POST",
-            url:"http://172.20.151.112:8066//Music_forum/uploadfile",
+            url:"http://localhost:8066//Music_forum/uploadfile",
             datatype:"json",
             data:formData,
             processData:false,

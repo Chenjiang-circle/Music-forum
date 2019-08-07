@@ -61,7 +61,7 @@ $(document).ready(function(){
     }
 
     $.ajax({//请求得到文章、标题、点赞数、收藏数、作者等
-        url:"http://172.20.151.112:8066/Music_forum/getText",
+        url:"http://localhost:8066/Music_forum/getText",
         type:"GET",
         data:{
           collectiontextid: thistext ,
@@ -261,7 +261,7 @@ $(document).ready(function(){
 
 
     $.ajax({//请求得到评论
-        url:"http://172.20.151.112:8066/Music_forum/comment",
+        url:"http://localhost:8066/Music_forum/comment",
         type:"GET",
         datatype:"json",
         success:function(data){
@@ -308,7 +308,7 @@ $(document).ready(function(){
 
                     //传递ajax
                     $.ajax({
-                        url:"http://172.20.151.112:8066/Music_forum/changecomment",
+                        url:"http://localhost:8066/Music_forum/changecomment",
                         dataType:"json",
                         type:"post",
                         data:{
@@ -374,7 +374,7 @@ $(document).ready(function(){
                 $("#arti-collections").html("收藏"+collection);
 
                 $.ajax({//每次点击都会传一次新的collection值
-                    url:"http://172.20.151.112:8066/Music_forum/collect",
+                    url:"http://localhost:8066/Music_forum/collect",
                     type:"POST",
                     datatype:"text",
                     data:{

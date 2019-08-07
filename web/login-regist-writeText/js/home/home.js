@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     $.ajax({//获取-home-音乐
-        url:"http://172.20.151.112:8066/Music_forum/homeGetMusic",
+        url:"http://localhost:8066/Music_forum/homeGetMusic",
         datatype:"json",
         type:"GET",
         success:function(data){
@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 
     $.ajax({//获取-home-文章
-        url:"http://172.20.151.112:8066/Music_forum/homeGetArticle",
+        url:"http://localhost:8066/Music_forum/homeGetArticle",
         datatype:"json",
         type:"GET",
         success:function(data){
@@ -118,6 +118,6 @@ $(document).ready(function(){
     })
 
     $("#fly-albums-ti").click(function(){
-        location.href = 'http://172.20.151.112:8066/Music_forum/login-regist-writeText/Shop.html';
+        location.href = 'http://localhost:8066/Music_forum/login-regist-writeText/Shop.html';
     })
 })

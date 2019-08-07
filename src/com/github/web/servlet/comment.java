@@ -27,13 +27,15 @@ public class comment extends HttpServlet {
         User user = (User) session.getAttribute("usermsg");
         if (user != null) {
             //int textid = Integer.parseInt(request.getParameter("thistext"));
+            int atextid = (int) session.getAttribute("atextid");
             TextServiceImpl textService = new TextServiceImpl();
-            text2 text = textService.findAlltext(51);
+            text2 text = textService.findAlltext(atextid);
             //传递评论集
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(response.getWriter(), text.getList());
             String s = JSON.toJSONString(text.getList());
             System.out.println(s);
+            session.removeAttribute("atextid");
 
         }else{
             //没登录

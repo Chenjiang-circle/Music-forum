@@ -30,7 +30,7 @@ import java.util.Map;
 @WebServlet("/usercenter")
 public class UserCenter extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         Map<String, Object> map = new HashMap<String, Object>();
@@ -45,18 +45,19 @@ public class UserCenter extends HttpServlet {
 
         //接收userid
 
-        // 测试       String userid = request.getParameter("userid");
-       String userid = "2464792469@qq.com";
+        String auserid = (String) session.getAttribute("auserid");
+        //String userid = request.getParameter("userid");
+       //String userid = "2464792469@qq.com";
 //        System.out.println(userid+"---------------------------");
 
         //获取发过的 text 和 comment
 
-        List<simpletext> listArtical = textService.getsimpleTextByUserID(userid);
-        List<simpletext> listCollection = textService.getcollectionByUserID(userid);
+        List<simpletext> listArtical = textService.getsimpleTextByUserID(auserid);
+        List<simpletext> listCollection = textService.getcollectionByUserID(auserid);
 
         //查询user信息
 
-        User userByUserID = userService.getUserByUserID(userid);
+        User userByUserID = userService.getUserByUserID(auserid);
 
         //用于传递list集合，将list集合再放入一个json中传给前端
 
@@ -64,10 +65,10 @@ public class UserCenter extends HttpServlet {
         String isfollow = "false";
 
         //获取follownum
-        int follownum = userService.countFollowedNumByUserId(userid);
+        int follownum = userService.countFollowedNumByUserId(auserid);
 
         if (user != null) {
-            if (userid.equals(user.getUserid())) {
+            if (auserid.equals(user.getUserid())) {
 
                 //判断是否为自己的主页
                 isself = "true";
@@ -86,7 +87,7 @@ public class UserCenter extends HttpServlet {
 
                 follow follow = new follow();
                 follow.setUserid(user.getUserid());
-                follow.setFollowed(userid);
+                follow.setFollowed(auserid);
                 if (userService.isFollow(follow))
                     isfollow = "true";
                 else
@@ -107,6 +108,7 @@ public class UserCenter extends HttpServlet {
             System.out.println(s);
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(response.getWriter(), map);
+            session.removeAttribute("auserid");
 
         } else {
 //            response.setContentType("text/html;charset=utf-8");

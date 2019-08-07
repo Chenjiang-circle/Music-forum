@@ -71,7 +71,7 @@ public class monitorDaoImpl implements monitorDao {
         }
         try {
             // 5. 获取乐评数
-            String sql5 = "select count(*) from text where type like '乐评'";
+            String sql5 = "select count(*) from text where type like '%乐评%'";
             int integer = template.queryForObject(sql5, Integer.class);
             webData.setMusicReviews(integer);
         } catch (Exception e) {
@@ -80,7 +80,7 @@ public class monitorDaoImpl implements monitorDao {
         }
         try {
             // 6. 获取音乐故事数
-            String sql6 = "select count(*) from text where type like '音乐故事'";
+            String sql6 = "select count(*) from text where type like '%音乐故事%'";
             int integer = template.queryForObject(sql6, Integer.class);
             webData.setMusicStory(integer);
         } catch (Exception e) {
@@ -89,7 +89,7 @@ public class monitorDaoImpl implements monitorDao {
         }
         try {
             // 7. 华语数
-            String sql7 = "select count(*) from text where type like '华语'";
+            String sql7 = "select count(*) from text where type like '%华语%'";
             int integer = template.queryForObject(sql7, Integer.class);
             webData.setMandarin(integer);
         } catch (Exception e) {
@@ -98,7 +98,7 @@ public class monitorDaoImpl implements monitorDao {
         }
         try {
             // 8. 欧美数
-            String sql8 = "select count(*) from text where type like '欧美'";
+            String sql8 = "select count(*) from text where type like '%欧美%'";
             int integer = template.queryForObject(sql8, Integer.class);
             webData.setWestern(integer);
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class monitorDaoImpl implements monitorDao {
         }
         try {
             // 9. 摇滚数
-            String sql9 = "select count(*) from text where type like '摇滚'";
+            String sql9 = "select count(*) from text where type like '%摇滚%'";
             int integer = template.queryForObject(sql9, Integer.class);
             webData.setRock(integer);
         } catch (Exception e) {
@@ -116,7 +116,7 @@ public class monitorDaoImpl implements monitorDao {
         }
         try {
             // 10. 流行数
-            String sql10 = "select count(*) from text where type like '流行'";
+            String sql10 = "select count(*) from text where type like '%流行%'";
             int integer = template.queryForObject(sql10, Integer.class);
             webData.setPop(integer);
         } catch (Exception e) {
@@ -125,7 +125,7 @@ public class monitorDaoImpl implements monitorDao {
         }
         try {
             // 11. 嘻哈数
-            String sql11 = "select count(*) from text where type like '嘻哈'";
+            String sql11 = "select count(*) from text where type like '%嘻哈%'";
             int integer = template.queryForObject(sql11, Integer.class);
             webData.setRap(integer);
         } catch (Exception e) {
