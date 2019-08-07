@@ -62,9 +62,16 @@ public class register extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(resp.getWriter(), map1);
         } else {
+            // 先返回给前段true,让前段跳转页面
+            Map<String, Object> map1 = new HashMap<String, Object>();
+            map1.put("success", true);
+            System.out.println("success");
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(resp.getWriter(), map1);
+            // 再在后台向注册用户发送邮件
             userService.register(users);
             String userid = users.getUserid();
-            String receiveMailAccount = "1455075085@qq.com";
+            //String receiveMailAccount = "1455075085@qq.com";
             // 随便设置一个激活码
             String mailActiveCode = "123456";
             try {
@@ -72,12 +79,6 @@ public class register extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            Map<String, Object> map1 = new HashMap<String, Object>();
-            map1.put("success", true);
-            System.out.println("success");
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(resp.getWriter(), map1);
         }
     }
 

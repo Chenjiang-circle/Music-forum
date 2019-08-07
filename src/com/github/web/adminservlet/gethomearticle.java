@@ -2,6 +2,7 @@ package com.github.web.adminservlet;
 
 import com.alibaba.fastjson.JSON;
 import com.github.domain.simpletext;
+import com.github.domain.simpletext_article;
 import com.github.service.TextService;
 import com.github.service.impl.TextServiceImpl;
 
@@ -19,7 +20,7 @@ public class gethomearticle extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
         TextService textService = new TextServiceImpl();
-        List<simpletext> canToHomeArtivcle = textService.getCanToHomeArtivcle();
+        List<simpletext_article> canToHomeArtivcle = textService.getCanToHomeArtivcle();
         JSON.writeJSONString(resp.getWriter(), canToHomeArtivcle);
     }
 

@@ -28,7 +28,7 @@ public class comment extends HttpServlet {
         if (user != null) {
             //int textid = Integer.parseInt(request.getParameter("thistext"));
             TextServiceImpl textService = new TextServiceImpl();
-            text2 text = textService.findAlltext(1);
+            text2 text = textService.findAlltext(51);
             //传递评论集
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(response.getWriter(), text.getList());

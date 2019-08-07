@@ -39,10 +39,10 @@ public class TextServiceImplTest {
     @Test
     public void addComment() {
         comment comments = new comment();
-        comments.setTextid(17);
+        comments.setTextid(53);
         comments.setUserid("1455075085@qq.com");
-        comments.setTime("2008-3-5");
-        comments.setText("1楼评论");
+        comments.setTime("2019-8-7");
+        comments.setText("评论\"你好\"");
         int commentid = textDao.addCommentToText(comments);
         if (commentid != -1){
             Boolean aBoolean = textDao.addComment(comments, commentid);
@@ -145,7 +145,7 @@ public class TextServiceImplTest {
 
     @Test
     public void getCanToHomeArtivcle() {
-        List<simpletext> canToHomeArtivcle = textService.getCanToHomeArtivcle();
+        List<simpletext_article> canToHomeArtivcle = textService.getCanToHomeArtivcle();
         String s = JSON.toJSONString(canToHomeArtivcle);
         System.out.println(s);
     }

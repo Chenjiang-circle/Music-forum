@@ -47,7 +47,7 @@ public class getText extends HttpServlet {
 
                 //返回text对象和collection对象（用于显示按钮）
 
-                text2 text = textService.findAlltext(1);
+                text2 text = textService.findAlltext(51);
                 collection collection = new collection();
                 Map<String, String[]> map1 = req.getParameterMap();
                 BeanUtils.populate(collection, map1);
