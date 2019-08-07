@@ -280,7 +280,32 @@ $(document).ready(function(){
                     //把回复评论的内容打印在页面上
                     commentDiv = document.createElement('div');
                     commentDiv.setAttribute("class","comments");
-        
+
+                    //插入头像
+                    commentAvatar = document.createElement('div');
+                    commentAvatar.setAttribute('class','comment-avatar');
+                    commentDiv.appendChild(commentAvatar);
+                    // commentAvatar.style.backgroundImage = '/img/touxiang.jpg';
+
+
+                    // //用户信息
+                    // commentUser = document.createElement('div');
+                    // commentUser.setAttribute('class','comment-user');
+                    // commentDiv.appendChild(commentUser);
+                    // commentUser.innerHTML = '<p>'+c.username+"</p> 发表于 "+c.time;
+
+
+                    //插入评论内容
+                    commentText = document.createElement('div');
+                    commentText.setAttribute('class','comment-text');
+                    // commentText.setAttribute("textid",c.textid);
+                    commentDiv.appendChild(commentText);
+                    commentText.innerHTML = comText;
+                    var left=parseInt($(this).parent().parent().css('left'))+50;
+                    commentDiv.style.left=left+'px';
+                    $(this).parent().parent().after(commentDiv);
+                    // $(this).parent().remove();
+
                     //传递ajax
                     $.ajax({
                         url:"http://172.20.151.112:8066/Music_forum/changecomment",
@@ -292,34 +317,13 @@ $(document).ready(function(){
                             // username:"",
                             // userid:"",
                             "time":"2017-8-9",//time,
-                            //"textid":$(this).parent().attr("textid")
-                            "textid":52
+                            "textid":$(this).parent().prev('div').attr("textid")
+                            //"textid":52
                         },
                         success:function(){
-                            //插入头像
-                            commentAvatar = document.createElement('div');
-                            commentAvatar.setAttribute('class','comment-avatar');
-                            commentDiv.appendChild(commentAvatar);
-                            // commentAvatar.style.backgroundImage = '/img/touxiang.jpg';
-                            
-                            
-                            // //用户信息
-                            // commentUser = document.createElement('div');
-                            // commentUser.setAttribute('class','comment-user');
-                            // commentDiv.appendChild(commentUser);
-                            // commentUser.innerHTML = '<p>'+c.username+"</p> 发表于 "+c.time;
-        
-                            
-                            //插入评论内容
-                            commentText = document.createElement('div');
-                            commentText.setAttribute('class','comment-text');
-                            // commentText.setAttribute("textid",c.textid);
-                            commentDiv.appendChild(commentText);
-                            commentText.innerHTML = comText;
-                            var left=parseInt($(this).parent().parent().css('left'))+50;
-                            commentDiv.style.left=left+'px';
-                            $(this).parent().parent().after(commentDiv);
-                            $(this).parent().remove();
+                            console.log('123');
+
+
                         },
                         error:function(jqXHR){
                             alert("OOPS!服务器出现了一个小问题："+jqXHR.status)

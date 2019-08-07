@@ -118,6 +118,6 @@ $(document).ready(function(){
     })
 
     $("#fly-albums-ti").click(function(){
-        location.href = 'shop.html';
+        location.href = 'http://172.20.151.112:8066/Music_forum/login-regist-writeText/Shop.html';
     })
 })
