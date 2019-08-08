@@ -1,0 +1,52 @@
+#main-content{
+    width: 60%;
+    margin:0 auto;
+    
+}
+
+#tip{
+    margin: 200px 0;
+    width: 100%;
+    font-size: 60px;
+    color: #2a1048;
+    font-family: 'Righteous';
+    
+}
+#tip h1{
+    display: inline-block;
+    font-size: 120px;
+    color: #30c17b;
+}
+
+.results{
+    width: 60%;
+    height: 100px;
+    padding: 15px 30px;
+    background: #2a1048;
+    color: #ffffff;
+    border-radius: 100px;
+    transition: all 0.3s;
+    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.results:hover{
+    background: #ffffff;
+    color: #30c17b;
+}
+
+.results-title{
+    font-size: 30px;
+
+}
+.cover{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-image: url(../img/artList/1207722775.jpg);
+    background-size: cover;
+    background-position-x: center;
+    position:absolute;
+    top: 0px;
+    right: 0px;
+}

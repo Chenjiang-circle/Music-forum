@@ -55,6 +55,12 @@
     cursor: pointer;
 }
 
+#tips{
+    width: auto;
+    position: relative;
+    top: -10px;
+}
+
 #tips span{
     position: relative;
     top: 10px;
