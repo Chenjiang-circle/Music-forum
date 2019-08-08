@@ -1,15 +1,22 @@
+var issignin=false;
 $(document).ready(function(){
+    var nowUsername="";
+    var nowUseravatar="";
+
     $.ajax({
         url:"http://localhost:8066/Music_forum/getUserIformation",
         type:"GET",
         dataType:"json",
         success:function (data) {
             if(data!=null){
+                issignin=true;
                 //userid不为空 获取用户头像 用户昵称 id
                 $("#login").css("display","none");
                 $(".loginOn").css("display","block");
                 $("#loginOn-name").html(data.username);
+                nowUsername=data.username;
                 $("#loginOn-image").attr("src",data.imageid);
+                nowUseravatar=data.imageid;
                 //点击发送ajax给后端  后端存取userid
 
                 $(".loginOn").click(function(){//右上角跳转个人主页
@@ -103,10 +110,11 @@ $(document).ready(function(){
                 $("#author-username").html(data.text.username);
                 $("#article-content").html("<pre>"+data.text.text+"</pre>");
                 like=data.text.likes;
-                $("#article-like").html("喜欢"+like);
-                $("#article-conmmet-title").html("评论"+data.text.comment);
+                $("#article-like").html("喜欢:"+like);
+                $("#article-conmmet-title").html("评论:"+data.text.comment);
                 collection=data.text.collection;
-                $("#arti-collections").html("收藏"+collection);
+                $("#arti-collections").html("收藏:"+collection);
+                $('#textimage').attr('src',data.text.textimage);
                 if(data.ifColl){//说明该用户已经收藏该文章
                     ifColl=1;
                     $("#arti-collections").css({'background':'yellow'});
@@ -137,6 +145,7 @@ $(document).ready(function(){
             }else{
                 alert("文章加载失败："+data.msg)
             }
+            //点击作者头像跳转文章作者主页
             var avatar=document.getElementsByClassName('avatar');
             avatar[0].onclick=function(){
                 $.ajax({
@@ -297,46 +306,58 @@ $(document).ready(function(){
         //******************************************************************************
 
 
-
-        $('#commit-comment').click(function(){  //回复文章
-            console.log('hhh');
-            var comText = $('#article-writeComment').val();
-            console.log(comText);
-            commentDiv = document.createElement('div');
-            commentDiv.setAttribute("class","comments");
-            //插入头像
-            commentAvatar = document.createElement('div');
-            commentAvatar.setAttribute('class','comment-avatar');
-            commentDiv.appendChild(commentAvatar);
-            //插入评论内容
-            commentText = document.createElement('div');
-            commentText.setAttribute('class','comment-text');
-            // commentText.setAttribute("textid",c.textid);
-            commentDiv.appendChild(commentText);
-            commentText.innerHTML = comText;
-            console.log(commentDiv);
-            var left=parseInt($('#allComments').find('.comments:first').css('left'));
-            commentDiv.style.left=left+'px';
-            $('#allComments').find('div:first').before(commentDiv);
-                        // 传递ajax
+        //回复文章
+        $('#commit-comment').click(function(){
+            if(issignin){
+                console.log('hhh');
+                var comText = $('#article-writeComment').val();
+                console.log(comText);
+                commentDiv = document.createElement('div');
+                commentDiv.setAttribute("class","comments");
+                //插入头像
+                commentAvatar = document.createElement('div');
+                commentAvatar.setAttribute('class','comment-avatar');
+                commentDiv.appendChild(commentAvatar);
+                // //用户信息
+                commentUser = document.createElement('div');
+                commentUser.setAttribute('class','comment-user');
+                commentDiv.appendChild(commentUser);
+                commentUser.innerHTML = '<p>'+nowUsername+'</p>';
+                //插入评论内容
+                commentText = document.createElement('div');
+                commentText.setAttribute('class','comment-text');
+                // commentText.setAttribute("textid",c.textid);
+                commentDiv.appendChild(commentText);
+                commentText.innerHTML = comText;
+                console.log(commentDiv);
+                var left=parseInt($('#allComments').find('.comments:first').css('left'));
+                commentDiv.style.left=left+'px';
+                $('#allComments').find('div:first').before(commentDiv);
+                // 传递ajax
                 $.ajax({
-                    url:"http://172.20.151.112:8066/Music_forum/changecomment",
+                    url:"http://localhost:8066/Music_forum/changecomment",
                     dataType:"json",
                     type:"post",
                     data:{
                         'text':comText,
                         // username:"",
                         // userid:"",
-                        // time:time,
-                        'textid':$(this).parent().attr("textid")
+                        'time':getNowFormatDate(),
+                        'textid':textid
                     },
                     success:function(){
-                       
+
                     },
                     error:function(jqXHR){
                         alert("OOPS!服务器出现了一个小问题："+jqXHR.status)
                     }
                 })
+            }else{
+                if(confirm("您还未登录,不等发表评论,是否前往登录?")){
+                    window.location.href="http://localhost:8066/Music_forum/login-regist/writeText/enter.html";
+                }
+            }
+
     
         })
 
@@ -354,64 +375,72 @@ $(document).ready(function(){
                 commentBack.setAttribute("class","commentBack");
                 commentBack.innerHTML = "<textarea placeholder='善意的评论是友好交流的开始'></textarea><div class='bobo'>发送</div>";
                 $(this).after(commentBack);
-        
-                $(".bobo").click(function(){//发送对评论的回复
-                    var comText = $(this).prev().val();//回复评论的内容
-                    //把回复评论的内容打印在页面上
-                    commentDiv = document.createElement('div');
-                    commentDiv.setAttribute("class","comments");
+                //发送对评论的回复
+                $(".bobo").click(function(){
+                    if(issignin){
+                        $('.commentBack').css({'display':'none'});
+                        var comText = $(this).prev().val();//回复评论的内容
+                        //把回复评论的内容打印在页面上
+                        commentDiv = document.createElement('div');
+                        commentDiv.setAttribute("class","comments");
 
 
-                    //插入头像
-                    commentAvatar = document.createElement('div');
-                    commentAvatar.setAttribute('class','comment-avatar');
-                    commentDiv.appendChild(commentAvatar);
-                    // commentAvatar.style.backgroundImage = '/img/touxiang.jpg';
+                        //插入头像
+                        commentAvatar = document.createElement('div');
+                        commentAvatar.setAttribute('class','comment-avatar');
+                        commentDiv.appendChild(commentAvatar);
+                        // commentAvatar.style.backgroundImage = '/img/touxiang.jpg';
 
 
-                    // //用户信息
-                    // commentUser = document.createElement('div');
-                    // commentUser.setAttribute('class','comment-user');
-                    // commentDiv.appendChild(commentUser);
-                    // commentUser.innerHTML = '<p>'+c.username+"</p> 发表于 "+c.time;
+                        // //用户信息
+                        // commentUser = document.createElement('div');
+                        // commentUser.setAttribute('class','comment-user');
+                        // commentDiv.appendChild(commentUser);
+                        // commentUser.innerHTML = '<p>'+c.username+"</p> 发表于 "+c.time;
 
 
-                    //插入评论内容
-                    commentText = document.createElement('div');
-                    commentText.setAttribute('class','comment-text');
-                    // commentText.setAttribute("textid",c.textid);
-                    commentDiv.appendChild(commentText);
-                    commentText.innerHTML = comText;
-                    var left=parseInt($(this).parent().parent().css('left'))+50;
-                    commentDiv.style.left=left+'px';
-                    $(this).parent().parent().after(commentDiv);
-                    // $(this).parent().remove();
-                    var currentTime=getNowFormatDate();
-                    //传递ajax
+                        //插入评论内容
+                        commentText = document.createElement('div');
+                        commentText.setAttribute('class','comment-text');
+                        // commentText.setAttribute("textid",c.textid);
+                        commentDiv.appendChild(commentText);
+                        commentText.innerHTML = comText;
+                        var left=parseInt($(this).parent().parent().css('left'))+50;
+                        commentDiv.style.left=left+'px';
+                        $(this).parent().parent().after(commentDiv);
+                        // $(this).parent().remove();
+                        var currentTime=getNowFormatDate();
+                        //传递ajax
 
-                    $.ajax({
-                        url:"http://localhost:8066/Music_forum/changecomment",
-                        dataType:"json",
-                        type:"post",
-                        data:{
-                            "text":comText
-                            ,
-                            // username:"",
-                            // userid:"",
+                        $.ajax({
+                            url:"http://localhost:8066/Music_forum/changecomment",
+                            dataType:"json",
+                            type:"post",
+                            data:{
+                                "text":comText
+                                ,
+                                // username:"",
+                                // userid:"",
 
-                            "time":currentTime,//time,
-                            "textid":$(this).parent().prev('div').attr("textid")
-                            //"textid":52
-                        },
-                        success:function(){
-                            console.log('123');
+                                "time":currentTime,//time,
+                                "textid":$(this).parent().prev('div').attr("textid")
+                                //"textid":52
+                            },
+                            success:function(){
+                                console.log('123');
 
 
-                        },
-                        error:function(jqXHR){
-                            alert("OOPS!服务器出现了一个小问题："+jqXHR.status)
+                            },
+                            error:function(jqXHR){
+                                alert("OOPS!服务器出现了一个小问题："+jqXHR.status)
+                            }
+                        })
+                    }else{
+                        if(confirm("您还未登录,怎么发表评论?是否前往登录?")){
+                            window.location.href="http://localhost:8066/Music_forum/login-regist/writeText/enter.html";
                         }
-                    })
+                    }
+
         
                 })
             })
@@ -442,41 +471,48 @@ $(document).ready(function(){
 
 
     $("#article-like").click(function(){//点击喜欢
-        like++;
-        $("#article-like").html("喜欢"+like);
+        if(issignin){
+            like++;
+            $("#article-like").html("喜欢"+like);
 
-        var x = 100;       
-		var y = 900;  
-		var num = Math.floor(Math.random() * 11 + 1);
-		var index=$('.love').children('img').length;
-        var rand = parseInt(Math.random() * (x - y + 1) + y); 
-        
-		$(".love").css
-		$(".love").append("<img src=''>");
-		$(".love").find('img:eq(' + index + ')').attr('src','img/lovepic/'+num+'.png')
-		$(".love").find("img").animate({
-			bottom:"800px",
-			opacity:"0",
-			left: rand,
-		},3000)
+            var x = 100;
+            var y = 900;
+            var num = Math.floor(Math.random() * 11 + 1);
+            var index=$('.love').children('img').length;
+            var rand = parseInt(Math.random() * (x - y + 1) + y);
 
-        $.ajax({
-            url:"http://172.20.151.112:8066/Music_forum/like",
-            type:"POST",
-            datatype:"json",
-            data:{
-                likes:1,
-                textid:textid,
-            },
-            error:function(jqXHR){
-                alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
+            $(".love").css
+            $(".love").append("<img src=''>");
+            $(".love").find('img:eq(' + index + ')').attr('src','img/lovepic/'+num+'.png')
+            $(".love").find("img").animate({
+                bottom:"800px",
+                opacity:"0",
+                left: rand,
+            },3000)
+
+            $.ajax({
+                url:"http://172.20.151.112:8066/Music_forum/like",
+                type:"POST",
+                datatype:"json",
+                data:{
+                    likes:1,
+                    textid:textid,
+                },
+                error:function(jqXHR){
+                    alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
+                }
+            })
+        }else{
+            if(confirm("您还未登录,不能表达您对这篇文章的喜爱之情,是否前往登录?")){
+                window.location.href="http://localhost:8066/Music_forum/login-regist/writeText/enter.html";
             }
-        })
+        }
+
     })
 
-        
-        $("#arti-collections").click(//点击收藏或取消收藏
-            function(){
+    //点击收藏或取消收藏
+        $("#arti-collections").click(function(){
+            if(issignin){
                 if(ifColl==1){
                     ifColl=0;
                     $("#arti-collections").css({'background':'wheat'});
@@ -499,11 +535,18 @@ $(document).ready(function(){
                     }
                 })
 
-                
+            }else{
+                if(confirm("您还未登录,是否前往登录?")){
+                    window.location.href="http://localhost:8066/Music_forum/login-regist/writeText/enter.html";
+                }
             }
-        )
 
 
+            })
+
+    // $('#main-content').click(function () {
+    //     $('.bobo').css({'display':'none'})
+    // })
 
     
 

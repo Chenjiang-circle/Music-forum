@@ -111,22 +111,48 @@ $(document).ready(function(){
         success:function(data){
             // JSON.parse(data);
             data = eval(data);
-            for(i=0;i<30;i++){
-                                            //用于打印type👇
-                                            var type = data[i].type.split("&ArticleSelect=");
-                                            type[0] = type[0].replace("ArticleSelect=","");
-                                            console.log(type);
-                                            var typeHtml="";
-                                            for(j = 0;j<type.length;j++){
-                                                typeHtml = typeHtml+"<div class='arttypes'>"+type[j]+"</div>"
-                                            }
-                                            // console.log(typeHtml);
-                                            //用于打印type👆
+            console.log(data)
+            var t=30;
+            if(data.length<30){
+                t=data.length;
+            }
+
+            for(i=0;i<t;i++){
+                //用于打印type👇
+                var type = data[i].type.split("&ArticleSelect=");
+                type[0] = type[0].replace("ArticleSelect=","");
+                console.log(type);
+                var typeHtml="";
+                for(j = 0;j<type.length;j++){
+                    typeHtml = typeHtml+"<div class='arttypes'>"+type[j]+"</div>"
+                }
+                // console.log(typeHtml);
+                //用于打印type👆
                 $("#box-515 .rank-cover").eq(i).css({'background-image':'url("'+data[i].textimage+'")'});
                 $("#box-515 .rank-songname").eq(i).text(data[i].title);
                 $("#box-515 .rank-album").eq(i).html(typeHtml);
                 $("#box-515 .rank-songer").eq(i).html("💖热度："+data[i].likes+"&nbsp&nbsp|&nbsp&nbsp💬跟帖："+data[i].comment);
              }
+            var box515=document.getElementById('box-515');
+            var songname=box515.getElementsByClassName('rank-songname');
+            for(var i=0;i<songname.length;i++){
+                songname[i].index=i;
+                songname[i].onclick=function(){
+                    var a=this.index;
+                    console.log(a)
+                    console.log(data[0])
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        type:"get",
+                        data:{
+                            "thistext":data[a].textid
+                        },
+                        success:function(){
+                            window.open("http://localhost:8066/Music_forum/login-regist-writeText/article.html")
+                        }
+                    })
+                }
+            }
             },
         error:function(jqXHR){
             alert("OOPS! 资源加载失败："+jqXHR.status);

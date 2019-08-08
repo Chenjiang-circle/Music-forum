@@ -1,3 +1,4 @@
+var issignin=false;
 $(document).ready(function () {
 
     $.ajax({
@@ -6,6 +7,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
             if (data != null) {
+                issignin=true;
                 // 因为data不为空,所以需要将右上角的sign in 和 sign up隐藏起来,并展示登录用户头像
                 //userid不为空 获取用户头像 用户昵称 id
                 $("#login").css("display", "none");
@@ -50,6 +52,14 @@ $(document).ready(function () {
             //写入数据
             showdata(data);
             //判断是不是自己的个人主页
+            //判断是否登录
+            // $("#addfans-box").click(function () {
+            //     if(data.userid==null){
+            //         if(confirm("您还未登录,不能关注,是否前往登录?")){
+            //             window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html"
+            //         }
+            //     }
+            // })
 
             isSelf(data.isself, data.isfollow, data.user.fans, data.follownum);
 
@@ -163,16 +173,24 @@ function isSelf(isself, isfollow, fans, follow) {
         var t = fans;
 
         $("#addfans-box").click(function () {
-            //console.log("添加关注被调用");
-            if (isfollow != "false") {
-                defan(t, follow);
-                isfollow = "false";
-                t -= 1;
-            } else {
-                befan(t, follow);
-                isfollow = "true";
-                t += 1;
+            //判断用户是否登录
+            if(issignin){
+                //console.log("添加关注被调用");
+                if (isfollow != "false") {
+                    defan(t, follow);
+                    isfollow = "false";
+                    t -= 1;
+                } else {
+                    befan(t, follow);
+                    isfollow = "true";
+                    t += 1;
+                }
+            }else{
+                if(confirm("您还未登录,不能关注,是否前往登录?")){
+                    window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html"
+                }
             }
+
         })
 
 

@@ -128,3 +128,7 @@ h1{
     width: 100px;
     height: auto;
 }
+.btn_cancel{
+    position: relative;
+    z-index: 100;
+}
