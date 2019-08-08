@@ -1,9 +1,39 @@
 $(document).ready(function(){
+    $.ajax({
+        url:"http://localhost:8066/Music_forum/getUserIformation",
+        type:"GET",
+        dataType:"json",
+        success:function (data) {
+            if(data!=null){
+                //userid不为空 获取用户头像 用户昵称 id
+                $("#login").css("display","none");
+                $(".loginOn").css("display","block");
+                $("#loginOn-name").html(data.username);
+                $("#loginOn-image").attr("src",data.imageid);
+                //点击发送ajax给后端  后端存取userid
+
+                $(".loginOn").click(function(){//右上角跳转个人主页
+                    //console.log(data.userid);
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        type:"GET",
+                        data:{
+                            "userid":data.userid
+                        }
+                    })
+                    window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
+                })
+            }else{
+                //显示登录注册按钮
+                $("#login").css("display","block");
+                $(".loginOn").css("display","none");
+            }
+        }
+    })
     var like;
     var collection;
     var ifColl=0;//这篇文章是否被该用户收藏？全局
     var textid = null;
-    var thistext = 51;
     function left(depth){  //printComments函数会用到
         var leftComm=50;
         for(var i=0;i<depth;i++){
@@ -61,11 +91,8 @@ $(document).ready(function(){
     }
 
     $.ajax({//请求得到文章、标题、点赞数、收藏数、作者等
-        url:"http://172.20.151.112:8066/Music_forum/getText",
+        url:"http://localhost:8066/Music_forum/getText",
         type:"GET",
-        data:{
-          collectiontextid: thistext ,
-        },
         datatype:"text",
         success:function(data){
             textid = data.text.textid;
@@ -109,6 +136,17 @@ $(document).ready(function(){
                 }*/
             }else{
                 alert("文章加载失败："+data.msg)
+            }
+            var avatar=document.getElementsByClassName('avatar');
+            avatar[0].onclick=function(){
+                $.ajax({
+                    url:"http://localhost:8066/Music_forum/jumpPage",
+                    type:"GET",
+                    data:{
+                        "userid":data.text.userid
+                    }
+                })
+                window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
             }
         },
         error:function(jqXHR){
@@ -303,7 +341,7 @@ $(document).ready(function(){
         })
 
     $.ajax({//请求得到评论
-        url:"http://172.20.151.112:8066/Music_forum/comment",
+        url:"http://localhost:8066/Music_forum/comment",
         type:"GET",
         datatype:"json",
         success:function(data){
@@ -322,10 +360,37 @@ $(document).ready(function(){
                     //把回复评论的内容打印在页面上
                     commentDiv = document.createElement('div');
                     commentDiv.setAttribute("class","comments");
-                    console.log('s')
-                    传递ajax
+
+
+                    //插入头像
+                    commentAvatar = document.createElement('div');
+                    commentAvatar.setAttribute('class','comment-avatar');
+                    commentDiv.appendChild(commentAvatar);
+                    // commentAvatar.style.backgroundImage = '/img/touxiang.jpg';
+
+
+                    // //用户信息
+                    // commentUser = document.createElement('div');
+                    // commentUser.setAttribute('class','comment-user');
+                    // commentDiv.appendChild(commentUser);
+                    // commentUser.innerHTML = '<p>'+c.username+"</p> 发表于 "+c.time;
+
+
+                    //插入评论内容
+                    commentText = document.createElement('div');
+                    commentText.setAttribute('class','comment-text');
+                    // commentText.setAttribute("textid",c.textid);
+                    commentDiv.appendChild(commentText);
+                    commentText.innerHTML = comText;
+                    var left=parseInt($(this).parent().parent().css('left'))+50;
+                    commentDiv.style.left=left+'px';
+                    $(this).parent().parent().after(commentDiv);
+                    // $(this).parent().remove();
+                    var currentTime=getNowFormatDate();
+                    //传递ajax
+
                     $.ajax({
-                        url:"http://172.20.151.112:8066/Music_forum/changecomment",
+                        url:"http://localhost:8066/Music_forum/changecomment",
                         dataType:"json",
                         type:"post",
                         data:{
@@ -333,35 +398,15 @@ $(document).ready(function(){
                             ,
                             // username:"",
                             // userid:"",
-                            "time":"2017-8-9",//time,
-                            // "textid":$(this).parent().attr("textid"),
-                            "textid":52
+
+                            "time":currentTime,//time,
+                            "textid":$(this).parent().prev('div').attr("textid")
+                            //"textid":52
                         },
                         success:function(){
-                            //插入头像
-                            commentAvatar = document.createElement('div');
-                            commentAvatar.setAttribute('class','comment-avatar');
-                            commentDiv.appendChild(commentAvatar);
-                            // commentAvatar.style.backgroundImage = '/img/touxiang.jpg';
-                            
-                            
-                            // //用户信息
-                            // commentUser = document.createElement('div');
-                            // commentUser.setAttribute('class','comment-user');
-                            // commentDiv.appendChild(commentUser);
-                            // commentUser.innerHTML = '<p>'+c.username+"</p> 发表于 "+c.time;
-        
-                            
-                            //插入评论内容
-                            commentText = document.createElement('div');
-                            commentText.setAttribute('class','comment-text');
-                            // commentText.setAttribute("textid",c.textid);
-                            commentDiv.appendChild(commentText);
-                            commentText.innerHTML = comText;
-                            var left=parseInt($(this).parent().parent().css('left'))+50;
-                            commentDiv.style.left=left+'px';
-                            $(this).parent().parent().after(commentDiv);
-                            $(this).parent().remove();
+                            console.log('123');
+
+
                         },
                         error:function(jqXHR){
                             alert("OOPS!服务器出现了一个小问题："+jqXHR.status)
@@ -377,7 +422,23 @@ $(document).ready(function(){
         }
     })
 
-
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();
+        return currentdate;
+    }
 
 
     $("#article-like").click(function(){//点击喜欢
@@ -428,7 +489,7 @@ $(document).ready(function(){
                 $("#arti-collections").html("收藏"+collection);
 
                 $.ajax({//每次点击都会传一次新的collection值
-                    url:"http://172.20.151.112:8066/Music_forum/collect",
+                    url:"http://localhost:8066/Music_forum/collect",
                     type:"POST",
                     datatype:"text",
                     data:{

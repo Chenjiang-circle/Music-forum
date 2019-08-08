@@ -62,23 +62,19 @@
 }
 
 #tips span{
-    position: relative;
-    top: 10px;
+    
     width: 40px;
     height: 20px;
-    color:black;
+    color:white;
     overflow:hidden;
-    margin-right: 10px;
-    background: rgb(225, 226, 228);
-    line-height:20px;
+    background: rgb(177, 177, 177);
+    padding: 10px 10px;
+    border-radius: 8px;
     text-align: center;
-    margin: 10px 5px;
-    margin-bottom:0;
-    padding: 5px;
-    border-radius: 5px;
+
 }
  
 #tips .s1{background: #F45A68;}/*红色*/
- #tips .s2{background: #fc0;}/*橙色*/
- #tips .s3{background: #cc0;}/*黄色*/
- #tips .s4{background: #14B12F;}/*绿色*/
+#tips .s2{background: #fc0;}/*橙色*/
+#tips .s3{background: #cc0;}/*黄色*/
+#tips .s4{background: #14B12F;}/*绿色*/

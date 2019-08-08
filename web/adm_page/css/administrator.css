@@ -37,11 +37,25 @@ h1{
 /* 网站信息 */
 
 .sta_msg{
+    position: relative;
+    box-shadow: 10px 10px 30px #888888;
+    margin: 10px auto;
     border-radius: 8px;
     height: 100px;
+    transition: top 0.5s;
+    transition: left 0.5s;
+}
+.sta_msg:hover{
+    top:10px;
+    left:10px;
+    box-shadow: 0 0 0 ;
 }
 .sta_msg p{
     font-size:25px;
+}
+.sta_msg span{
+    position: relative;
+    font-size: 40px;
 }
 #tod_view{
 
@@ -61,7 +75,26 @@ h1{
 }
 
 
-
+#mandarin{
+    width: 0%;
+    transition:width 0.5s;
+}
+#western{
+    width: 0%;
+    transition:width 0.5s;
+}
+#rock{
+    width: 0%;
+    transition:width 0.5s;
+}
+#pop{
+    width: 0%;
+    transition:width 0.5s;
+}
+#rap{
+    width: 0%;
+    transition:width 0.5s;
+}
 
 
 /* 审核 */

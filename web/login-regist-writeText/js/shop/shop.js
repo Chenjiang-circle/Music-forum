@@ -1,5 +1,36 @@
 $(document).ready(function(){
+    var shoptohome=document.getElementById('shoptohome');
+    shoptohome.onclick=function(){
+        $.ajax({
+            url:"http://localhost:8066/Music_forum/getUserIformation",
+            type:"GET",
+            dataType:"json",
+            success:function (data) {
+                if(data!=null){
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        type:"post",
+                        data:{
+                            "userid":data.userid
+                        },
+                        success:function(){
+                            window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
+                        },
+                        error:function(err){
+                            alert("跳转页面失败,请检查您的网络");
+                        }
+                    })
+                }else{
+                    alert("您还未登录")
+                    if(confirm("您还未登录,是否前往登录")){
+                        window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html"
+                    }
 
+
+                }
+            }
+        })
+    }
 
     //***************************************
     //***************************************
@@ -278,7 +309,7 @@ $(document).ready(function(){
 
     $.ajax({ 
         type:"get",
-        url:"http://172.20.151.112:8066/Music_forum/getAllMusicInformation",
+        url:"http://localhost:8066/Music_forum/getAllMusicInformation",
         datatype:'json',
         success:function(dataa){
 
@@ -329,7 +360,7 @@ $(document).ready(function(){
         formData.append('file',document.getElementById("select-cover").files[0]);
         $.ajax({
             type:"POST",
-            url:"http://172.20.151.112:8066//Music_forum/uploadfile",
+            url:"http://localhost:8066//Music_forum/uploadfile",
             datatype:"json",
             data:formData,
             processData:false,
@@ -368,7 +399,7 @@ $(document).ready(function(){
         formData.append('file',document.getElementById("select-cover2").files[0]);
         $.ajax({
             type:"POST",
-            url:"http://172.20.151.112:8066//Music_forum/uploadfile",
+            url:"http://localhost:8066//Music_forum/uploadfile",
             datatype:"json",
             data:formData,
             processData:false,
@@ -404,7 +435,7 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"post",
-                url:"http://172.20.151.112:8066/Music_forum/uploadMusic",
+                url:"http://localhost:8066/Music_forum/uploadMusic",
                 datatype:"json",
                 data:{
                     musiccover:coverImg,
@@ -433,4 +464,6 @@ $(document).ready(function(){
     $("#appearUpmusic").click(function(){//打开上传音乐的窗口
         $("#upMusic").css("display","block");
     })
+    //hometopage
+
 })

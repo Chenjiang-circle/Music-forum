@@ -1,4 +1,6 @@
 $('document').ready(function () {
+    //获取所有网站数据
+    getalldata();
     //获取音乐审核数据
     getmusicdata();
     //获取待审核文章数据
@@ -8,14 +10,14 @@ $('document').ready(function () {
 })
 
 //获取音乐数据
-function getmusicdata(){
+function getmusicdata() {
     $.ajax({
         type: 'get',
         url: 'http://172.20.151.112:8066/Music_forum/getmusic',
         success: (str) => {
 
             var data = eval(str);
-            console.log(data);
+
 
 
             //将json分为10个一组，push到arr
@@ -46,13 +48,13 @@ function getmusicdata(){
 }
 
 //获取待审核文章数据
-function getallarticle(){
+function getallarticle() {
     $.ajax({
         url: "http://172.20.151.112:8066/Music_forum/getallarticle",
         type: "GET",
         success: function (str) {
-            var data=eval(str);
-            console.log(data);
+            var data = eval(str);
+
             printdata(data);
             commitdata(data);
         },
@@ -63,18 +65,18 @@ function getallarticle(){
 }
 
 //获取已审核文章
-function gethomearticle(){
+function gethomearticle() {
     $.ajax({
-        url:"http://172.20.151.112:8066/Music_forum/gethomearticle",
-        type:"get",
-        success:function(str){
-            var data=eval(str);
-            console.log(data);
+        url: "http://172.20.151.112:8066/Music_forum/gethomearticle",
+        type: "get",
+        success: function (str) {
+            var data = eval(str);
+
             print(data);
             //取消放到主页
             cancelcommit(data);
         },
-        error:function(err){
+        error: function (err) {
             alert("网络出错：" + err.status)
         }
     })
@@ -231,91 +233,176 @@ function disappear(n) {
 //打印文章列表
 function printdata(data) {
     $("#abody").empty();
-    for(var i=0;i<data.length;i++){
-        var str="<tr class=\"t\"><td>"+data[i].title+
-        "</td><td><img class=\"all-image\" alt=\"文章封面\"></td><td><button class=\"btn btn-default btn_text\">通过</button></td></tr>"
+    for (var i = 0; i < data.length; i++) {
+        var str = "<tr class=\"t\"><td>" + data[i].title +
+            "</td><td><img class=\"all-image\" alt=\"文章封面\"></td><td><button class=\"btn btn-default btn_text\">通过</button></td></tr>"
         $("#abody").append(str);
     }
-    var allImage=document.getElementsByClassName('all-image')
-    for(var i=0;i<data.length;i++){
-        allImage[i].src=data[i].textimage;
+    var allImage = document.getElementsByClassName('all-image')
+    for (var i = 0; i < data.length; i++) {
+        allImage[i].src = data[i].textimage;
     }
+
     $("#alltext").html("共："+data.length+"篇")
+
     // var textLine=document.getElementsByClassName('t');
     //  textLine[i].onclick=function(){
     //     //跳转文章详情页
     //  }
 }
-function commitdata(data){
-    var textLine=document.getElementsByClassName('t');
-    
-    var btnText=document.getElementsByClassName('btn_text');
-    for(var i=0;i<textLine.length;i++){
-        textLine[i].index=i;
-        btnText[i].index=i;
-        btnText[i].onclick=function(){
-            var a=this.index;
-            
+
+function commitdata(data) {
+    var textLine = document.getElementsByClassName('t');
+
+    var btnText = document.getElementsByClassName('btn_text');
+    for (var i = 0; i < textLine.length; i++) {
+        textLine[i].index = i;
+        btnText[i].index = i;
+        btnText[i].onclick = function () {
+            var a = this.index;
+
             $.ajax({
-                url:"http://172.20.151.112:8066/Music_forum/passarticle",
-                data:{
-                    "textid":data[this.index].textid
+                url: "http://172.20.151.112:8066/Music_forum/passarticle",
+                data: {
+                    "textid": data[this.index].textid
                 },
-                type:"get",
-                success:function(str){
-                    var data=eval(str);
+                type: "get",
+                success: function (str) {
+                    var data = eval(str);
                     print(data)
                     cancelcommit(data)
                 },
-                error:function(err){
-                    alert("网络出错"+err.status)
+                error: function (err) {
+                    alert("网络出错" + err.status)
                 }
             })
         }
     }
 }
 //打印已审核文章列表
-function print(data){
+function print(data) {
     $("#cbody").empty();
-    for(var i=0;i<data.length;i++){
-        var str="<tr class=\"c\"><td>"+data[i].title+"</td><td><img class=\"home-image\" alt=\"文章封面\"></td><td><button class=\"btn btn-default btn_cancel\">取消展示</button></td></tr>"
+    for (var i = 0; i < data.length; i++) {
+        var str = "<tr class=\"c\"><td>" + data[i].title + "</td><td><img class=\"home-image\" alt=\"文章封面\"></td><td><button class=\"btn btn-default btn_cancel\">取消展示</button></td></tr>"
         $("#cbody").append(str);
     }
-    var homeImage=document.getElementsByClassName('home-image')
-    for(var i=0;i<data.length;i++){
-        homeImage[i].src=data[i].textimage;
+    var homeImage = document.getElementsByClassName('home-image')
+    for (var i = 0; i < data.length; i++) {
+        homeImage[i].src = data[i].textimage;
     }
-    $("#hometext").html("已展示："+data.length+"篇")
-    if(data.length>6){
+    $("#hometext").html("已展示：" + data.length + "篇")
+    if (data.length > 6) {
         $("#message").html("注意：主页只能展示最多6篇文章")
-    }else{
+    } else {
         $("#message").html("")
     }
 }
 //取消展示
-function cancelcommit(data){
-    var textLine=document.getElementsByClassName('c');
-    var btnText=document.getElementsByClassName('btn_cancel');
-    for(var i=0;i<textLine.length;i++){
-        textLine[i].index=i;
-        btnText[i].index=i;
-        btnText[i].onclick=function(){
-            var a=this.index;
+function cancelcommit(data) {
+    var textLine = document.getElementsByClassName('c');
+    var btnText = document.getElementsByClassName('btn_cancel');
+    for (var i = 0; i < textLine.length; i++) {
+        textLine[i].index = i;
+        btnText[i].index = i;
+        btnText[i].onclick = function () {
+            var a = this.index;
             $.ajax({
-                url:"http://172.20.151.112:8066/Music_forum/cancelarticle",
-                data:{
-                    "textid":data[this.index].textid
+                url: "http://172.20.151.112:8066/Music_forum/cancelarticle",
+                data: {
+                    "textid": data[this.index].textid
                 },
-                type:"get",
-                success:function(str){
-                    var data=eval(str);
+                type: "get",
+                success: function (str) {
+                    var data = eval(str);
                     print(data)
                     cancelcommit(data)
                 },
-                error:function(err){
-                    alert("网络出错"+err.status)
+                error: function (err) {
+                    alert("网络出错" + err.status)
                 }
             })
         }
     }
+}
+
+function getalldata() {
+    $.ajax({
+        url: "http://172.20.151.112:8066/Music_forum/getWebData",
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            showwebData(data);
+            var arr = arrdata(data);
+            showcircle(arr)
+        },
+        error: function (err) {
+            alert("错误信息：" + err.status)
+        }
+    })
+}
+
+function showwebData(data) {
+    var allarticle = data.allArticle;
+    $("#mandarin").width((data.mandarin / allarticle) * 100 + "%");
+    $("#mandarin p:first").html("华语：" + (data.mandarin / allarticle) * 100 + "%")
+    $("#western").width((data.western / allarticle) * 100 + "%");
+    $("#western p:first").html("欧美：" + (data.western / allarticle) * 100 + "%")
+    $("#rock").width((data.rock / allarticle) * 100 + "%");
+    $("#rock p:first").html("摇滚：" + (data.rock / allarticle) * 100 + "%")
+    $("#pop").width((data.pop / allarticle) * 100 + "%");
+    $("#pop p:first").html("流行：" + (data.pop / allarticle) * 100 + "%")
+    $("#rap").width((data.rap / allarticle) * 100 + "%");
+    $("#rap p:first").html("嘻哈：" + (data.rap / allarticle) * 100 + "%")
+    $("#tod_view span:first").html(data.todayPageview)
+    $("#total_view span:first").html(data.allPageview)
+    $("#yes_post span:first").html(data.yestArticle)
+    $("#total_post span:first").html(data.allArticle)
+    $("#musicReviews").width((data.musicReviews / allarticle) * 100 + "%")
+    $("#musicReviews p:first").html("乐评：" + (data.musicReviews / allarticle) * 100 + "%")
+    $("#musicStory").width((data.musicStory / allarticle) * 100 + "%")
+    $("#musicStory p:first").html("音乐故事：" + (data.musicStory / allarticle) * 100 + "%")
+}
+
+function arrdata(data) {
+    var arr = [];
+    arr.push(data.mandarin);
+    arr.push(data.western);
+    arr.push(data.rock);
+    arr.push(data.pop);
+    arr.push(data.rap);
+    return arr;
+}
+
+function showcircle(arr) {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        data: {
+            datasets: [{
+                data: arr,
+                backgroundColor: [
+                    'blue',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'red',
+                    'green'
+                ],
+            }],
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                '华语',
+                '欧美',
+                '摇滚',
+                '流行',
+                '嘻哈'
+            ]
+        },
+        type: 'polarArea',
+        options: {
+            animation: {
+                animateRotate: true,
+                animateScale: true
+            }
+        }
+    });
 }
