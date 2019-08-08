@@ -49,7 +49,7 @@ public class UserServiceImplTest {
     public void follow() {
         follow follows = new follow();
         follows.setUserid("1455075085@qq.com");
-        follows.setFollowed("root@qq.com");
+        follows.setFollowed("1517742603@qq.com");
         userDao.follow(follows);
     }
 
@@ -92,7 +92,7 @@ public class UserServiceImplTest {
     public void cancelFollow() {
         follow follow = new follow();
         follow.setUserid("1455075085@qq.com");
-        follow.setFollowed("root@qq.com");
+        follow.setFollowed("1517742603@qq.com");
         Boolean aBoolean = userService.cancelFollow(follow);
         System.out.println(aBoolean);
     }

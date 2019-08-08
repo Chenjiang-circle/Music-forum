@@ -35,7 +35,7 @@ public class comment extends HttpServlet {
             mapper.writeValue(response.getWriter(), text.getList());
             String s = JSON.toJSONString(text.getList());
             System.out.println(s);
-            session.removeAttribute("atextid");
+            //session.removeAttribute("atextid");
 
         }else{
             //没登录

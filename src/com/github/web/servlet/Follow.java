@@ -1,5 +1,6 @@
 package com.github.web.servlet;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.domain.User;
 import com.github.domain.follow;
@@ -25,20 +26,23 @@ import java.util.Map;
 public class Follow extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Object usermsg = session.getAttribute("usermsg");
-        if(usermsg != null){
-            User user = (User) usermsg;
+        User user = (User) session.getAttribute("usermsg");
+        if(user != null){
             follow follow = new follow();
-            Map<String, String[]> map = request.getParameterMap();
-            try {
-                BeanUtils.populate(follow, map);
-                //如果前端没有userid
-                follow.setUserid(user.getUserid());
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+//            Map<String, String[]> map = request.getParameterMap();
+//            try {
+//                BeanUtils.populate(follow, map);
+//                //如果前端没有userid
+//                follow.setUserid(user.getUserid());
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            } catch (InvocationTargetException e) {
+//                e.printStackTrace();
+//            }
+            follow.setFollowed((String) session.getAttribute("auserid"));
+            follow.setUserid(user.getUserid());
+            String s = JSON.toJSONString(follow);
+            System.out.println("follow表信息: " + s);
 //            Map<String, Object> map1 = new HashMap<String, Object>();
             UserServiceImpl userService = new UserServiceImpl();
             if( ! userService.isFollow(follow) ){

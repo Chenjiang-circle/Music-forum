@@ -1,5 +1,37 @@
 $(document).ready(function(){
+    $.ajax({
+        url:"http://localhost:8066/Music_forum/getUserIformation",
+        type:"GET",
+        dataType:"json",
+        success:function (data) {
 
+            if(data!=null){
+                //userid不为空 获取用户头像 用户昵称 id
+                $("#login").css("display","none");
+                $(".loginOn").css("display","block");
+                $("#loginOn-name").html(data.username);
+                $("#loginOn-image").attr("src",data.imageid);
+                //点击发送ajax给后端  后端存取userid
+
+                $(".loginOn").click(function(){
+                    //console.log(data.userid);
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        type:"GET",
+                        data:{
+                            "userid":data.userid
+                        }
+                    })
+                    window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
+                })
+
+            }else{
+                //显示登录注册按钮
+                $("#login").css("display","block");
+                $(".loginOn").css("display","none");
+            }
+        }
+    })
     $.ajax({//获取-home-音乐
         url:"http://localhost:8066/Music_forum/homeGetMusic",
         datatype:"json",
@@ -60,30 +92,51 @@ $(document).ready(function(){
                 $(".artLike").eq(i).html( '<img src="http://172.20.151.112:8088/f7660bb8026a4d68b5f0de1861f57874.png" width="30px">'+data[i].likes);
                 $(".artComm").eq(i).html('<img src="http://172.20.151.112:8088/2cf23c34d38f4cc29535415a2fd07ea9.png" width="30px">'+data[i].comment);
             }
+            var artTitle=document.getElementsByClassName('artTitle');
+            for(var i=0;i<artTitle.length;i++){
+                artTitle[i].index=i;
+                artTitle[i].onclick=function(){
+                    var a=this.index;
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        datatype:"json",
+                        type:"post",
+                        data:{
+                            thistext:data[a].textid
+                        },
+                        success:function(){
+                            location.href = "http://localhost:8066/Music_forum/login-regist-writeText/article.html";//跳转进入文章详情页
+                        },
+                        error:function(jqXHR){
+                            alert("请检查网络："+jqXHR.status)
+                        }
+                    })
+                }
+            }
         },
         error:function(jqXHR){
             alert("OOPS! 服务器出现了一个小问题："+jqXHR.status)
         }
     })
 
-    $(".artTitle").click(function(){//点击文章
-        s=$(this).index();
-        $.ajax({
-          url:"",
-          datatype:"json",
-          type:"post",
-          data:{
-            thistext:data[s].textid
-          },
-          success:function(dataa){
-            location.href = dataa;//跳转进入文章详情页
-          },
-          error:function(jqXHR){
-            alert("请检查网络："+jqXHR.status)
-          }
-        })
-        
-      })
+    // $(".artTitle").click(function(){//点击文章
+    //     s=$(this).index();
+    //     $.ajax({
+    //       url:"http://localhost:8066/Music_forum/jumpPage",
+    //       datatype:"json",
+    //       type:"post",
+    //       data:{
+    //         thistext:data[s].textid
+    //       },
+    //       success:function(){
+    //         location.href = "http://localhost:8066/Music_forum/login-regist-writeText/article.html";//跳转进入文章详情页
+    //       },
+    //       error:function(jqXHR){
+    //         alert("请检查网络："+jqXHR.status)
+    //       }
+    //     })
+    //
+    //   })
 
 
 
