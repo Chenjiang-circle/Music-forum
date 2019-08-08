@@ -116,18 +116,28 @@
 
         <div class="enter-head"></div>
         <div id="main-content">
+            <img src="img/artList/textdefalut.png" id="textimage">
             <div id="article-title" class="grad">515音乐论坛-515</div>
             <div id="author">
                 <div class="avatar"><img src="img/article/avatar-default.jpg" width="50px"></div>
                 <p id="author-username">小明_1234</p>
                 <p id="author-time">发表于</p>
             </div>
-            <article id="article-content">欢迎来到515音乐论坛</article>
-            <div id="article-like">喜欢</div>
-            <div id="arti-collections">收藏</div>
-            <div id="article-conmmet-title">评论</div>
-            <textarea id="article-writeComment" placeholder="善意的评论是友好交流的开始"></textarea>
-            <button id="commit-comment">发送</button>
+            <article id="article-content">欢迎来到515<br><br>音<br>乐论15<br><br>音<br>乐15<br><br>音<br>乐15<br><br>音<br>乐坛</article>
+            <!-- 发射爱心 -->
+            
+            <div id="feedback">
+                    <div class="love"></div>
+                    <button id="arti-collections">收藏</button>
+                    <button id="article-like">喜欢</button>
+                    <button id="article-conmmet-title">评论</button>
+            </div>
+            
+            <div id="writecomment">
+                    <textarea id="article-writeComment" placeholder="善意的评论是友好交流的开始"></textarea>
+                    <button id="commit-comment">发送</button>
+            </div>
+            
 
             <div id="allComments">
 
@@ -150,7 +160,7 @@
                 class="icon icon--cross">
                 <use xlink:href="#icon-cross"></use>
             </svg></button>
-        <form class="search__form" action="">
+        <form class="search__form" action=""  onsubmit="return false">
             <input class="search__input" name="search" type="search" placeholder="Search" autocomplete="off"
                 autocorrect="off" autocapitalize="off" spellcheck="false" />
             <span class="search__info">Hey！需要一些推荐吗？</span>

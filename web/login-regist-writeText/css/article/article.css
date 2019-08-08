@@ -3,6 +3,11 @@
     margin: 0 auto;
 }
 
+#textimage{
+    width: 100%;
+    border-radius: 20px;
+    margin-top: 50px;
+}
 
 #article-title{
     width: auto;
@@ -61,24 +66,58 @@ pre {
     font-size: 20px;
     white-space: pre-wrap;
     }
-
+#feedback{
+    width: 450px;
+    margin: 0 auto;
+    position: relative;
+}
+#feedback button{
+    display: inline-block;
+    border: none;
+    border-radius: 100%;
+    outline: none;
+    margin-left: 30px;
+    
+    cursor: pointer;
+}
     #article-like{
         width: 100px;
         height: 100px;
         background: pink;
-
+        box-shadow:0px 10px 30px pink;
+        z-index:99;
+        transition: all 0.3s;
+    }
+    #article-like:hover{
+        background: rgb(250, 218, 222);
     }
 
     #arti-collections{
         width: 100px;
         height: 100px;
         background:wheat;
+        box-shadow:0px 10px 30px wheat;
+        transition: all 0.3s;
     }
+    #arti-collections:hover{
+        background:rgb(252, 243, 227);
+
+    }
+
 
     #article-conmmet-title{
         width: 100px;
         height: 100px;
         background:rgb(160, 235, 245);
+        box-shadow:0px 10px 30px rgb(160, 235, 245);
+        transition: all 0.3s;
+    }
+    #article-conmmet-title:hover{
+        background:rgb(197, 244, 250);
+    }
+
+    #writecomment{
+        margin:50px 0;
     }
 
 #article-writeComment{
@@ -114,8 +153,8 @@ pre {
 
 #allComments{
     width: 60%;
-    border:2px solid #c230b6;
-    margin: 0 auto;
+    border-left:2px solid #30c27b;
+    margin: 50px auto;
 }
 
 .comments{
@@ -149,11 +188,12 @@ pre {
 .comment-text{
     width: 70%;
     height: 80px;
-    background: papayawhip;
+    /* background: papayawhip; */
     position: relative;
     left: 80px;
     top: -60px;
     z-index: 1;
+    overflow: hidden;
 }
 
 .comment-user{
@@ -201,4 +241,17 @@ pre {
     padding-top: 5px;
     color: white;
     cursor: pointer;
+}
+
+.love{
+    z-index: 0;
+}
+
+.love img{
+    width: 40px; 
+    height: 40px; 
+    position: absolute; 
+    left: 40%; 
+    margin-left: -10px;
+    z-index: 0;
 }

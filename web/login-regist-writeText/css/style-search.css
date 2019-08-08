@@ -73,6 +73,9 @@
 	display: none;
 }
 
+.results{
+	font-family: 'Righteous';
+}
 .search__info {
 	/* font-family: 'Inconsolata', 'Monaco', monospace; */
 	font-family: 'Righteous';

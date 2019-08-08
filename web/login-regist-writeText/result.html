@@ -7,27 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 页面响应式 -->
-    <title>乐评</title>
-    
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <title>搜索结果</title>
     <link type="text/css" rel="stylesheet" href="css/style-nav&foot.css"/>
-    <link rel="stylesheet" type="text/css" href="css/discuss/htmleaf-demo.css">
-    <link type="text/css" rel="stylesheet" href="css/discuss/discuss.css"/>
     <script src="js/jquery-1.11.0.min.js"></script>
-
     <script type="text/javascript" src="js/js-nav&foot.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="js/js.cookie.js"></script>
 
 
+
     <!-- search页面 -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Righteous" rel="stylesheet">
     
-
     <link rel="stylesheet" type="text/css" href="css/phone-menu-styles.css" />
     <link rel="stylesheet" type="text/css" href="css/demo-search.css" />
     <link rel="stylesheet" type="text/css" href="css/react-head&foot.css" />
     <link rel="stylesheet" type="text/css" href="css/style-search.css" />
+    <link rel="stylesheet" type="text/css" href="css/result.css" />
     <link href="css/ui-choose.css" rel="stylesheet" />
     <!-- demo必须在style-search的上面 -->
     <script>document.documentElement.className = 'js';</script>
@@ -51,7 +47,6 @@
     
     <!-- <div id="welcome">
         
-
     </div>     -->
 
 <!-- 这个是主页，相当于body，请把页面中所有内容写到这里来 -->
@@ -72,34 +67,32 @@
                     <div id="name"><img src="img/LOGO/name.png" width="50%"></div>
                 </div>
                 <ul id="nav">
-                    <div class="one-nav"><li class="current-nav"><a href="http://localhost:8066/Music_forum/login-regist-writeText/home.html" id="current-a" class="nav">HOME<div class="wee grad"></div></a></li></div>
-                    <div class="one-nav"><li ><a class="nav" href="http://localhost:8066/Music_forum/login-regist-writeText/rankingList.html">排行榜</a></li></div>
-                    <div class="one-nav"><li ><a class="nav" href="#">乐评</a></li></div>
-                    <div class="one-nav"><li ><a class="nav" href="http://localhost:8066/Music_forum/login-regist-writeText/Shop.html">唱片小店</a></li></div>
+                    <div class="one-nav"><li class="current-nav"><a href="" id="current-a" class="nav">HOME<div class="wee grad"></div></a></li></div>
+                    <div class="one-nav"><li ><a class="nav" href="">排行榜</a></li></div>
+                    <div class="one-nav"><li ><a class="nav" href="">乐评</a></li></div>
+                    <div class="one-nav"><li ><a class="nav" href="">唱片小店</a></li></div>
                 </ul>
                 <ul id="login">
-                    <li src="" id="in" class="login"><a href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html">Sign In</a></li>
-                    <!-- 登录 -->
-                    <li src="" id="up" class="login"><a href="http://localhost:8066/Music_forum/login-regist-writeText/login.html">Sign Up</a></li>
-                    <!-- 注册 -->
+                    <li src="" id="in" class="login"><a href="">Sign In</a></li>
+                    <li src="" id="up" class="login"><a href="login.html">Sign Up</a></li>
                 </ul>
 
                 <div class="loginOn">
-                    <div id="loginOn-avatar"><img src="img/article/avatar-default.jpg" width="100%" height="100%" id="loginOn-image"></div>
+                    <div id="loginOn-avatar"><img src="img/article/avatar-default.jpg" width="100px"></div>
                     <div id="loginOn-name">小明_111</div>
                 </div>
-                
 
+                
 
 
                 <nav class="phone-nav">
                         <ul>
-                            <li><a href="http://localhost:8066/Music_forum/login-regist-writeText/home.html">HOME</a></li>
-                            <li><a href="http://localhost:8066/Music_forum/login-regist-writeText/rankingList.html">排行榜</a></li>
+                            <li><a href="#">HOME</a></li>
+                            <li><a href="#">排行榜</a></li>
                             <li><a href="#">乐 评</a></li>
-                            <li><a href="http://localhost:8066/Music_forum/login-regist-writeText/Shop.html">唱片店</a></li>
-                            <li><a href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html">- 登录</a></li>
-                            <li><a href="http://localhost:8066/Music_forum/login-regist-writeText/login.html">- 注册</a></li>
+                            <li><a href="#">唱片店</a></li>
+                            <li><a href="#">- 登录</a></li>
+                            <li><a href="#">- 注册</a></li>
                         </ul>
                     </nav>
                 <div class="nav-toggle">
@@ -108,15 +101,17 @@
         </div>
 
         <div id="main-content">
-                <div class="col-xs-8 col-xs-offset-2">
-                        <div class="panel panel-primary">
-                          <ul class="list-group">
-                          </ul>
-                        </div>
-                      </div>
-           
-
-            
+           <div id="tip">hey!这是关于<h1>碧昂斯</h1>的搜索结果：</div>
+           <div class="results">
+               <div class="cover"></div>
+               <div class="results-title">碧昂斯新歌-献给非洲大陆的礼物</div>
+               <div class="detail">1231点赞   |   221评论</div>
+           </div>
+           <div class="results">
+                <div class="cover"></div>
+                <div class="results-title">碧昂斯新歌-献给非洲大陆的礼物</div>
+                <div class="detail">126点赞   |   31评论</div>
+            </div>
         </div>
 
 
@@ -129,15 +124,13 @@
                 </div>
             </div>
     </main>
-
+    
 	<div class="search">
 			<button id="btn-search-close" class="btn btn--search-close" aria-label="Close search form"><svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg></button>
 			<form class="search__form" action=""  onsubmit="return false">
 				<input class="search__input" name="search" type="search" placeholder="Search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
                 <span class="search__info">Hey！需要一些推荐吗？</span>
-
-                <div id="recommend">
-
+                <div id="recommend"> 
                     <div class="recommends">邓紫棋</div>
                     <div class="recommends">国语流行</div>
                     <div class="recommends">摇滚</div>
@@ -151,8 +144,6 @@
 
     <script src="js/demo-search.js"></script>
     <script src="js/ui-choose.js"></script>
-    <script src="js/discuss/discuss.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
-	<script type="text/javascript" src="js/discuss/paginathing.js"></script>
+    <script src="js/result/result.js"></script>
 </body>
 </html>
