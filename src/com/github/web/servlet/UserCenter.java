@@ -41,7 +41,7 @@ public class UserCenter extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("usermsg");
 
-        System.out.println("userid : " + user.getUserid());
+        System.out.println("个人中心session 的 userid : " + user.getUserid());
 
         //接收userid
 
@@ -56,7 +56,7 @@ public class UserCenter extends HttpServlet {
         List<simpletext> listCollection = textService.getcollectionByUserID(auserid);
 
         //查询user信息
-
+        System.out.println("个人中心 接收的 userid"+auserid);
         User userByUserID = userService.getUserByUserID(auserid);
 
         //用于传递list集合，将list集合再放入一个json中传给前端
@@ -108,7 +108,7 @@ public class UserCenter extends HttpServlet {
             System.out.println(s);
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(response.getWriter(), map);
-            session.removeAttribute("auserid");
+            //session.removeAttribute("auserid");
 
         } else {
 //            response.setContentType("text/html;charset=utf-8");

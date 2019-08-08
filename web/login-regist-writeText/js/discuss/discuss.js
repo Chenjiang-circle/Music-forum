@@ -1,10 +1,42 @@
 jQuery(document).ready(function($){
+    $.ajax({
+        url:"http://localhost:8066/Music_forum/getUserIformation",
+        type:"GET",
+        dataType:"json",
+        success:function (data) {
+            if(data!=null){
+                //userid不为空 获取用户头像 用户昵称 id
+                $("#login").css("display","none");
+                $(".loginOn").css("display","block");
+                $("#loginOn-name").html(data.username);
+                $("#loginOn-image").attr("src",data.imageid);
+                //点击发送ajax给后端  后端存取userid
+
+                $(".loginOn").click(function(){
+                    //console.log(data.userid);
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        type:"GET",
+                        data:{
+                            "userid":data.userid
+                        }
+                    })
+                    window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
+                })
+            }else{
+                //显示登录注册按钮
+                $("#login").css("display","block");
+                $(".loginOn").css("display","none");
+            }
+        }
+    })
     $.ajax({//渲染数据到页面上
         url:"http://localhost:8066/Music_forum/getsimplearticle",
         datatype:"json",
         type:"get",
         success:function(data){
             data=eval(data);
+
             for (var i = 0; i < data.length; i++) {
                 //用于打印type👇
                 var type = data[i].type.split("&ArticleSelect=");
@@ -28,25 +60,48 @@ jQuery(document).ready(function($){
               containerClass: 'panel-footer',
               pageNumbers: true
             })
+            var list=document.getElementsByClassName('list-group-item');
+            for(var i=0;i<list.length;i++){
+                list[i].index=i;
+                list[i].onclick=function(){
 
-            $('.list-group-item').click(function(){//点击文章
-              s=$(this).index();
-              $.ajax({
-                url:"",
-                datatype:"json",
-                type:"post",
-                data:{
-                  thistext:data[s].textid
-                },
-                success:function(dataa){
-                  location.href = dataa;//跳转进入文章详情页
-                },
-                error:function(jqXHR){
-                  alert("请检查网络："+jqXHR.status)
+                    var a=this.index;
+                    console.log(a)
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        datatype:"json",
+                        type:"post",
+                        data:{
+                          thistext:data[a].textid
+                        },
+                        success:function(){
+                          location.href = "http://localhost:8066/Music_forum/login-regist-writeText/article.html";//跳转进入文章详情页
+                        },
+                        error:function(jqXHR){
+                          alert("请检查网络："+jqXHR.status)
+                        }
+                      })
                 }
-              })
-              
-            })
+            }
+            // $('.list-group-item').click(function(){//点击文章
+            //     alert("点击文章")
+            //   s=$(this).index();
+            //   $.ajax({
+            //     url:"http://localhost:8066/Music_forum/jumpPage",
+            //     datatype:"json",
+            //     type:"post",
+            //     data:{
+            //       thistext:data[s].textid
+            //     },
+            //     success:function(){
+            //       location.href = "http://localhost:8066/Music_forum/login-regist-writeText/article.html";//跳转进入文章详情页
+            //     },
+            //     error:function(jqXHR){
+            //       alert("请检查网络："+jqXHR.status)
+            //     }
+            //   })
+            //
+            // })
         },
         error:function(jqXHR){
             alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);

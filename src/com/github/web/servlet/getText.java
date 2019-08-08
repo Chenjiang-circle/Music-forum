@@ -32,7 +32,7 @@ public class getText extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json;charset=utf-8");
 
-        try {
+//        try {
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("usermsg");
 
@@ -48,11 +48,13 @@ public class getText extends HttpServlet {
                 //返回text对象和collection对象（用于显示按钮）
 
                 int atextid = (int) session.getAttribute("atextid");
+                System.out.println("要打印的textid is " + atextid);
                 text2 text = textService.findAlltext(atextid);
                 collection collection = new collection();
-                Map<String, String[]> map1 = req.getParameterMap();
-                BeanUtils.populate(collection, map1);
+//                Map<String, String[]> map1 = req.getParameterMap();
+//                BeanUtils.populate(collection, map1);
                 collection.setUserid(user.getUserid());
+                collection.setCollectiontextid(atextid);
                 System.out.println(collection.toString());
 
                 ifColl = userService.isCollection(collection);
@@ -67,13 +69,26 @@ public class getText extends HttpServlet {
             } else {
 
                 //木有登录
+                TextServiceImpl textService = new TextServiceImpl();
+                UserServiceImpl userService = new UserServiceImpl();
+
+                //返回text对象和collection对象（用于显示按钮）
+
+                int atextid = (int) session.getAttribute("atextid");
+                System.out.println("要打印的textid is " + atextid);
+                text2 text = textService.findAlltext(atextid);
+                map.put("ifColl", false);
+                map.put("user", user);
+                map.put("text", text);
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.writeValue(resp.getWriter(), map);
 
             }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
 
     }
 

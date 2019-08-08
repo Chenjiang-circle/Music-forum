@@ -1,4 +1,20 @@
 ﻿$(document).ready(function(){
+    $.ajax({
+        url:"http://localhost:8066/Music_forum/getUserIformation",
+        type:"GET",
+        dataType:"json",
+        success:function (data) {
+            if(data!=null){
+                //userid不为空 获取用户头像 用户昵称 id
+                $("#login").css("display","none");
+                $(".loginOn").css("display","block");
+            }else{
+                //显示登录注册按钮
+                $("#login").css("display","block");
+                $(".loginOn").css("display","none");
+            }
+        }
+    })
     $('#enter-form').validate({
         rules:{
             userid:{

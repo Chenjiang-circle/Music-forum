@@ -1,9 +1,39 @@
 $(document).ready(function(){
+    $.ajax({
+        url:"http://localhost:8066/Music_forum/getUserIformation",
+        type:"GET",
+        dataType:"json",
+        success:function (data) {
+            if(data!=null){
+                //userid不为空 获取用户头像 用户昵称 id
+                $("#login").css("display","none");
+                $(".loginOn").css("display","block");
+                $("#loginOn-name").html(data.username);
+                $("#loginOn-image").attr("src",data.imageid);
+                //点击发送ajax给后端  后端存取userid
+
+                $(".loginOn").click(function(){//右上角跳转个人主页
+                    //console.log(data.userid);
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        type:"GET",
+                        data:{
+                            "userid":data.userid
+                        }
+                    })
+                    window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
+                })
+            }else{
+                //显示登录注册按钮
+                $("#login").css("display","block");
+                $(".loginOn").css("display","none");
+            }
+        }
+    })
     var like;
     var collection;
     var ifColl=0;//这篇文章是否被该用户收藏？全局
     var textid = null;
-    var thistext = 51;
     function left(depth){  //printComments函数会用到
         var leftComm=50;
         for(var i=0;i<depth;i++){
@@ -63,9 +93,6 @@ $(document).ready(function(){
     $.ajax({//请求得到文章、标题、点赞数、收藏数、作者等
         url:"http://localhost:8066/Music_forum/getText",
         type:"GET",
-        data:{
-          collectiontextid: thistext ,
-        },
         datatype:"text",
         success:function(data){
             textid = data.text.textid;
@@ -109,6 +136,17 @@ $(document).ready(function(){
                 }*/
             }else{
                 alert("文章加载失败："+data.msg)
+            }
+            var avatar=document.getElementsByClassName('avatar');
+            avatar[0].onclick=function(){
+                $.ajax({
+                    url:"http://localhost:8066/Music_forum/jumpPage",
+                    type:"GET",
+                    data:{
+                        "userid":data.text.userid
+                    }
+                })
+                window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
             }
         },
         error:function(jqXHR){
@@ -305,7 +343,7 @@ $(document).ready(function(){
                     commentDiv.style.left=left+'px';
                     $(this).parent().parent().after(commentDiv);
                     // $(this).parent().remove();
-
+                    var currentTime=getNowFormatDate();
                     //传递ajax
                     $.ajax({
                         url:"http://localhost:8066/Music_forum/changecomment",
@@ -316,7 +354,7 @@ $(document).ready(function(){
                             ,
                             // username:"",
                             // userid:"",
-                            "time":"2017-8-9",//time,
+                            "time":currentTime,//time,
                             "textid":$(this).parent().prev('div').attr("textid")
                             //"textid":52
                         },
@@ -339,7 +377,23 @@ $(document).ready(function(){
         }
     })
 
-
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();
+        return currentdate;
+    }
 
 
     $("#article-like").click(function(){//点击喜欢

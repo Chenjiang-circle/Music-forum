@@ -1,4 +1,35 @@
 $(document).ready(function(){
+    $.ajax({
+        url:"http://localhost:8066/Music_forum/getUserIformation",
+        type:"GET",
+        dataType:"json",
+        success:function (data) {
+            if(data!=null){
+                //userid不为空 获取用户头像 用户昵称 id
+                $("#login").css("display","none");
+                $(".loginOn").css("display","block");
+                $("#loginOn-name").html(data.username);
+                $("#loginOn-image").attr("src",data.imageid);
+                //点击发送ajax给后端  后端存取userid
+
+                $(".loginOn").click(function(){
+                    //console.log(data.userid);
+                    $.ajax({
+                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        type:"GET",
+                        data:{
+                            "userid":data.userid
+                        }
+                    })
+                    window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
+                })
+            }else{
+                //显示登录注册按钮
+                $("#login").css("display","block");
+                $(".loginOn").css("display","none");
+            }
+        }
+    })
     $.ajax({//公告牌
         url:"http://localhost:8066/Music_forum/getRankingList",
         datatype:"json",
