@@ -26,7 +26,6 @@ public class comment extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("usermsg");
         if (user != null) {
-            //int textid = Integer.parseInt(request.getParameter("thistext"));
             int atextid = (int) session.getAttribute("atextid");
             TextServiceImpl textService = new TextServiceImpl();
             text2 text = textService.findAlltext(atextid);

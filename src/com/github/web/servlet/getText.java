@@ -13,6 +13,7 @@ import com.github.domain.text2;
 import com.github.service.impl.TextServiceImpl;
 import com.github.service.impl.UserServiceImpl;
 import org.apache.commons.beanutils.BeanUtils;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,64 +33,34 @@ public class getText extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json;charset=utf-8");
 
-//        try {
-            HttpSession session = req.getSession();
-            User user = (User) session.getAttribute("usermsg");
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("usermsg");
 
-            System.out.println("user -----> " + user);
-            Map<String, Object> map = new HashMap<String, Object>();
+        System.out.println("user -----> " + user);
+        Map<String, Object> map = new HashMap<String, Object>();
 
-            Boolean ifColl = true;
-            if (user != null) {
-//              int textid = Integer.parseInt(req.getParameter("thistext"));
-                TextServiceImpl textService = new TextServiceImpl();
-                UserServiceImpl userService = new UserServiceImpl();
+        TextServiceImpl textService = new TextServiceImpl();
+        UserServiceImpl userService = new UserServiceImpl();
+        Boolean ifColl = false;
+        int atextid = (int) session.getAttribute("atextid");
+        System.out.println("要打印的textid is " + atextid);
+        text2 text = textService.findAlltext(atextid);
 
-                //返回text对象和collection对象（用于显示按钮）
-
-                int atextid = (int) session.getAttribute("atextid");
-                System.out.println("要打印的textid is " + atextid);
-                text2 text = textService.findAlltext(atextid);
-                collection collection = new collection();
-//                Map<String, String[]> map1 = req.getParameterMap();
-//                BeanUtils.populate(collection, map1);
-                collection.setUserid(user.getUserid());
-                collection.setCollectiontextid(atextid);
-                System.out.println(collection.toString());
-
-                ifColl = userService.isCollection(collection);
-
-                map.put("ifColl", ifColl);
-                map.put("user", user);
-                map.put("text", text);
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.writeValue(resp.getWriter(), map);
-                String s = JSON.toJSONString(map);
-                System.out.println(s);
-            } else {
-
-                //木有登录
-                TextServiceImpl textService = new TextServiceImpl();
-                UserServiceImpl userService = new UserServiceImpl();
-
-                //返回text对象和collection对象（用于显示按钮）
-
-                int atextid = (int) session.getAttribute("atextid");
-                System.out.println("要打印的textid is " + atextid);
-                text2 text = textService.findAlltext(atextid);
-                map.put("ifColl", false);
-                map.put("user", user);
-                map.put("text", text);
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.writeValue(resp.getWriter(), map);
-
-            }
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-
+        if (user != null) {
+            //返回text对象和collection对象（用于显示按钮）
+            collection collection = new collection();
+            collection.setUserid(user.getUserid());
+            collection.setCollectiontextid(atextid);
+            System.out.println(collection.toString());
+            ifColl = userService.isCollection(collection);
+        }
+        map.put("ifColl", ifColl);
+        map.put("user", user);
+        map.put("text", text);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(resp.getWriter(), map);
+        String s = JSON.toJSONString(map);
+        System.out.println(s);
     }
 
     @Override

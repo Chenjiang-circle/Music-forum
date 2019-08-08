@@ -23,7 +23,6 @@ public class getAllMusicInformation extends HttpServlet {
         List<music> allPassMusics = musicService.getAllPassMusics();
         String s = JSON.toJSONString(allPassMusics);
         System.out.println(s);
-        //JSON.writeJSONString(resp.getWriter(), allPassMusics);
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(resp.getWriter(), allPassMusics);
         System.out.println("发送音乐信息成功!");

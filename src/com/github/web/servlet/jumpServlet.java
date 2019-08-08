@@ -23,7 +23,7 @@ public class jumpServlet extends HttpServlet {
             }
         }
 
-        System.out.println("guyjtguy++++++++"+userid);
+//        System.out.println("guyjtguy++++++++"+userid);
         if (userid != null){
             HttpSession session = req.getSession();
             session.setAttribute("auserid", userid);

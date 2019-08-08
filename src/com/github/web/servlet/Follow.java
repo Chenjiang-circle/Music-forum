@@ -22,6 +22,7 @@ import java.util.Map;
  * 进行follow操作
  * @author lzy
  */
+
 @WebServlet("/follow")
 public class Follow extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,37 +30,18 @@ public class Follow extends HttpServlet {
         User user = (User) session.getAttribute("usermsg");
         if(user != null){
             follow follow = new follow();
-//            Map<String, String[]> map = request.getParameterMap();
-//            try {
-//                BeanUtils.populate(follow, map);
-//                //如果前端没有userid
-//                follow.setUserid(user.getUserid());
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            } catch (InvocationTargetException e) {
-//                e.printStackTrace();
-//            }
             follow.setFollowed((String) session.getAttribute("auserid"));
             follow.setUserid(user.getUserid());
             String s = JSON.toJSONString(follow);
             System.out.println("follow表信息: " + s);
-//            Map<String, Object> map1 = new HashMap<String, Object>();
             UserServiceImpl userService = new UserServiceImpl();
             if( ! userService.isFollow(follow) ){
                 //未关注，添加关注
                 userService.follow(follow);
-//                map1.put("userid", follow.getUserid());
-//                map1.put("followed", follow.getFollowed());
-//                map1.put("success", true);
             }else{
                 //已关注，取消关注
                 userService.cancelFollow(follow);
-//                map1.put("userid", follow.getUserid());
-//                map1.put("followed", follow.getFollowed());
-//                map1.put("success", false);
             }
-//            ObjectMapper mapper = new ObjectMapper();
-//            mapper.writeValue(response.getWriter(),map1);
         }
     }
 

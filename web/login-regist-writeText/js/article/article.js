@@ -320,14 +320,14 @@ $(document).ready(function(){
             $('#allComments').find('div:first').before(commentDiv);
                         // 传递ajax
                 $.ajax({
-                    url:"http://172.20.151.112:8066/Music_forum/changecomment",
+                    url:"http://localhost:8066/Music_forum/changecomment",
                     dataType:"json",
                     type:"post",
                     data:{
                         'text':comText,
                         // username:"",
                         // userid:"",
-                        // time:time,
+                        'time':getNowFormatDate(),
                         'textid':$(this).parent().attr("textid")
                     },
                     success:function(){
@@ -461,7 +461,7 @@ $(document).ready(function(){
 		},3000)
 
         $.ajax({
-            url:"http://172.20.151.112:8066/Music_forum/like",
+            url:"http://localhost:8066/Music_forum/like",
             type:"POST",
             datatype:"json",
             data:{

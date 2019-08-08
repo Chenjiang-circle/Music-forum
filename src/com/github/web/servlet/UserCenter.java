@@ -46,8 +46,7 @@ public class UserCenter extends HttpServlet {
         //接收userid
 
         String auserid = (String) session.getAttribute("auserid");
-        //String userid = request.getParameter("userid");
-       //String userid = "2464792469@qq.com";
+
 //        System.out.println(userid+"---------------------------");
 
         //获取发过的 text 和 comment
@@ -108,7 +107,6 @@ public class UserCenter extends HttpServlet {
             System.out.println(s);
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(response.getWriter(), map);
-            //session.removeAttribute("auserid");
 
         } else {
 //            response.setContentType("text/html;charset=utf-8");
