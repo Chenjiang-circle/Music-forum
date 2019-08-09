@@ -1,19 +1,48 @@
+.main-wrap{
+    background-image: url(../img/login/login-backs.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 #main-content{
-    width: 60%;
-    height: 70%;
+    width: 1000px;
     /* background: rgb(194, 194, 194); */
     margin: 0 auto;
+    background: white;
+    border-radius: 40px;
+
 }
 .login-head{
-    width: 60%;
-    height: 30%;
-    background-repeat: no-repeat;
-    margin: 0 auto;
-    background-image: url(../img/login/login-head.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
+    width: 1000px;
     margin-top: 50px;
+    font-size: 100px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
 
+.login-head h{
+    font-size: 200px;
+    display: inline-block;
+    color:#30c27b;
+    padding: 0 20px;
+    font-weight: bold;
+}
+.login-head p{
+    font-size: 200px;
+    display: inline-block;
+    color:white;
+    padding: 0 20px;
+    font-weight: bold;
+    background: #30c27b;
+    transition: all 0.5s;
+}
+.login-head p:hover{
+    color:#30c27b;
+    background: none;
+}
+#login-head-img{
+
+    width: 1000px;
+    margin:0 auto;
 }
 .demo-box {
     width: 220px;
@@ -21,12 +50,28 @@
     display: inline-block;
     background: #fafafa;
 }
+.all-login{
+    border-radius: 40px;
+    overflow: hidden;
+    width: 1000px;
+    height: 720px;
+    position: relative;
+    /* border: 2px solid rgb(192, 190, 190); */
+    margin: 100px 0;
+}
+#login-video{
+    display: inline-block;
+    margin-bottom: 100px;
+}
 #login-form{
-    /* border: 2px solid red; */
-    width: 60%;
-    height: 500px;
-    margin: 0 auto;
+    border-radius: 20px;
+    width: 600px;
     text-align: center;
+    display: inline-block;
+    position: relative;
+    
+    position: absolute;
+    top: 0;
 
 }
 #login-form p{
@@ -45,6 +90,13 @@
     font-size: 25px;
     padding: 10px 20px;
     overflow: hidden;
+    transition: all 0.5s;
+}
+
+#login-form input:hover{
+    background: #30c27b;
+    border: 2px #ffffff solid;
+    color: white;
 }
 
 #login-form input:last-child{
@@ -54,11 +106,28 @@
     font-size: 20px;
     cursor: pointer;
 }
-
+#flytips{
+    width: 50%;
+    padding: 30px;
+    margin: 0 auto;
+    display: none;
+    border-radius: 20px;
+    background: rgb(255, 246, 231);
+}
+#flytips h4{
+    background: #30c27b;
+    border-radius: 20px;
+    color: white;
+    padding: 5px 10px;
+    display: inline-block;
+    
+}
 #tips{
-    width: auto;
+   display: bolck;
+}
+#loginPassword-error{
     position: relative;
-    top: -10px;
+    top: -20px;
 }
 
 #tips span{
@@ -67,9 +136,9 @@
     height: 20px;
     color:white;
     overflow:hidden;
-    background: rgb(177, 177, 177);
-    padding: 10px 10px;
-    border-radius: 8px;
+    background: rgb(200, 200, 200);
+    padding: 5px 10px;
+    border-radius: 20px;
     text-align: center;
 
 }
@@ -78,3 +147,10 @@
 #tips .s2{background: #fc0;}/*橙色*/
 #tips .s3{background: #cc0;}/*黄色*/
 #tips .s4{background: #14B12F;}/*绿色*/
+
+#logowhite{
+    position: absolute;
+    width: 100px;
+    left: 120px;
+    top: 300px;
+}

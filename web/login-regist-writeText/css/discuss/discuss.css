@@ -1,3 +1,5 @@
+
+
 .col-xs-8{
     float: none;
     width: 1000px;
@@ -109,3 +111,29 @@
 .art-comm img{
     margin-right: 10px;
 }
+
+#plus{
+    position: fixed;
+    background-image: url(../../img/plus.png);
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    bottom: 100px;
+    right: 100px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#plustip{
+    position: fixed;
+    padding: 0 10px;
+    background: wheat;
+    font-size: 15px;
+    display: none;
+    z-index: 10;
+    bottom: 70px;
+    right: 90px;
+    border-radius: 100px;
+    border: none;
+}
+

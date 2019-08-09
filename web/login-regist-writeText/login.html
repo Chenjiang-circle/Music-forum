@@ -104,16 +104,21 @@
                 </div>
         </div>
 
-        <div class="login-head"></div>
+        <div class="login-head">
+            准备好<br><h>加入我们</h><br>了吗？<br><br><p>LETS GO↓</p>
+        </div>
         <div id="main-content">
 
            
 
-            <div class="login-form">
+            <div class="all-login">
+                    <video src="video/30b4a859bbf33d5fc708685d6ddd2a0f.123222.mp4"  muted id="login-video" loop autoplay >
+                    </video>
+                    <img src="img/login/logowhite.png" id="logowhite">
                 <form id="login-form">
                     <p>昵称：</p><input type="text" name="username" id="username"><br>
                     <p></p>
-                    <div class="demo-box">
+                    <div class="demo-box" >
                             <select class="ui-choose" id="sex">
                                 <option value="b">男 生</option> 
 
@@ -125,13 +130,15 @@
                               </select>
                       </div><br>
                     <p>邮箱：</p><input type="email" name="userid" id="loginEmail"><br>
+                    <div id="flytips">数字、大小写字母与特殊符号组合在一起的密码<h4>最强</h4>哦！</div>
                     <p>密码：</p><input type="password" name="password" id="loginPassword"><br>
                     <div id="tips">
                         <span>弱</span>
                         <span>中</span>
                         <span>强</span>
-                        <span>很强</span>
+                        <span>最强</span>
                     </div>
+                    
                     <p>确认密码：</p><input type="password" name="confirmPassword" id="confirmPassword"><br>
                     <input type="button" value="写完啦" id="login-submit">
                 </form>

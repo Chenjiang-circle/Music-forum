@@ -69,7 +69,6 @@ $(document).ready(function(){
     })//验证表单格式
 
     $("#login-submit").click(function(){
-        alert("正在向您邮箱发送验证信息......");
         if($('#login-form').valid()){
             $.ajax({
                 type:"GET",
@@ -95,5 +94,12 @@ $(document).ready(function(){
             })
          }
     })//发送注册数据
+
+    $("#loginPassword").focus(function(){
+        $("#flytips").fadeIn();
+    });
+    $("#loginPassword").blur(function(){
+        $("#flytips").fadeOut();
+    })
 })
 
