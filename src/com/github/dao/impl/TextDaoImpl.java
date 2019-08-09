@@ -300,7 +300,7 @@ public class TextDaoImpl implements TextDao {
     @Override
     public List<simpletext_article> searchArticleByKeyWorks(String keyworks) {
         try {
-            String sql = "select * from text where title is not null and title like '%" + keyworks + "%' or text like '%" + keyworks + "%' order by likes desc";
+            String sql = "select * from text where title <> 'NULL' and (title like '%" + keyworks + "%' or text like '%" + keyworks + "%') order by likes desc";
             List<simpletext_article> query = template.query(sql, new BeanPropertyRowMapper<simpletext_article>(simpletext_article.class));
             return query;
         } catch (Exception e) {

@@ -40,16 +40,20 @@ public class UserCenter extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("usermsg");
+        if (user != null) {
+            System.out.println("个人中心session 的 userid : " + user.getUserid());
+        }
 
-        System.out.println("个人中心session 的 userid : " + user.getUserid());
 
         //接收userid
 
         String auserid = (String) session.getAttribute("auserid");
+<<<<<<< HEAD
 
 //        System.out.println(userid+"---------------------------");
+=======
+>>>>>>> de339c74529822d415589358d40f549c373f368c
 
-        //获取发过的 text 和 comment
 
         List<simpletext> listArtical = textService.getsimpleTextByUserID(auserid);
         List<simpletext> listCollection = textService.getcollectionByUserID(auserid);
@@ -68,7 +72,6 @@ public class UserCenter extends HttpServlet {
 
         if (user != null) {
             if (auserid.equals(user.getUserid())) {
-
                 //判断是否为自己的主页
                 isself = "true";
                 map.put("user", user);
@@ -79,11 +82,9 @@ public class UserCenter extends HttpServlet {
                 isself = "false";
 
                 // 根据userid查询数据
-
                 map.put("user", userByUserID);
 
                 //判断关注情况
-
                 follow follow = new follow();
                 follow.setUserid(user.getUserid());
                 follow.setFollowed(auserid);
@@ -112,6 +113,18 @@ public class UserCenter extends HttpServlet {
 //            response.setContentType("text/html;charset=utf-8");
 //            PrintWriter out = response.getWriter();
 //            out.print("<script language='javascript'>alert('登录已失效请重新登陆');window.location.href='http://172.20.151.117:8066/Music_forum/login-regist-writeText/enter.html';</script>");
+            isself = "false";
+            map.put("isself", isself);
+            map.put("isfollow", isfollow);
+            map.put("listArticle", listArtical);
+            map.put("listCollection", listCollection);
+            map.put("follownum", follownum);
+            map.put("user", userByUserID);
+            String s = JSON.toJSONString(map);
+            System.out.println(s);
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(response.getWriter(), map);
+
         }
 
     }

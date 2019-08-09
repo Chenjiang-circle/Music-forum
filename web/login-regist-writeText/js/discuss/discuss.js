@@ -108,5 +108,14 @@ jQuery(document).ready(function($){
         }
     })
 
+    $("#plus").click(function(){
+        location.href = '';
+    })
+    $("#plus").hover(function(){
+        $("#plustip").fadeIn()
+    },function(){
+        $("#plustip").fadeOut()
+    })
+
 
   });

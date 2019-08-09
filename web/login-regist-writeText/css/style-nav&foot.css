@@ -46,6 +46,7 @@
 			width: 100%;
 			height: 180px;
             box-shadow:0px 10px 50px rgb(202, 202, 202);
+            background: white;
 		}
 
         #logo{
@@ -198,6 +199,8 @@
 
 #foot{
     background-image: url(../img/footer.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 500px;
     width: 100%;
     position: absolute;

@@ -14,7 +14,7 @@ function getmusicdata() {
     $.ajax({
         type: 'get',
         url: 'http://172.20.151.112:8066/Music_forum/getmusic',
-        success: (str) => {
+        success: function(str) {
 
             var data = eval(str);
 
@@ -41,7 +41,7 @@ function getmusicdata() {
             //点击分页跳转相应页
             showpage(arr);
         },
-        error: (err) => {
+        error: function(err) {
             console.log(err)
         }
     })
@@ -232,9 +232,10 @@ function disappear(n) {
 
 //打印文章列表
 function printdata(data) {
+    console.log(data)
     $("#abody").empty();
     for (var i = 0; i < data.length; i++) {
-        var str = "<tr class=\"t\"><td>" + data[i].title +
+        var str = "<tr class=\"t\"><td class='all-title'>" + data[i].title +
             "</td><td><img class=\"all-image\" alt=\"文章封面\"></td><td><button class=\"btn btn-default btn_text\">通过</button></td></tr>"
         $("#abody").append(str);
     }
@@ -244,11 +245,26 @@ function printdata(data) {
     }
 
     $("#alltext").html("共："+data.length+"篇")
+//跳转文章详情页
+    var allLine = document.getElementsByClassName('all-title');
+    for (var i = 0; i < allLine.length; i++) {
+        allLine[i].index = i;
+        allLine[i].onclick = function () {
+            var a = this.index;
+            $.ajax({
+                url: "http://localhost:8066/Music_forum/jumpPage",
+                type: "get",
+                data: {
+                    "thistext": data[a].textid
+                },
+                success: function () {
+                    window.open("http://localhost:8066/Music_forum/login-regist-writeText/article.html");
+                }
+            })
+            getallarticle();
+        }
+    }
 
-    // var textLine=document.getElementsByClassName('t');
-    //  textLine[i].onclick=function(){
-    //     //跳转文章详情页
-    //  }
 }
 
 function commitdata(data) {
@@ -281,9 +297,10 @@ function commitdata(data) {
 }
 //打印已审核文章列表
 function print(data) {
+    console.log(data)
     $("#cbody").empty();
     for (var i = 0; i < data.length; i++) {
-        var str = "<tr class=\"c\"><td>" + data[i].title + "</td><td><img class=\"home-image\" alt=\"文章封面\"></td><td><button class=\"btn btn-default btn_cancel\">取消展示</button></td></tr>"
+        var str = "<tr class=\"c\"><td class='text-title'>" + data[i].title + "</td><td><img class=\"home-image\" alt=\"文章封面\"></td><td><button class=\"btn btn-default btn_cancel\">取消展示</button></td></tr>"
         $("#cbody").append(str);
     }
     var homeImage = document.getElementsByClassName('home-image')
@@ -295,6 +312,29 @@ function print(data) {
         $("#message").html("注意：主页只能展示最多6篇文章")
     } else {
         $("#message").html("")
+    }
+    jumphometext(data)
+}
+function jumphometext(data){
+    //点击文章跳转文章内容
+    var textLine = document.getElementsByClassName('text-title');
+    for (var i = 0; i < textLine.length; i++) {
+        textLine[i].index = i;
+        textLine[i].onclick = function () {
+            var a = this.index;
+            $.ajax({
+                url: "http://localhost:8066/Music_forum/jumpPage",
+                type: "get",
+                data: {
+                    "thistext": data[a].textid
+                },
+                success: function () {
+                    window.open("http://localhost:8066/Music_forum/login-regist-writeText/article.html");
+
+                }
+            })
+            gethomearticle();
+        }
     }
 }
 //取消展示
@@ -314,8 +354,9 @@ function cancelcommit(data) {
                 type: "get",
                 success: function (str) {
                     var data = eval(str);
-                    print(data)
-                    cancelcommit(data)
+                    print(data);
+                    jumphometext(data);
+                    cancelcommit(data);
                 },
                 error: function (err) {
                     alert("网络出错" + err.status)
@@ -345,7 +386,7 @@ function getalldata() {
 function showwebData(data) {
     var allarticle = data.allArticle;
     $("#mandarin").width((data.mandarin / allarticle) * 100 + "%");
-    $("#mandarin p:first").html("华语：" + (data.mandarin / allarticle) * 100 + "%")
+    $("#mandarin p:first").html("华语：" + Math.ceil((data.mandarin / allarticle) * 100 )+ "%")
     $("#western").width((data.western / allarticle) * 100 + "%");
     $("#western p:first").html("欧美：" + (data.western / allarticle) * 100 + "%")
     $("#rock").width((data.rock / allarticle) * 100 + "%");
@@ -381,11 +422,11 @@ function showcircle(arr) {
             datasets: [{
                 data: arr,
                 backgroundColor: [
-                    'blue',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'red',
-                    'green'
+                    'rgba(1,1,235,0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(255,1,1,0.8)',
+                    'rgba(1,255,1,0.8)'
                 ],
             }],
             // These labels appear in the legend and in the tooltips when hovering different arcs

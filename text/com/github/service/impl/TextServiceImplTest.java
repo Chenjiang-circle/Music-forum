@@ -76,7 +76,7 @@ public class TextServiceImplTest {
 
     @Test
     public void updateCommentNum() {
-        Boolean aBoolean = textDao.updateTextCommentNum(10);
+        Boolean aBoolean = textDao.updateTextCommentNum(51);
         System.out.println(aBoolean);
     }
 

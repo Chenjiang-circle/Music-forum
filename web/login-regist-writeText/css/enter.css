@@ -1,3 +1,9 @@
+.main-wrap{
+    background-image: url(../img/enter/11.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 #main-content{
     width: 60%;
     height: 40%;

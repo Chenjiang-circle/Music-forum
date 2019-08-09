@@ -1,20 +1,31 @@
+var issignin=false;
 $(document).ready(function(){
+    $.ajax({
+        url: "http://localhost:8066/Music_forum/getUserIformation", // 获取登录信息,如果登录返回的data不为null
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            if (data != null) {
+                issignin=true;
+            }
+        }
+    })
     var shoptohome=document.getElementById('shoptohome');
     shoptohome.onclick=function(){
         $.ajax({
-            url:"http://localhost:8066/Music_forum/getUserIformation",
+            url:"http://172.20.151.112:8066/Music_forum/getUserIformation",
             type:"GET",
             dataType:"json",
             success:function (data) {
                 if(data!=null){
                     $.ajax({
-                        url:"http://localhost:8066/Music_forum/jumpPage",
+                        url:"http://172.20.151.112:8066/Music_forum/jumpPage",
                         type:"post",
                         data:{
                             "userid":data.userid
                         },
                         success:function(){
-                            window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/myHomepage.html";
+                            window.location.href="http://172.20.151.112:8066/Music_forum/login-regist-writeText/myHomepage.html";
                         },
                         error:function(err){
                             alert("跳转页面失败,请检查您的网络");
@@ -23,7 +34,7 @@ $(document).ready(function(){
                 }else{
                     alert("您还未登录")
                     if(confirm("您还未登录,是否前往登录")){
-                        window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html"
+                        window.location.href="http://172.20.151.112:8066/Music_forum/login-regist-writeText/enter.html"
                     }
 
 
@@ -309,7 +320,7 @@ $(document).ready(function(){
 
     $.ajax({ 
         type:"get",
-        url:"http://localhost:8066/Music_forum/getAllMusicInformation",
+        url:"http://172.20.151.112:8066/Music_forum/getAllMusicInformation",
         datatype:'json',
         success:function(dataa){
 
@@ -360,7 +371,7 @@ $(document).ready(function(){
         formData.append('file',document.getElementById("select-cover").files[0]);
         $.ajax({
             type:"POST",
-            url:"http://localhost:8066//Music_forum/uploadfile",
+            url:"http://172.20.151.112:8066/Music_forum/uploadfile",
             datatype:"json",
             data:formData,
             processData:false,
@@ -399,7 +410,7 @@ $(document).ready(function(){
         formData.append('file',document.getElementById("select-cover2").files[0]);
         $.ajax({
             type:"POST",
-            url:"http://localhost:8066//Music_forum/uploadfile",
+            url:"http://172.20.151.112:8066//Music_forum/uploadfile",
             datatype:"json",
             data:formData,
             processData:false,
@@ -435,7 +446,7 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"post",
-                url:"http://localhost:8066/Music_forum/uploadMusic",
+                url:"http://172.20.151.112:8066/Music_forum/uploadMusic",
                 datatype:"json",
                 data:{
                     musiccover:coverImg,
@@ -461,8 +472,16 @@ $(document).ready(function(){
     $("#upMusicOut").click(function(){ //关闭上传音乐的窗口
         $("#upMusic").css("display","none");
     })
-    $("#appearUpmusic").click(function(){//打开上传音乐的窗口
-        $("#upMusic").css("display","block");
+    //打开上传音乐的窗口
+    $("#appearUpmusic").click(function(){
+        if(issignin){
+            $("#upMusic").css("display","block");
+        }else{
+            if(confirm("您还未登录,不能贡献自己的力量,是否前往登录?")){
+                window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html"
+            }
+        }
+
     })
     //hometopage
 

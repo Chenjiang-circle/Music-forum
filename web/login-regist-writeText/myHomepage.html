@@ -56,6 +56,17 @@
 
     </div>     -->
 
+                    <!-- //上传头像 -->
+                    <div id="upavatar">
+                            <div id="upMusicOut">×</div>
+                            <h3 id="tips">现在，您可以轻松更换您的社交头像。</h3>
+                            选择头像：<input type="file" id="select-cover" name="file" accept="image/*">
+                            <button id="confirm-up">确认上传头像</button>
+                            <div id="up-cover-image">
+                                <img src="" id="up-cover">
+                            </div>
+                    </div>
+
     <!-- 这个是主页，相当于body，请把页面中所有内容写到这里来 -->
     <main class="main-wrap">
 
@@ -128,6 +139,7 @@
                         <img src="./img/对勾小.png" alt="减粉丝" id="defans">
                     </div>
                 </div>
+
                 <script>
                 var oAvatar=document.getElementById('avatarBack');
                 var ofans=document.getElementById('addfans-box')
@@ -153,35 +165,17 @@
             <div id="myDetail">
                 <div id="myArt">
                     <div class="myTitle">我的创作</div>
-                    <div class="more">更多</div>
+                    <div class="more" id="morearts">更多</div>
                     <div class="arts">
-                        <div class="artLists">
-                            <div class="artName">LadyGaga:五尺二寸</div>
-                        </div>
-                        <div class="artLists">
-                            <div class="artName">ADELE:后来我遇到的人都像你</div>
 
-                        </div>
-                        <div class="artLists">
-                            <div class="artName">蔡依林：我还怪美的！</div>
-                        </div>
+
                     </div>
                 </div>
                 <div id="myCollection">
                     <div class="myTitle">我的收藏</div>
-                    <div class="more">更多</div>
+                    <div class="more" id="morecollections">更多</div>
                     <div class="collections" id="collections">
-                        <div class="collectionLists">
-                            <div class="collectionName">LadyGaga:五尺二寸</div>
-                        </div>
-                        <div class="collectionLists">
-                            <div class="collectionName">ADELE:后来我遇到的人都像你</div>
 
-                        </div>
-                        <div class="collectionLists">
-                            <div class="collectionName">蔡依林：我还怪美的！</div>
-
-                        </div>
                     </div>
                 </div>
 

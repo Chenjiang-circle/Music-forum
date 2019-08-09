@@ -23,9 +23,15 @@
 .arts{
     /* border:palevioletred 3px solid; */
     margin:80px auto;
+    height: 540px;
+    overflow: hidden;
+    transition: 0.5s all;
 }
 .collections{
     margin:80px auto;
+    height: 540px;
+    overflow: hidden;
+    transition: 0.5s all;
 }
 
 .artLists{
@@ -35,6 +41,7 @@
     border-radius: 20px;
     display: inline-block;
     margin-left: 93px;
+    margin-top:70px;
     position: relative;
     overflow: hidden;
     background-size: cover;
@@ -61,6 +68,7 @@
     transition: all 0.5s;
     background-position-x: center;
     background-position-y: center;
+    margin-top:70px;
 
 }
 
@@ -163,7 +171,7 @@
     background-image: url(../../img/article/avatar-default.jpg);
     background-size: inherit;
     background-repeat: no-repeat;
-
+    cursor: pointer;
 }
 
 #username{
@@ -195,7 +203,6 @@
 
 #myArt{
     width: 100%;
-    height: 500px;
     border: white 3px solid;
     margin-top: 50px;
 }
@@ -256,4 +263,52 @@
     width: 50px;
     height: auto;
     transition: top 0.2s;
+}
+
+#tips{
+    margin-bottom: 10px;
+    color: #30c27b;
+}
+
+#upavatar{
+    position: fixed;
+    top: 400px;
+    width: 500px;
+    border-radius: 20px;
+    background: white;
+    box-shadow:0px 20px 50px rgb(97, 96, 96);
+    z-index: 99;
+    margin-left: 50%;
+    left: -250px;
+    padding: 30px;
+    display: none;
+
+}
+
+#up-cover-image{
+    height: 200px;
+    width: 200px;
+    border: 2px solid rgb(146, 146, 146);
+    border-radius: 100%;
+    margin:0 auto;
+    margin-top: 20px;
+    
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+#upMusicOut{
+    position: absolute;
+    font-weight: bold;
+    font-size: 30px;
+    color: rgb(148, 148, 148);
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+}
+
+#upMusicOut:hover{
+    color: #e73d8c;
 }
