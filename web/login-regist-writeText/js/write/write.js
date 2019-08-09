@@ -163,7 +163,7 @@ $(document).ready(function(){
         }else{
             $.ajax({
                 type:"POST",
-                url:"http://172.20.151.112:8066/Music_forum/createText",
+                url:"http://localhost:8066/Music_forum/createText",
                 dataType:"json",
                 data:{
                     userid:0,

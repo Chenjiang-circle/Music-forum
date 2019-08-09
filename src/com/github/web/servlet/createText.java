@@ -34,7 +34,7 @@ public class createText extends HttpServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        text.setUserid("1455075085@qq.com");
+        text.setUserid("2464792469@qq.com");
         System.out.println(text.toString());
         TextService textService = new TextServiceImpl();
         textService.createText(text);
