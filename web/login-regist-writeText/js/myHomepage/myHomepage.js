@@ -35,6 +35,7 @@ $(document).ready(function () {
         }
     })
 
+    var yours="";
     // 向usercenter发送请求,获取"所查看"的用户的信息
     $.ajax({
         url: "http://localhost:8066/Music_forum/usercenter",
@@ -52,13 +53,63 @@ $(document).ready(function () {
             //判断是不是自己的个人主页
 
             isSelf(data.isself, data.isfollow, data.user.fans, data.follownum);
-
+            yours=data.isself;
             //console.log(typeof (data.isself))
         },
         error: function (err) {
             console.log(err);
             alert("网络似乎出现问题，请检查你的网络")
         }
+    })
+
+    if(yours){//上传头像
+        $("#avatar").clcik(function(){
+            $('#upavatar').fadeIn();
+        })
+    }
+
+    $("#confirm-up").click(function(){//图床 for 封面
+
+        // var upFile = document.getElementById("select-cover").files[0];
+        var formData = new FormData();
+        formData.append('file',document.getElementById("select-cover").files[0]);
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8066//Music_forum/uploadfile",
+            datatype:"json",
+            data:formData,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                // coverImg = data;
+                data=data.replace("\"","");
+                data=data.replace("\"","");
+                var image = new Image();
+                image.src = data;
+                image.onload=function(){
+                    var width=image.width;
+                    var height=image.height;
+                    if(width==height){
+                        $("#tips").html("👍太棒了！头像上传成功！")
+                        $("#up-cover-image").css('background-image','url('+data+')');
+                        coverImg = data;
+                        //重现刷新一下个人主页！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+                    }else{
+                        $("#tips").html("图片不合格哦，请上传宽高比为1:1的图片")
+                    }
+                }
+                // alert(data);
+               
+            },
+            error:function(jqXHR){
+                alert("OOPS! 服务器出现了一个小问题："+jqXHR.status);
+            }
+
+        })
+    })
+
+    $('#upMusicOut').click(function(){
+        $('#upavatar').fadeOut();
     })
 })
 
@@ -231,3 +282,4 @@ function showfans(fans, follow) {
     var fansbox = document.getElementById('fans')
     fansbox.innerHTML = "粉丝：" + fans + "关注：" + follow;
 }
+
