@@ -96,4 +96,12 @@ public interface UserService {
      * @return
      */
     int countFollowedNumByUserId(String userid);
+
+    /**
+     * 此方法用来更换用户头像
+     * @param url
+     * @param userid
+     * @return
+     */
+    Boolean changeUserimage(String url, String userid);
 }

@@ -36,7 +36,7 @@ public class getText extends HttpServlet {
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("usermsg");
 
-            System.out.println("user -----> " + user);
+            //System.out.println("user -----> " + user);
             Map<String, Object> map = new HashMap<String, Object>();
 
             Boolean ifColl = true;
