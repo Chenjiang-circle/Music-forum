@@ -31,21 +31,23 @@
 				closeSearch();
 			}
 			if( ev.keyCode == 13 ) {
-				alert("hhh");
-				$.ajax({
-					url:"",
-					datatype:"json",
-					type:"post",
-					data:{
-						"serach":$('.search__input').eq(0).val()
-					},
-					success:function(data){
+				if($('.search__input').eq(0).val()){
+					$.ajax({
+						url:"http://localhost:8066/Music_forum/jumpPage",
+						datatype:"json",
+						type:"post",
+						data:{
+							"search":$('.search__input').eq(0).val()
+						},
+						success:function(){
+							location.href="http://localhost:8066/Music_forum/login-regist-writeText/result.html";
+						},
+						error:function(error){
+							alert("搜索失败："+error.status);
+						}
+					})
+				}
 
-					},
-					error:function(error){
-						alert("搜索失败："+error.status);
-					}
-				})
 				
 			}
 		});

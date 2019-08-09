@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.domain.User;
 import com.github.service.UserService;
 import com.github.service.impl.UserServiceImpl;
+import com.github.util.toMD5;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.ServletException;
@@ -44,6 +45,10 @@ public class signin extends HttpServlet {
         UserService userService = new UserServiceImpl();
         Boolean have = userService.isHave(user);
         System.out.println("have = "+have);
+        String password = user.getPassword();
+        String s1 = toMD5.MD5(password);
+        String s2 = toMD5.MD5(s1);
+        user.setPassword(s2);
         User signin = userService.signin(user);
         //设置响应的数据格式为json
         response.setContentType("application/json;charset=utf-8");

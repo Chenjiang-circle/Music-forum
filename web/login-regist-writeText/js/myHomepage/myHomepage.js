@@ -1,3 +1,4 @@
+var issignin=false;
 $(document).ready(function () {
 
     $.ajax({
@@ -6,6 +7,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
             if (data != null) {
+                issignin=true;
                 // 因为data不为空,所以需要将右上角的sign in 和 sign up隐藏起来,并展示登录用户头像
                 //userid不为空 获取用户头像 用户昵称 id
                 $("#login").css("display", "none");
@@ -49,7 +51,6 @@ $(document).ready(function () {
             console.log(data)
             //写入数据
             showdata(data);
-            //判断是不是自己的个人主页
 
             isSelf(data.isself, data.isfollow, data.user.fans, data.follownum);
 
@@ -79,22 +80,39 @@ function showdata(data) {
     var collectionName = document.getElementsByClassName('collectionName');
     var artName = document.getElementsByClassName('artName');
     //console.log(myart[0].title)
-    for (var i = 0; i < 3; i++) {
-        if (myart[i]) {
-            artName[i].innerHTML = myart[i].title;
-            artLists[i].style.backgroundImage = "url(" + myart[i].textimage + ")";
-        } else {
-            artLists[i].style.display = 'none';
-        }
-        if (mycollection[i]) {
-            collectionName[i].innerHTML = mycollection[i].title;
-            collectionLists[i].style.backgroundImage = "url(" + mycollection[i].textimage + ")";
-        } else {
-            collectionLists[i].style.display = 'none';
-        }
+    for (var i = 0; i < myart.length; i++) {
+
+            var str='<div class="artLists  fadearts"><div class="artName ">蔡依林：我还怪美的！</div></div>';
+            $('.arts').eq(0).html($('.arts').eq(0).html()+str);
+
+        $('.artName').eq(i).text(myart[i].title)
+        $('.artLists').eq(i).css({'background-image':"url(" + myart[i].textimage + ")"})
 
     }
-    for (var i = 0; i < 3; i++) {
+
+    for (var i = 0; i < mycollection.length; i++) {
+
+        var str='<div class="collectionLists"><div class="collectionName">蔡依林：我还怪美的！</div></div>';
+        $('.collections').eq(0).html($('.collections').eq(0).html()+str);
+
+        $('.collectionName').eq(i).text(mycollection[i].title)
+        $('.collectionLists').eq(i).css({'background-image':"url(" + mycollection[i].textimage + ")"})
+
+    }
+
+    var morearts=document.getElementById('morearts')
+    var morecollections=document.getElementById('morecollections')
+    morearts.onclick=function(){
+        s=myart.length/3;
+        s=Math.floor(s);
+        $(".arts").eq(0).css({'height':540+450*s+'px'})
+    }
+    morecollections.onclick=function(){
+        s=mycollection.length/3;
+        s=Math.floor(s);
+        $(".collections").eq(0).css({'height':540+450*s+'px'})
+    }
+    for (var i = 0; i < artLists.length; i++) {
         artLists[i].index = i;
 
         artName[i].onclick = artLists[i].onclick = function () {
@@ -111,7 +129,7 @@ function showdata(data) {
             })
         }
     }
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < collectionLists.length; i++) {
         collectionLists[i].index = i;
 
         collectionLists[i].onclick = function () {
@@ -148,31 +166,29 @@ function isSelf(isself, isfollow, fans, follow) {
             oAddfans.style.top = '-50px';
             odefans.style.top = '0px';
         }
-        // $("#addfans-box").click(function () {
-        //
-        //     var t = fans;
-        //     if (isfollow == "true") {
-        //         defan(fans, follow);
-        //         isfollow = "false";
-        //     } else {
-        //         befan(fans, follow);
-        //         isfollow = "true";
-        //     }
-        // })
+
 
         var t = fans;
 
         $("#addfans-box").click(function () {
-            //console.log("添加关注被调用");
-            if (isfollow != "false") {
-                defan(t, follow);
-                isfollow = "false";
-                t -= 1;
-            } else {
-                befan(t, follow);
-                isfollow = "true";
-                t += 1;
+            //判断用户是否登录
+            if(issignin){
+                //console.log("添加关注被调用");
+                if (isfollow != "false") {
+                    defan(t, follow);
+                    isfollow = "false";
+                    t -= 1;
+                } else {
+                    befan(t, follow);
+                    isfollow = "true";
+                    t += 1;
+                }
+            }else{
+                if(confirm("您还未登录,不能关注,是否前往登录?")){
+                    window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/enter.html"
+                }
             }
+
         })
 
 
