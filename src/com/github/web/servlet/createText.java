@@ -38,9 +38,9 @@ public class createText extends HttpServlet {
         }
         HttpSession session = req.getSession();
         User usermsg = (User) session.getAttribute("usermsg");
-        System.out.println(usermsg);
+        //System.out.println(usermsg);
         text.setUserid(usermsg.getUserid());
-        System.out.println(text.toString());
+        //System.out.println(text.toString());
         TextService textService = new TextServiceImpl();
         textService.createText(text);
 

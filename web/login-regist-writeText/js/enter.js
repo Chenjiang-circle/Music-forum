@@ -64,19 +64,7 @@
                 success:function(data){
                     // 改动！！！加入cookie
                     if(data.success){
-                        // $.ajax({
-                        //     url:"http://172.20.151.117:8066/Music_forum/signinservlet",
-                        //     type:"GET",
-                        //     datatype:"json",
-                        //     success:function(data){
-                        //         if(data){
-                        //             cookies.set({'userid':$("#enterEmail").val(),'username':data.username,'avatar':data.avatar},{expires:7,path:''});
-                        //         }
-                        //     },
-                        //     error:function(jqXHR){
-                        //         alert("服务器请求失败，这意味着您下一次可能仍然需要登录以确认身份 \n 错误信息："+jqXHR.status)
-                        //     }
-                        // })
+
 
                         window.location.href="http://localhost:8066/Music_forum/login-regist-writeText/home.html";
 

@@ -1,19 +1,24 @@
 var issignin=false;
+var useridAva="";
+var imageurl = "";
 $(document).ready(function () {
-
+  var yours;
     $.ajax({
         url: "http://localhost:8066/Music_forum/getUserIformation", // 获取登录信息,如果登录返回的data不为null
         type: "GET",
         dataType: "json",
         success: function (data) {
             if (data != null) {
+                console.log(data)
                 issignin=true;
+                useridAva=data.userid;
                 // 因为data不为空,所以需要将右上角的sign in 和 sign up隐藏起来,并展示登录用户头像
                 //userid不为空 获取用户头像 用户昵称 id
                 $("#login").css("display", "none");
                 $(".loginOn").css("display", "block");
                 $("#loginOn-name").html(data.username);
                 $("#loginOn-image").attr("src", data.imageid);
+                imageurl = data.imageid;
 
                 //点击发送ajax给后端并进行页面跳转,跳转到个人主页  后端存取userid
                 $(".loginOn").click(function () {
@@ -37,7 +42,7 @@ $(document).ready(function () {
         }
     })
 
-    var yours="";
+
     // 向usercenter发送请求,获取"所查看"的用户的信息
     $.ajax({
         url: "http://localhost:8066/Music_forum/usercenter",
@@ -55,6 +60,11 @@ $(document).ready(function () {
 
             isSelf(data.isself, data.isfollow, data.user.fans, data.follownum);
             yours=data.isself;
+            if(yours){//上传头像
+                $("#avatar").click(function(){
+                    $('#upavatar').fadeIn();
+                })
+            }
             //console.log(typeof (data.isself))
         },
         error: function (err) {
@@ -63,11 +73,7 @@ $(document).ready(function () {
         }
     })
 
-    if(yours){//上传头像
-        $("#avatar").clcik(function(){
-            $('#upavatar').fadeIn();
-        })
-    }
+
 
     $("#confirm-up").click(function(){//图床 for 封面
 
@@ -93,8 +99,18 @@ $(document).ready(function () {
                     if(width==height){
                         $("#tips").html("👍太棒了！头像上传成功！")
                         $("#up-cover-image").css('background-image','url('+data+')');
-                        coverImg = data;
-                        //重现刷新一下个人主页！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+                        $('#avatar').css('background-image','url('+data+')');
+                        $('#userimg').attr('src',data);
+                        $('#upavatar').fadeOut();
+                        $.ajax({
+                            url:'http://172.20.151.112:8066/Music_forum/changeUserImage',
+                            dataType:'json',
+                            type:'post',
+                            data:{
+                                'newAvatar':data,
+                                'useridAva':useridAva
+                            }
+                        })
                     }else{
                         $("#tips").html("图片不合格哦，请上传宽高比为1:1的图片")
                     }

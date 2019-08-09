@@ -2,6 +2,8 @@ package com.github.web.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.github.domain.User;
+import com.github.service.UserService;
+import com.github.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +21,15 @@ public class getUserIformation extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         User usermsg = (User) session.getAttribute("usermsg");
-        System.out.println(usermsg);
-        JSON.writeJSONString(resp.getWriter(), usermsg);
-        System.out.println("页面加载时向页面发送是否登录以及登录信息");
+        //System.out.println(usermsg);
+        if (usermsg != null) {
+            UserService userService = new UserServiceImpl();
+            User userByUserID = userService.getUserByUserID(usermsg.getUserid());
+            session.setAttribute("usermsg", userByUserID);
+            JSON.writeJSONString(resp.getWriter(), userByUserID);
+        }else {
+            JSON.writeJSONString(resp.getWriter(), usermsg);
+        }
     }
 
     @Override

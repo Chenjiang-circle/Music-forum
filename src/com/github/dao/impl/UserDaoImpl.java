@@ -192,4 +192,21 @@ public class UserDaoImpl implements UserDao {
             return 0;
         }
     }
+
+    @Override
+    public Boolean changeUserimage(String url, String userid) {
+        try {
+            String sql = "update user set imageid = ? where userid = ?";
+            int update = template.update(sql, url, userid);
+            if (update == 1){
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("更换头像异常！！！！");
+            return false;
+        }
+    }
 }
