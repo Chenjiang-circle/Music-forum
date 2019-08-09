@@ -386,7 +386,7 @@ function getalldata() {
 function showwebData(data) {
     var allarticle = data.allArticle;
     $("#mandarin").width((data.mandarin / allarticle) * 100 + "%");
-    $("#mandarin p:first").html("华语：" + (data.mandarin / allarticle) * 100 + "%")
+    $("#mandarin p:first").html("华语：" + Math.ceil((data.mandarin / allarticle) * 100 )+ "%")
     $("#western").width((data.western / allarticle) * 100 + "%");
     $("#western p:first").html("欧美：" + (data.western / allarticle) * 100 + "%")
     $("#rock").width((data.rock / allarticle) * 100 + "%");
@@ -422,11 +422,11 @@ function showcircle(arr) {
             datasets: [{
                 data: arr,
                 backgroundColor: [
-                    'blue',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'red',
-                    'green'
+                    'rgba(1,1,235,0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(255,1,1,0.8)',
+                    'rgba(1,255,1,0.8)'
                 ],
             }],
             // These labels appear in the legend and in the tooltips when hovering different arcs

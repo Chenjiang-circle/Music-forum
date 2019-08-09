@@ -29,8 +29,8 @@ public class UserDaoImpl implements UserDao {
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
     @Override
     public void register(User users) {
-        String sql = "insert into user values(?, ?, ?, 1, ?, ?, ?, ?)";
-        template.update(sql, users.getUserid(), users.getUsername(), users.getPassword(), users.getNumsignin(), users.getFans(), users.getDescription(), users.getSex());
+        String sql = "insert into user values(?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(sql, users.getUserid(), users.getUsername(), users.getPassword(), users.getNumsignin(), users.getFans(), users.getDescription(), users.getSex(), users.getImageid());
     }
 
     /**
