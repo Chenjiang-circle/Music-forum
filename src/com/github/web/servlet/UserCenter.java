@@ -39,9 +39,13 @@ public class UserCenter extends HttpServlet {
         //获取session数据
 
         HttpSession session = request.getSession();
+
         User user = (User) session.getAttribute("usermsg");
+        User auser = null;
         if (user != null) {
             System.out.println("个人中心session 的 userid : " + user.getUserid());
+            auser = userService.getUserByUserID(user.getUserid());
+            session.setAttribute("usermsg", auser);
         }
 
 
@@ -55,6 +59,8 @@ public class UserCenter extends HttpServlet {
         //查询user信息
         System.out.println("个人中心 接收的 userid"+auserid);
         User userByUserID = userService.getUserByUserID(auserid);
+        System.out.println("通过个人中心接受的userid查询到的user对象是：" + userByUserID);
+
 
         //用于传递list集合，将list集合再放入一个json中传给前端
 
@@ -68,7 +74,7 @@ public class UserCenter extends HttpServlet {
             if (auserid.equals(user.getUserid())) {
                 //判断是否为自己的主页
                 isself = "true";
-                map.put("user", user);
+                map.put("user", auser);
 
             } else {
 
@@ -95,9 +101,9 @@ public class UserCenter extends HttpServlet {
             map.put("isself", isself);
             map.put("isfollow", isfollow);
             map.put("follownum", follownum);
-            map.put("username", user.getUsername());
-            map.put("userid", user.getUserid());
-            map.put("imageid", user.getImageid());
+            map.put("username", auser.getUsername());
+            map.put("userid", auser.getUserid());
+            map.put("imageid", auser.getImageid());
             String s = JSON.toJSONString(map);
             System.out.println(s);
             ObjectMapper mapper = new ObjectMapper();

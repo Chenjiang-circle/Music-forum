@@ -92,4 +92,10 @@ public class UserServiceImpl implements UserService {
     public int countFollowedNumByUserId(String userid) {
         return userDao.countFollowedNumByUserId(userid);
     }
+
+    @Override
+    public Boolean changeUserimage(String url, String userid) {
+        Boolean aBoolean = userDao.changeUserimage(url, userid);
+        return aBoolean;
+    }
 }
