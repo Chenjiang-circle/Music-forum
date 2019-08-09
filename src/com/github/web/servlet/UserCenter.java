@@ -48,12 +48,6 @@ public class UserCenter extends HttpServlet {
         //接收userid
 
         String auserid = (String) session.getAttribute("auserid");
-<<<<<<< HEAD
-
-//        System.out.println(userid+"---------------------------");
-=======
->>>>>>> de339c74529822d415589358d40f549c373f368c
-
 
         List<simpletext> listArtical = textService.getsimpleTextByUserID(auserid);
         List<simpletext> listCollection = textService.getcollectionByUserID(auserid);
