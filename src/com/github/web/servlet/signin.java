@@ -60,15 +60,12 @@ public class signin extends HttpServlet {
             map1.put("password", user.getPassword());
             //获取session
             HttpSession session = request.getSession();
-<<<<<<< HEAD
             //存储数据
             session.setAttribute("usermsg", userService.getUserByUserID(user.getUserid()) );
-=======
+
             //2.存储数据
             session.setAttribute("usermsg", userService.getUserByUserID(user.getUserid()));
-//            User user1 = (User) session.getAttribute("usermsg");
-//            System.out.println(user1);
->>>>>>> a5dfe3e47a73dc7ceecaabbe1935b94b2fbdf506
+
         }else {
             map1.put("success", false);
             map1.put("userid", user.getUserid());
